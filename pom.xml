@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.chronos.calc</groupId>
     <artifactId>ChronosCalcTribut</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <organization>
         <name>Chronosinfo</name>

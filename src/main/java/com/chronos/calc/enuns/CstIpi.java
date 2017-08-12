@@ -5,6 +5,8 @@
  */
 package com.chronos.calc.enuns;
 
+import java.util.Objects;
+
 /**
  *
  * @author John Vanderson M L
@@ -32,6 +34,16 @@ public enum CstIpi {
     CstIpi(String codigo, String descricao) {
         this.descricao = descricao;
         this.codigo = codigo;
+    }
+
+    public static CstIpi valueOfCodigo(final String codigo) {
+        for (final CstIpi cst : CstIpi.values()) {
+            if (Objects.equals(cst.getCodigo(), codigo)) {
+                return cst;
+            }
+        }
+        // throw new IllegalArgumentException(String.format("Cst não definido."));
+        return null;
     }
 
     public String getDescricao() {

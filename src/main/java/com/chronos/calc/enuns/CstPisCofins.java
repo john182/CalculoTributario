@@ -5,13 +5,14 @@
  */
 package com.chronos.calc.enuns;
 
+import java.util.Objects;
+
 /**
  *
  * @author John Vanderson M L
  */
 public enum CstPisCofins {
 
-    
     Cst01("01", "01 - Operação Tributável com Alíquota Básica"),
     Cst02("02", "02 - Operação Tributável com Alíquota Diferenciada"),
     Cst03("03", "03 - Operação Tributável com Alíquota por Unidade de Medida de Produto"),
@@ -37,16 +38,13 @@ public enum CstPisCofins {
     Cst65("65", "65 - Crédito Presumido - Operação de Aquisição Vinculada a Receitas Não-Tributadas no Mercado Interno e de Exportação"),
     Cst66("66", "66 - Crédito Presumido - Operação de Aquisição Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno, e de Exportação"),
     Cst67("67", "67 - Crédito Presumido - Outras Operações"),
-    
     Cst70("70", "70 - Operação de Aquisição sem Direito a Crédito"),
     Cst71("71", "71 - Operação de Aquisição com Isenção"),
     Cst72("72", "72 - Operação de Aquisição com Suspensão"),
     Cst73("73", "73 - Operação de Aquisição a Alíquota Zero"),
     Cst74("74", "74 - Operação de Aquisição sem Incidência da Contribuição"),
     Cst75("75", "75 - Operação de Aquisição por Substituição Tributária"),
-  
-    
-    Cst98("98", "98 - Outras Operações de Entrada"),    
+    Cst98("98", "98 - Outras Operações de Entrada"),
     Cst99("99", "99 - Outras Operações");
 
     private String descricao;
@@ -55,6 +53,16 @@ public enum CstPisCofins {
     CstPisCofins(String codigo, String descricao) {
         this.descricao = descricao;
         this.codigo = codigo;
+    }
+
+    public static CstPisCofins valueOfCodigo(final String codigo) {
+        for (final CstPisCofins cst : CstPisCofins.values()) {
+            if (Objects.equals(cst.getCodigo(), codigo)) {
+                return cst;
+            }
+        }
+        // throw new IllegalArgumentException(String.format("Cst não definido."));
+        return null;
     }
 
     public String getDescricao() {

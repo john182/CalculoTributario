@@ -18,6 +18,9 @@ import com.chronos.calc.cst.Cst51;
 import com.chronos.calc.cst.Cst70;
 import com.chronos.calc.cst.Cst90;
 import com.chronos.calc.dto.Icms;
+import com.chronos.calc.dto.Imposto;
+import com.chronos.calc.dto.Ipi;
+import com.chronos.calc.dto.Pis;
 import com.chronos.calc.dto.Produto;
 import com.chronos.calc.enuns.Crt;
 import com.chronos.calc.enuns.Csosn;
@@ -26,9 +29,12 @@ import static com.chronos.calc.enuns.Csosn.Csosn900;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.TipoOperacao;
 import com.chronos.calc.enuns.TipoPessoa;
+import com.chronos.calc.resultados.IResultadoCalculoDifal;
+import com.chronos.calc.resultados.IResultadoCalculoIbpt;
 import com.chronos.calc.resultados.IResultadoCalculoIpi;
 import com.sun.xml.internal.ws.client.ContentNegotiation;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  *
@@ -37,25 +43,26 @@ import java.math.BigDecimal;
 public class TributaNFe {
 
     private Produto produto;
-    private CalcTributacao calc;
+    private CalcTributacao calcular;
     private TipoOperacao operacao;
     private TipoPessoa pessoa;
 
     public TributaNFe(Produto produto) {
         this.produto = produto;
-        this.calc = new CalcTributacao(produto);
+        this.calcular = new CalcTributacao(produto);
     }
 
-    public NFeCalculo tributarNfe(Produto produto, Crt crt, TipoOperacao operacao, TipoPessoa pessoa) {
-        NFeCalculo calculo = new NFeCalculo();
+    public Imposto tributarNfe(Produto produto, Crt crt, TipoOperacao operacao, TipoPessoa pessoa) {
+        Imposto imposto = new Imposto();
         this.pessoa = pessoa;
         this.operacao = operacao;
-        
-        Icms icms = crt.equals(Crt.SimplesNaciona) ? tributarIcmsSimplesNascinal(produto.getCsosn()) : tributarIcms(produto.getCst(), pessoa);
 
+        Icms icms = crt.equals(Crt.SimplesNaciona) ? tributarIcmsSimplesNascinal(produto.getCsosn()) : tributarIcms(produto.getCst(), pessoa);
+        icms = calcularDifal(icms);
+        icms = calcularIbpt(icms);
+        Ipi ipi = calcularIpi();
         
-        
-        return calculo;
+        return imposto;
     }
 
     /**
@@ -91,7 +98,7 @@ public class TributaNFe {
                         //pessoa fisica inclui ipi na base de calculo do icms
                         //pessoa fisica sempre usa a aliquota normal da UF emissao
                         if (tipoPessoa == TipoPessoa.Fisica) {
-                            BigDecimal valorIpi = calc.calcularIpi().getValor();
+                            BigDecimal valorIpi = calcular.calcularIpi().getValor();
                             produto.setValorIpi(valorIpi);
                             cst00.calcular(produto);
                             valorBcIcms = cst00.getValorBcIcms();
@@ -119,7 +126,7 @@ public class TributaNFe {
                     case MargemValorAgregado:
 
                         if (tipoPessoa == TipoPessoa.Fisica) {
-                            BigDecimal valorIpi = calc.calcularIpi().getValor();
+                            BigDecimal valorIpi = calcular.calcularIpi().getValor();
                             produto.setValorIpi(valorIpi);
                             valorBcIcms = cst10.getValorBcIcms();
                             percentualIcms = cst10.getPercentualIcms();
@@ -156,7 +163,7 @@ public class TributaNFe {
                 switch (cst20.getModalidadeDeterminacaoBcIcms()) {
                     case ValorOperacao:
                         if (tipoPessoa == TipoPessoa.Fisica) {
-                            BigDecimal valorIpi = calc.calcularIpi().getValor();
+                            BigDecimal valorIpi = calcular.calcularIpi().getValor();
                             produto.setValorIpi(valorIpi);
                             cst20.calcular(produto);
                             valorBcIcms = cst20.getValorBcIcms();
@@ -189,7 +196,7 @@ public class TributaNFe {
                 switch (cst30.getModalidadeDeterminacaoBcIcmsSt()) {
                     case MargemValorAgregado:
                         if (tipoPessoa == TipoPessoa.Fisica) {
-                            BigDecimal valorIpi = calc.calcularIpi().getValor();
+                            BigDecimal valorIpi = calcular.calcularIpi().getValor();
                             produto.setValorIpi(valorIpi);
                             cst30.calcular(produto);
                             percentualMva = cst30.getPercentualMva();
@@ -230,7 +237,7 @@ public class TributaNFe {
                 switch (cst51.getModalidadeDeterminacaoBcIcms()) {
                     case ValorOperacao:
                         if (tipoPessoa == TipoPessoa.Fisica) {
-                            BigDecimal valorIpi = calc.calcularIpi().getValor();
+                            BigDecimal valorIpi = calcular.calcularIpi().getValor();
                             produto.setValorIpi(valorIpi);
                             cst51.calcular(produto);
 
@@ -271,7 +278,7 @@ public class TributaNFe {
             case Cst70:
                 Cst70 cst70 = new Cst70();
                 if (tipoPessoa == TipoPessoa.Fisica) {
-                    BigDecimal valorIpi = calc.calcularIpi().getValor();
+                    BigDecimal valorIpi = calcular.calcularIpi().getValor();
                     produto.setValorIpi(valorIpi);
                 }
                 cst70.calcular(produto);
@@ -308,7 +315,7 @@ public class TributaNFe {
             case Cst90:
                 Cst90 cst90 = new Cst90();
                 if (tipoPessoa == TipoPessoa.Fisica) {
-                    BigDecimal valorIpi = calc.calcularIpi().getValor();
+                    BigDecimal valorIpi = calcular.calcularIpi().getValor();
                     produto.setValorIpi(valorIpi);
                 }
                 cst90.calcular(produto);
@@ -548,19 +555,75 @@ public class TributaNFe {
 
         return calculo;
     }
-    
-    private Icms calcularDifal(Icms icms){
-        String cstCson = (produto.getCst()!=null)?produto.getCst().getCodigo().toString():produto.getCsosn().getCodigo().toString();
-        if( pessoa == TipoPessoa.Fisica && operacao == TipoOperacao.OperacaoInterestadual && cstGeraDifal(cstCson)  ){
-            if(produto.getPercentualDifalInterna().signum()!=0 && produto.getPercentualDifalInterestadual().signum()!=0){
-                
+
+    private Icms calcularDifal(Icms icms) {
+        String cstCson = (produto.getCst() != null) ? produto.getCst().getCodigo().toString() : produto.getCsosn().getCodigo().toString();
+        if (pessoa == TipoPessoa.Fisica && operacao == TipoOperacao.OperacaoInterestadual && cstGeraDifal(cstCson)) {
+            if (produto.getPercentualDifalInterna().signum() != 0 && produto.getPercentualDifalInterestadual().signum() != 0) {
+                CalcTributacao calcular = new CalcTributacao(produto);
+
+                IResultadoCalculoDifal result = calcular.calculaDifalFcp();
+                BigDecimal baseCalculoDifal = result.getBaseCalculo();
+                BigDecimal fcp = result.getFcp();
+                BigDecimal difal = result.getDifal();
+                BigDecimal valorIcmsOrigem = result.getValorIcmsOrigem();
+                BigDecimal valorIcmsDestino = result.getValorIcmsDestino();
+
+                icms.setValorBcDifal(baseCalculoDifal);
+                icms.setFcp(fcp);
+                icms.setDifal(difal);
+                icms.setValorIcmsOrigem(valorIcmsOrigem);
+                icms.setValorIcmsDestino(valorIcmsDestino);
             }
         }
-        
+
         return icms;
     }
+
+    private Ipi calcularIpi() {
+        Ipi ipi = new Ipi();
+        String cst = produto.getCstIpi().getCodigo();
+        BigDecimal valor = BigDecimal.ZERO;
+        BigDecimal baseCalculo = BigDecimal.ZERO;
+
+        if (cst.equals("00")
+                || cst.equals("49")
+                || cst.equals("50")
+                || cst.equals("99")) {
+            IResultadoCalculoIpi result = calcular.calcularIpi();
+            valor = result.getValor();
+            baseCalculo = result.getBaseCalculo();
+        }
+
+        ipi.setValorBcIpi(baseCalculo);
+        ipi.setValorIpi(valor);
+
+        return ipi;
+    }
     
-    private boolean cstGeraDifal(String cst){
-        return cst.equals("00")|| cst.equals("20") || cst.equals("40")|| cst.equals("41") || cst.equals("60") || cst.equals("102")|| cst.equals("103")|| cst.equals("400")|| cst.equals("500");
+    private Pis calcularPis(){
+       Pis pis = new Pis();
+       
+       return pis;
+    }
+    
+    private Icms calcularIbpt(Icms icms) {
+        CalcTributacao calcular = new CalcTributacao(produto);
+        IResultadoCalculoIbpt result = calcular.calculaIbpt(produto);
+        BigDecimal tributacaoEstadual = result.getTributacaoEstadual();
+        BigDecimal tributacaoFederal = result.getTributacaoFederal();
+        BigDecimal tributacaoFederalImp = result.getTributacaoFederalImportados();
+        BigDecimal tributacaoMunicipal = result.getTributacaoMunicipal();
+
+        icms.setTributacaoEstadual(tributacaoEstadual);
+        icms.setTributacaoFederal(tributacaoFederal);
+        icms.setTributacaoFederalImp(tributacaoFederalImp);
+        icms.setTributacaoMunicipal(tributacaoMunicipal);
+
+        return icms;
+    }
+
+    private boolean cstGeraDifal(String cst) {
+        return cst.equals("00") || cst.equals("20") || cst.equals("40") || cst.equals("41") || cst.equals("60") || cst.equals("102") || cst.equals("103") || cst.equals("400") || cst.equals("500");
     }
 }

@@ -7,6 +7,7 @@ package com.chronos.calc.dto;
 
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.Cst;
+import com.chronos.calc.enuns.CstIpi;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Produto extends ITributavel{
     
     private Cst cst;
     private Csosn csosn;
+    private CstIpi cstIpi;
 
     public Produto() {
     }
@@ -34,6 +36,14 @@ public class Produto extends ITributavel{
 
     public void setCsosn(Csosn csosn) {
         this.csosn = csosn;
+    }
+
+    public CstIpi getCstIpi() {
+        return cstIpi;
+    }
+
+    public void setCstIpi(CstIpi cstIpi) {
+        this.cstIpi = cstIpi;
     }
     
     

@@ -31,11 +31,16 @@ public class Icms {
     private BigDecimal valorIcmsOperacao;
     private BigDecimal valorIcmsDeferido;
 
-    private BigDecimal baseCalculoDifal;
+    private BigDecimal valorBcDifal;
     private BigDecimal difal;
     private BigDecimal fcp;
     private BigDecimal valorIcmsDestino;
     private BigDecimal valorIcmsOrigem;
+
+    private BigDecimal tributacaoEstadual;
+    private BigDecimal tributacaoFederal;
+    private BigDecimal tributacaoFederalImp;
+    private BigDecimal tributacaoMunicipal;
 
     public Icms() {
     }
@@ -152,12 +157,12 @@ public class Icms {
         this.valorIcmsDeferido = valorIcmsDeferido;
     }
 
-    public BigDecimal getBaseCalculoDifal() {
-        return baseCalculoDifal;
+    public BigDecimal getValorBcDifal() {
+        return valorBcDifal;
     }
 
-    public void setBaseCalculoDifal(BigDecimal baseCalculoDifal) {
-        this.baseCalculoDifal = baseCalculoDifal;
+    public void setValorBcDifal(BigDecimal valorBcDifal) {
+        this.valorBcDifal = valorBcDifal;
     }
 
     public BigDecimal getDifal() {
@@ -190,6 +195,38 @@ public class Icms {
 
     public void setValorIcmsOrigem(BigDecimal valorIcmsOrigem) {
         this.valorIcmsOrigem = valorIcmsOrigem;
+    }
+
+    public BigDecimal getTributacaoEstadual() {
+        return tributacaoEstadual;
+    }
+
+    public void setTributacaoEstadual(BigDecimal tributacaoEstadual) {
+        this.tributacaoEstadual = tributacaoEstadual;
+    }
+
+    public BigDecimal getTributacaoFederal() {
+        return tributacaoFederal;
+    }
+
+    public void setTributacaoFederal(BigDecimal tributacaoFederal) {
+        this.tributacaoFederal = tributacaoFederal;
+    }
+
+    public BigDecimal getTributacaoFederalImp() {
+        return tributacaoFederalImp;
+    }
+
+    public void setTributacaoFederalImp(BigDecimal tributacaoFederalImp) {
+        this.tributacaoFederalImp = tributacaoFederalImp;
+    }
+
+    public BigDecimal getTributacaoMunicipal() {
+        return tributacaoMunicipal;
+    }
+
+    public void setTributacaoMunicipal(BigDecimal tributacaoMunicipal) {
+        this.tributacaoMunicipal = tributacaoMunicipal;
     }
     
     

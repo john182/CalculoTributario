@@ -63,6 +63,7 @@ public class CalculoIcmsCreditoTest {
         IResultadoCalculoCredito result = calcular.calcularIcmsCredito();
 
         BigDecimal valor = result.getValor();
+        BigDecimal baseCalculo = result.getBaseCalculo();
         BigDecimal valorTest = BigDecimal.valueOf(170).setScale(2);
 
         assertEquals(valorTest, valor);

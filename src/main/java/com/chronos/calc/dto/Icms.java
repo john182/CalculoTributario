@@ -36,6 +36,7 @@ public class Icms {
     private BigDecimal fcp;
     private BigDecimal valorIcmsDestino;
     private BigDecimal valorIcmsOrigem;
+    private String obsDifal;
 
     private BigDecimal tributacaoEstadual;
     private BigDecimal tributacaoFederal;
@@ -227,6 +228,14 @@ public class Icms {
 
     public void setTributacaoMunicipal(BigDecimal tributacaoMunicipal) {
         this.tributacaoMunicipal = tributacaoMunicipal;
+    }
+
+    public String getObsDifal() {
+        return obsDifal;
+    }
+
+    public void setObsDifal(String obsDifal) {
+        this.obsDifal = obsDifal;
     }
     
     

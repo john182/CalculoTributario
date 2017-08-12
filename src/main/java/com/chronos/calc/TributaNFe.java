@@ -37,6 +37,7 @@ import com.chronos.calc.resultados.IResultadoCalculoIbpt;
 import com.chronos.calc.resultados.IResultadoCalculoIpi;
 import com.chronos.calc.resultados.IResultadoCalculoIssqn;
 import com.chronos.calc.resultados.IResultadoCalculoPis;
+import com.chronos.calc.resultados.imp.DadosMensagemDifal;
 import java.math.BigDecimal;
 
 /**
@@ -45,8 +46,8 @@ import java.math.BigDecimal;
  */
 public class TributaNFe {
 
-    private Produto produto;
-    private CalcTributacao calcular;
+    private final Produto produto;
+    private final CalcTributacao calcular;
     private TipoOperacao operacao;
     private TipoPessoa pessoa;
 
@@ -583,12 +584,19 @@ public class TributaNFe {
                 BigDecimal difal = result.getDifal();
                 BigDecimal valorIcmsOrigem = result.getValorIcmsOrigem();
                 BigDecimal valorIcmsDestino = result.getValorIcmsDestino();
-
+                
+                
+                String obs = result.getObservacao(new DadosMensagemDifal(fcp, valorIcmsDestino, valorIcmsOrigem));
+                
+                
                 icms.setValorBcDifal(baseCalculoDifal);
                 icms.setFcp(fcp);
                 icms.setDifal(difal);
                 icms.setValorIcmsOrigem(valorIcmsOrigem);
                 icms.setValorIcmsDestino(valorIcmsDestino);
+                icms.setObsDifal(obs);
+                
+                
             }
         }
 

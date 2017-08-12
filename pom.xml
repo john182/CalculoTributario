@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.chronos.calc</groupId>
+    <artifactId>ChronosCalcTribut</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    <organization>
+        <name>Chronosinfo</name>
+        <url>http://www.chronosinfo.com/</url>
+    </organization>
+    <inceptionYear>2017</inceptionYear>
+    <developers>
+        <developer>
+            <name>John Vanderson M Lima</name>
+            <id>joe</id>
+            <email>chronosinfo@gmail.com</email>
+            <organization></organization>
+        </developer>       
+    </developers>
+    <!-- Repositorios SVN Chronos -->
+    <distributionManagement>
+        <repository>
+            <id>chronosinfo</id>
+            <url>http://167.114.103.6:8081/repository/chronos/</url>
+        </repository>
+    </distributionManagement>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>1.8</java.version>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+         
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

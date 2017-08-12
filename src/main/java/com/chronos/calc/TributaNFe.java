@@ -17,9 +17,11 @@ import com.chronos.calc.cst.Cst30;
 import com.chronos.calc.cst.Cst51;
 import com.chronos.calc.cst.Cst70;
 import com.chronos.calc.cst.Cst90;
+import com.chronos.calc.dto.Cofins;
 import com.chronos.calc.dto.Icms;
 import com.chronos.calc.dto.Imposto;
 import com.chronos.calc.dto.Ipi;
+import com.chronos.calc.dto.Issqn;
 import com.chronos.calc.dto.Pis;
 import com.chronos.calc.dto.Produto;
 import com.chronos.calc.enuns.Crt;
@@ -27,14 +29,15 @@ import com.chronos.calc.enuns.Csosn;
 import static com.chronos.calc.enuns.Csosn.Csosn203;
 import static com.chronos.calc.enuns.Csosn.Csosn900;
 import com.chronos.calc.enuns.Cst;
+import com.chronos.calc.enuns.CstPisCofins;
 import com.chronos.calc.enuns.TipoOperacao;
 import com.chronos.calc.enuns.TipoPessoa;
 import com.chronos.calc.resultados.IResultadoCalculoDifal;
 import com.chronos.calc.resultados.IResultadoCalculoIbpt;
 import com.chronos.calc.resultados.IResultadoCalculoIpi;
-import com.sun.xml.internal.ws.client.ContentNegotiation;
+import com.chronos.calc.resultados.IResultadoCalculoIssqn;
+import com.chronos.calc.resultados.IResultadoCalculoPis;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 /**
  *
@@ -57,11 +60,22 @@ public class TributaNFe {
         this.pessoa = pessoa;
         this.operacao = operacao;
 
-        Icms icms = crt.equals(Crt.SimplesNaciona) ? tributarIcmsSimplesNascinal(produto.getCsosn()) : tributarIcms(produto.getCst(), pessoa);
-        icms = calcularDifal(icms);
-        icms = calcularIbpt(icms);
-        Ipi ipi = calcularIpi();
-        
+        if (produto.isServico()) {
+            Issqn iss = calcularIssqn();
+            imposto.setIssqn(iss);
+        } else {
+
+            Icms icms = crt.equals(Crt.SimplesNaciona) ? tributarIcmsSimplesNascinal(produto.getCsosn()) : tributarIcms(produto.getCst(), pessoa);
+            icms = calcularDifal(icms);
+            icms = calcularIbpt(icms);
+            Ipi ipi = calcularIpi();
+            Pis pis = calcularPis();
+            Cofins cofins = calcularCofins();
+            imposto.setCofins(cofins);
+            imposto.setIcms(icms);
+            imposto.setIpi(ipi);
+            imposto.setPis(pis);
+        }
         return imposto;
     }
 
@@ -268,6 +282,7 @@ public class TributaNFe {
                         calculo.setValorIcmsOperacao(valorIcmsOperacao);
                         calculo.setPercentualDiferimento(percentualDiferimento);
                         calculo.setValorIcmsDeferido(valorIcmsDeferido);
+                        calculo.setValorIcms(valorIcms);
 
                         break;
                 }
@@ -560,7 +575,7 @@ public class TributaNFe {
         String cstCson = (produto.getCst() != null) ? produto.getCst().getCodigo().toString() : produto.getCsosn().getCodigo().toString();
         if (pessoa == TipoPessoa.Fisica && operacao == TipoOperacao.OperacaoInterestadual && cstGeraDifal(cstCson)) {
             if (produto.getPercentualDifalInterna().signum() != 0 && produto.getPercentualDifalInterestadual().signum() != 0) {
-                CalcTributacao calcular = new CalcTributacao(produto);
+               
 
                 IResultadoCalculoDifal result = calcular.calculaDifalFcp();
                 BigDecimal baseCalculoDifal = result.getBaseCalculo();
@@ -600,15 +615,49 @@ public class TributaNFe {
 
         return ipi;
     }
-    
-    private Pis calcularPis(){
-       Pis pis = new Pis();
-       
-       return pis;
+
+    private Pis calcularPis() {
+        Pis pis = new Pis();
+        CstPisCofins cst = produto.getCstPisCofins();
+
+        if (cst == CstPisCofins.Cst01 || cst == CstPisCofins.Cst02) {
+            IResultadoCalculoPis result = calcular.calcularPis();
+            BigDecimal valor = result.getValor();
+            BigDecimal baseCalculo = result.getBaseCalculo();
+            pis.setBaseCalculo(baseCalculo);
+            pis.setValor(valor);
+        }
+
+        return pis;
     }
-    
+
+    private Cofins calcularCofins() {
+        Cofins cofins = new Cofins();
+        CstPisCofins cst = produto.getCstPisCofins();
+        if (cst == CstPisCofins.Cst01 || cst == CstPisCofins.Cst02) {
+            IResultadoCalculoPis result = calcular.calcularPis();
+            BigDecimal valor = result.getValor();
+            BigDecimal baseCalculo = result.getBaseCalculo();
+            cofins.setBaseCalculo(baseCalculo);
+            cofins.setValor(valor);
+        }
+
+        return cofins;
+    }
+
+    private Issqn calcularIssqn() {
+        Issqn iss = new Issqn();
+
+        IResultadoCalculoIssqn result = calcular.calcularIssqn();
+        BigDecimal valor = result.getValor();
+        BigDecimal baseCalculo = result.getBaseCalculo();
+        iss.setValor(valor);
+        iss.setBaseCalculo(baseCalculo);
+        return iss;
+    }
+
     private Icms calcularIbpt(Icms icms) {
-        CalcTributacao calcular = new CalcTributacao(produto);
+      
         IResultadoCalculoIbpt result = calcular.calculaIbpt(produto);
         BigDecimal tributacaoEstadual = result.getTributacaoEstadual();
         BigDecimal tributacaoFederal = result.getTributacaoFederal();

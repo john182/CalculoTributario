@@ -5,10 +5,35 @@
  */
 package com.chronos.calc.dto;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author John Vanderson M L
  */
 public class Issqn {
+
+    private BigDecimal valor;
+    private BigDecimal baseCalculo;
+
+    public Issqn() {
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    public BigDecimal getBaseCalculo() {
+        return baseCalculo;
+    }
+
+    public void setBaseCalculo(BigDecimal baseCalculo) {
+        this.baseCalculo = baseCalculo;
+    }
+    
     
 }

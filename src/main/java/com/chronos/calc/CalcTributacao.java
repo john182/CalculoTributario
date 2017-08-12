@@ -15,6 +15,7 @@ import com.chronos.calc.resultados.IResultadoCalculoIbpt;
 import com.chronos.calc.resultados.IResultadoCalculoIcms;
 import com.chronos.calc.resultados.IResultadoCalculoIcmsSt;
 import com.chronos.calc.resultados.IResultadoCalculoIpi;
+import com.chronos.calc.resultados.IResultadoCalculoIssqn;
 import com.chronos.calc.resultados.IResultadoCalculoPis;
 import com.chronos.calc.tributacoes.TributacaoCofins;
 import com.chronos.calc.tributacoes.TributacaoCreditoIcms;
@@ -23,6 +24,7 @@ import com.chronos.calc.tributacoes.TributacaoIbpt;
 import com.chronos.calc.tributacoes.TributacaoIcms;
 import com.chronos.calc.tributacoes.TributacaoIcmsSt;
 import com.chronos.calc.tributacoes.TributacaoIpi;
+import com.chronos.calc.tributacoes.TributacaoIssqn;
 import com.chronos.calc.tributacoes.TributacaoPis;
 
 /**
@@ -63,6 +65,10 @@ public class CalcTributacao {
         return new TributacaoPis(tributos, desconto).calcular();
     }
 
+    public IResultadoCalculoIssqn calcularIssqn(){
+        return new TributacaoIssqn(tributos,desconto).calcular();
+    }
+    
     public IResultadoCalculoDifal calculaDifalFcp() {
         return new TributacaoDifal(tributos, desconto).Calcula();
     }

@@ -35,6 +35,7 @@ public class ITributavel  extends Ibpt{
     private BigDecimal percentualPis;
     private BigDecimal percentualReducaoSt;
     private BigDecimal percentualDiferimento;
+    private BigDecimal percentualIssqn;
   
 
     public ITributavel() {
@@ -206,7 +207,15 @@ public class ITributavel  extends Ibpt{
         this.percentualDiferimento = percentualDiferimento;
     }
 
+    public BigDecimal getPercentualIssqn() {
+        return percentualIssqn;
+    }
+
+    public void setPercentualIssqn(BigDecimal percentualIssqn) {
+        this.percentualIssqn = percentualIssqn;
+    }
 
 
+    
     
 }

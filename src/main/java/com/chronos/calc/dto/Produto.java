@@ -8,16 +8,18 @@ package com.chronos.calc.dto;
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.CstIpi;
+import com.chronos.calc.enuns.CstPisCofins;
 
 /**
  *
  * @author John Vanderson M L
  */
 public class Produto extends ITributavel{
-    
+    private boolean servico;
     private Cst cst;
     private Csosn csosn;
     private CstIpi cstIpi;
+    private CstPisCofins cstPisCofins;
 
     public Produto() {
     }
@@ -44,6 +46,22 @@ public class Produto extends ITributavel{
 
     public void setCstIpi(CstIpi cstIpi) {
         this.cstIpi = cstIpi;
+    }
+
+    public CstPisCofins getCstPisCofins() {
+        return cstPisCofins;
+    }
+
+    public void setCstPisCofins(CstPisCofins cstPisCofins) {
+        this.cstPisCofins = cstPisCofins;
+    }
+
+    public boolean isServico() {
+        return servico;
+    }
+
+    public void setServico(boolean servico) {
+        this.servico = servico;
     }
     
     

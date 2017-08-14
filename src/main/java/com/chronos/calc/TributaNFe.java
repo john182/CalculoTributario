@@ -21,9 +21,9 @@ import com.chronos.calc.dto.Cofins;
 import com.chronos.calc.dto.Icms;
 import com.chronos.calc.dto.Imposto;
 import com.chronos.calc.dto.Ipi;
-import com.chronos.calc.dto.Issqn;
+import com.chronos.calc.dto.Iss;
 import com.chronos.calc.dto.Pis;
-import com.chronos.calc.dto.Produto;
+import com.chronos.calc.dto.TributosProduto;
 import com.chronos.calc.enuns.Crt;
 import com.chronos.calc.enuns.Csosn;
 import static com.chronos.calc.enuns.Csosn.Csosn203;
@@ -32,10 +32,10 @@ import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.CstPisCofins;
 import com.chronos.calc.enuns.TipoOperacao;
 import com.chronos.calc.enuns.TipoPessoa;
+import com.chronos.calc.iss.Issqn;
 import com.chronos.calc.resultados.IResultadoCalculoDifal;
 import com.chronos.calc.resultados.IResultadoCalculoIbpt;
 import com.chronos.calc.resultados.IResultadoCalculoIpi;
-import com.chronos.calc.resultados.IResultadoCalculoIssqn;
 import com.chronos.calc.resultados.IResultadoCalculoPis;
 import com.chronos.calc.resultados.imp.DadosMensagemDifal;
 import java.math.BigDecimal;
@@ -46,43 +46,44 @@ import java.math.BigDecimal;
  */
 public class TributaNFe {
 
-    private final Produto produto;
+    private final TributosProduto produto;
     private final CalcTributacao calcular;
     private TipoOperacao operacao;
     private TipoPessoa pessoa;
 
-    public TributaNFe(Produto produto) {
+    public TributaNFe(TributosProduto produto) {
         this.produto = produto;
         this.calcular = new CalcTributacao(produto);
     }
 
-    public Imposto tributarNfe(Produto produto, Crt crt, TipoOperacao operacao, TipoPessoa pessoa) {
+    public Imposto tributarNfe(TributosProduto produto, Crt crt, TipoOperacao operacao, TipoPessoa pessoa) {
         Imposto imposto = new Imposto();
         this.pessoa = pessoa;
         this.operacao = operacao;
 
         if (produto.isServico()) {
-            Issqn iss = calcularIssqn();
+            Iss iss = calcularIssqn();
             imposto.setIssqn(iss);
         } else {
 
             Icms icms = crt.equals(Crt.SimplesNaciona) ? tributarIcmsSimplesNascinal(produto.getCsosn()) : tributarIcms(produto.getCst(), pessoa);
             icms = calcularDifal(icms);
-            icms = calcularIbpt(icms);
+            
             Ipi ipi = calcularIpi();
-            Pis pis = calcularPis();
-            Cofins cofins = calcularCofins();
-            imposto.setCofins(cofins);
             imposto.setIcms(icms);
             imposto.setIpi(ipi);
-            imposto.setPis(pis);
+
         }
+        Pis pis = calcularPis();
+        Cofins cofins = calcularCofins();
+        imposto.setCofins(cofins);
+        imposto.setPis(pis);
+        imposto = calcularIbpt(imposto);
         return imposto;
     }
 
     /**
-     * Simples Nacional - excesso de sublimite de receita bruta; 3 - Regime
-     * Normal.
+     * Simples Nacional - excesso de sublimite de receita bruta; 3 - Regime Normal.
      *
      * @param cst
      * @return
@@ -573,10 +574,9 @@ public class TributaNFe {
     }
 
     private Icms calcularDifal(Icms icms) {
-        String cstCson = (produto.getCst() != null) ? produto.getCst().getCodigo().toString() : produto.getCsosn().getCodigo().toString();
+        String cstCson = (produto.getCst() != null) ? produto.getCst().getCodigo() : produto.getCsosn().getCodigo();
         if (pessoa == TipoPessoa.Fisica && operacao == TipoOperacao.OperacaoInterestadual && cstGeraDifal(cstCson)) {
             if (produto.getPercentualDifalInterna().signum() != 0 && produto.getPercentualDifalInterestadual().signum() != 0) {
-               
 
                 IResultadoCalculoDifal result = calcular.calculaDifalFcp();
                 BigDecimal baseCalculoDifal = result.getBaseCalculo();
@@ -584,19 +584,16 @@ public class TributaNFe {
                 BigDecimal difal = result.getDifal();
                 BigDecimal valorIcmsOrigem = result.getValorIcmsOrigem();
                 BigDecimal valorIcmsDestino = result.getValorIcmsDestino();
-                
-                
+
                 String obs = result.getObservacao(new DadosMensagemDifal(fcp, valorIcmsDestino, valorIcmsOrigem));
-                
-                
+
                 icms.setValorBcDifal(baseCalculoDifal);
                 icms.setFcp(fcp);
                 icms.setDifal(difal);
                 icms.setValorIcmsOrigem(valorIcmsOrigem);
                 icms.setValorIcmsDestino(valorIcmsDestino);
                 icms.setObsDifal(obs);
-                
-                
+
             }
         }
 
@@ -653,31 +650,34 @@ public class TributaNFe {
         return cofins;
     }
 
-    private Issqn calcularIssqn() {
-        Issqn iss = new Issqn();
+    private Iss calcularIssqn() {
+        Iss iss = new Iss();
+        Issqn issqn = new Issqn();
+        issqn.calcular(produto);
 
-        IResultadoCalculoIssqn result = calcular.calcularIssqn();
-        BigDecimal valor = result.getValor();
-        BigDecimal baseCalculo = result.getBaseCalculo();
+        BigDecimal valor = issqn.getValorIssqn();
+        BigDecimal baseCalculo = issqn.getValorBcIssqn();
+        BigDecimal percentual = issqn.getPercentualIssqn();
         iss.setValor(valor);
         iss.setBaseCalculo(baseCalculo);
+        iss.setPercentualIss(percentual);
         return iss;
     }
 
-    private Icms calcularIbpt(Icms icms) {
-      
+    private Imposto calcularIbpt(Imposto imposto) {
+
         IResultadoCalculoIbpt result = calcular.calculaIbpt(produto);
         BigDecimal tributacaoEstadual = result.getTributacaoEstadual();
         BigDecimal tributacaoFederal = result.getTributacaoFederal();
         BigDecimal tributacaoFederalImp = result.getTributacaoFederalImportados();
         BigDecimal tributacaoMunicipal = result.getTributacaoMunicipal();
-
-        icms.setTributacaoEstadual(tributacaoEstadual);
-        icms.setTributacaoFederal(tributacaoFederal);
-        icms.setTributacaoFederalImp(tributacaoFederalImp);
-        icms.setTributacaoMunicipal(tributacaoMunicipal);
-
-        return icms;
+        BigDecimal valorTotalTributos = result.getValorTotalTributos();
+        imposto.setTributacaoEstadual(tributacaoEstadual);
+        imposto.setTributacaoFederal(tributacaoFederal);
+        imposto.setTributacaoFederalImp(tributacaoFederalImp);
+        imposto.setTributacaoMunicipal(tributacaoMunicipal);
+        imposto.setValorTotalTributos(valorTotalTributos);
+        return imposto;
     }
 
     private boolean cstGeraDifal(String cst) {

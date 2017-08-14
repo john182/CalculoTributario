@@ -130,7 +130,7 @@ public class CalculoIpiTest {
         tributos.setValorProduto(BigDecimal.valueOf(2000));
         tributos.setQuantidadeProduto(BigDecimal.valueOf(2));
         tributos.setDesconto(BigDecimal.valueOf(1000));
-        tributos.setPercentualIpi(BigDecimal.valueOf(15));
+        tributos.setPercentualIpi(BigDecimal.valueOf(12));
         tributos.setFrete(BigDecimal.valueOf(373.5));
         tributos.setSeguro(BigDecimal.valueOf(5.73));
         tributos.setOutrasDespesas(BigDecimal.valueOf(233.10));
@@ -142,7 +142,7 @@ public class CalculoIpiTest {
         BigDecimal baseCalculoTest = BigDecimal.valueOf(5612.33).setScale(2);
 
         BigDecimal valor = result.getValor();
-        BigDecimal valorTest = BigDecimal.valueOf(806.02).setScale(2);
+        BigDecimal valorTest = BigDecimal.valueOf(673.47).setScale(2);
 
         assertEquals(baseCalculoTest, baseCaculo);
         assertEquals(valorTest, valor);

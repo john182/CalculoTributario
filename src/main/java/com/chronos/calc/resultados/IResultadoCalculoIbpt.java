@@ -22,4 +22,6 @@ public interface IResultadoCalculoIbpt {
     BigDecimal getTributacaoEstadual();
 
     BigDecimal getTributacaoMunicipal();
+    
+    BigDecimal getValorTotalTributos();
 }

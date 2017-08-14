@@ -5,7 +5,6 @@
  */
 package com.chronos.calc.resultados.imp;
 
-import com.chronos.calc.resultados.IResultadoCalculoIpi;
 import com.chronos.calc.resultados.IResultadoCalculoIssqn;
 import java.math.BigDecimal;
 
@@ -17,6 +16,7 @@ public class ResultadoCalculoIssqn implements IResultadoCalculoIssqn{
 
     private final BigDecimal baseCalculo;
     private final BigDecimal valor;
+  
 
     public ResultadoCalculoIssqn(BigDecimal baseCalculo, BigDecimal valor) {
         this.baseCalculo = baseCalculo;

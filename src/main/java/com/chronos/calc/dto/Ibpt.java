@@ -6,6 +6,7 @@
 package com.chronos.calc.dto;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Ibpt {
     private BigDecimal percentualMunicipal;
 
     public BigDecimal getPercentualFederal() {
-        return percentualFederal;
+        return Optional.ofNullable(percentualFederal).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualFederal(BigDecimal percentualFederal) {
@@ -27,7 +28,7 @@ public class Ibpt {
     }
 
     public BigDecimal getPercentualFederalImportados() {
-        return percentualFederalImportados;
+        return Optional.ofNullable(percentualFederalImportados).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualFederalImportados(BigDecimal percentualFederalImportados) {
@@ -35,7 +36,7 @@ public class Ibpt {
     }
 
     public BigDecimal getPercentualEstadual() {
-        return percentualEstadual;
+        return Optional.ofNullable(percentualEstadual).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualEstadual(BigDecimal percentualEstadual) {
@@ -43,7 +44,7 @@ public class Ibpt {
     }
 
     public BigDecimal getPercentualMunicipal() {
-        return percentualMunicipal;
+        return Optional.ofNullable(percentualMunicipal).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualMunicipal(BigDecimal percentualMunicipal) {

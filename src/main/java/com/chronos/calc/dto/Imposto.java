@@ -5,17 +5,24 @@
  */
 package com.chronos.calc.dto;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author John Vanderson M L
  */
 public class Imposto {
-    
-    private Icms icms;    
+
+    private Icms icms;
     private Ipi ipi;
     private Pis pis;
     private Cofins cofins;
-    private Issqn issqn;
+    private Iss issqn;
+    private BigDecimal tributacaoEstadual;
+    private BigDecimal tributacaoFederal;
+    private BigDecimal tributacaoFederalImp;
+    private BigDecimal tributacaoMunicipal;
+    private BigDecimal valorTotalTributos;
 
     public Imposto() {
     }
@@ -52,13 +59,54 @@ public class Imposto {
         this.cofins = cofins;
     }
 
-    public Issqn getIssqn() {
+    public Iss getIssqn() {
         return issqn;
     }
 
-    public void setIssqn(Issqn issqn) {
+    public void setIssqn(Iss issqn) {
         this.issqn = issqn;
+    }
+
+    public BigDecimal getTributacaoEstadual() {
+        return tributacaoEstadual;
+    }
+
+    public void setTributacaoEstadual(BigDecimal tributacaoEstadual) {
+        this.tributacaoEstadual = tributacaoEstadual;
+    }
+
+    public BigDecimal getTributacaoFederal() {
+        return tributacaoFederal;
+    }
+
+    public void setTributacaoFederal(BigDecimal tributacaoFederal) {
+        this.tributacaoFederal = tributacaoFederal;
+    }
+
+    public BigDecimal getTributacaoFederalImp() {
+        return tributacaoFederalImp;
+    }
+
+    public void setTributacaoFederalImp(BigDecimal tributacaoFederalImp) {
+        this.tributacaoFederalImp = tributacaoFederalImp;
+    }
+
+    public BigDecimal getTributacaoMunicipal() {
+        return tributacaoMunicipal;
+    }
+
+    public void setTributacaoMunicipal(BigDecimal tributacaoMunicipal) {
+        this.tributacaoMunicipal = tributacaoMunicipal;
+    }
+
+    public BigDecimal getValorTotalTributos() {
+        return valorTotalTributos;
+    }
+
+    public void setValorTotalTributos(BigDecimal valorTotalTributos) {
+        this.valorTotalTributos = valorTotalTributos;
     }
     
     
+
 }

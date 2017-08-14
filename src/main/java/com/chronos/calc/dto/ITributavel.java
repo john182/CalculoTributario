@@ -32,7 +32,9 @@ public class ITributavel  extends Ibpt{
     private BigDecimal percentualIcmsSt;
     private BigDecimal percentualIpi;
     private BigDecimal percentualCofins;
+    private BigDecimal percentualCofinsRais;
     private BigDecimal percentualPis;
+    private BigDecimal percentualPisReais;
     private BigDecimal percentualReducaoSt;
     private BigDecimal percentualDiferimento;
     private BigDecimal percentualIssqn;
@@ -42,7 +44,7 @@ public class ITributavel  extends Ibpt{
     }
     
     public BigDecimal getTotalProduto(){
-        BigDecimal total = quantidadeProduto.multiply(valorProduto).subtract(getDesconto());
+        BigDecimal total = getQuantidadeProduto().multiply(getValorProduto()).subtract(getDesconto());
         total = total.setScale(2,RoundingMode.DOWN);
         return total;
     }
@@ -128,7 +130,7 @@ public class ITributavel  extends Ibpt{
     }
 
     public BigDecimal getPercentualDifalInterna() {
-        return percentualDifalInterna;
+        return Optional.ofNullable(percentualDifalInterna).orElse(BigDecimal.ZERO) ;
     }
 
     public void setPercentualDifalInterna(BigDecimal percentualDifalInterna) {
@@ -136,7 +138,7 @@ public class ITributavel  extends Ibpt{
     }
 
     public BigDecimal getPercentualDifalInterestadual() {
-        return percentualDifalInterestadual;
+        return Optional.ofNullable(percentualDifalInterestadual).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualDifalInterestadual(BigDecimal percentualDifalInterestadual) {
@@ -215,7 +217,23 @@ public class ITributavel  extends Ibpt{
         this.percentualIssqn = percentualIssqn;
     }
 
+    public BigDecimal getPercentualPisReais() {
+        return percentualPisReais;
+    }
 
+    public void setPercentualPisReais(BigDecimal percentualPisReais) {
+        this.percentualPisReais = percentualPisReais;
+    }
+
+    public BigDecimal getPercentualCofinsRais() {
+        return percentualCofinsRais;
+    }
+
+    public void setPercentualCofinsRais(BigDecimal percentualCofinsRais) {
+        this.percentualCofinsRais = percentualCofinsRais;
+    }
+
+    
     
     
 }

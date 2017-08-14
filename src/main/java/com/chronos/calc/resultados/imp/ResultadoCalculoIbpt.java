@@ -7,6 +7,7 @@ package com.chronos.calc.resultados.imp;
 
 import com.chronos.calc.resultados.IResultadoCalculoIbpt;
 import java.math.BigDecimal;
+import java.util.Optional;
 
 /**
  *
@@ -52,6 +53,16 @@ public class ResultadoCalculoIbpt implements IResultadoCalculoIbpt {
     @Override
     public BigDecimal getTributacaoMunicipal() {
         return impostoAproximadoMunicipio;
+    }
+
+    @Override
+    public BigDecimal getValorTotalTributos() {
+        BigDecimal valorTotal = BigDecimal.ZERO;
+        valorTotal = valorTotal.add(Optional.ofNullable(impostoAproximadoFederal).orElse(BigDecimal.ZERO))
+                .add(Optional.ofNullable(impostoAproximadoImportados).orElse(BigDecimal.ZERO))
+                .add(Optional.ofNullable(impostoAproximadoEstadual).orElse(BigDecimal.ZERO))
+                .add(Optional.ofNullable(impostoAproximadoMunicipio).orElse(BigDecimal.ZERO));
+        return valorTotal;
     }
 
 }

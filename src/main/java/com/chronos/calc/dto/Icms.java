@@ -38,10 +38,7 @@ public class Icms {
     private BigDecimal valorIcmsOrigem;
     private String obsDifal;
 
-    private BigDecimal tributacaoEstadual;
-    private BigDecimal tributacaoFederal;
-    private BigDecimal tributacaoFederalImp;
-    private BigDecimal tributacaoMunicipal;
+ 
 
     public Icms() {
     }
@@ -196,39 +193,8 @@ public class Icms {
 
     public void setValorIcmsOrigem(BigDecimal valorIcmsOrigem) {
         this.valorIcmsOrigem = valorIcmsOrigem;
-    }
-
-    public BigDecimal getTributacaoEstadual() {
-        return tributacaoEstadual;
-    }
-
-    public void setTributacaoEstadual(BigDecimal tributacaoEstadual) {
-        this.tributacaoEstadual = tributacaoEstadual;
-    }
-
-    public BigDecimal getTributacaoFederal() {
-        return tributacaoFederal;
-    }
-
-    public void setTributacaoFederal(BigDecimal tributacaoFederal) {
-        this.tributacaoFederal = tributacaoFederal;
-    }
-
-    public BigDecimal getTributacaoFederalImp() {
-        return tributacaoFederalImp;
-    }
-
-    public void setTributacaoFederalImp(BigDecimal tributacaoFederalImp) {
-        this.tributacaoFederalImp = tributacaoFederalImp;
-    }
-
-    public BigDecimal getTributacaoMunicipal() {
-        return tributacaoMunicipal;
-    }
-
-    public void setTributacaoMunicipal(BigDecimal tributacaoMunicipal) {
-        this.tributacaoMunicipal = tributacaoMunicipal;
-    }
+    }   
+  
 
     public String getObsDifal() {
         return obsDifal;
@@ -237,6 +203,8 @@ public class Icms {
     public void setObsDifal(String obsDifal) {
         this.obsDifal = obsDifal;
     }
+
+   
     
     
 

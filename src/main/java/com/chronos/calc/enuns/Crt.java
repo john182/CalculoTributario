@@ -5,6 +5,8 @@
  */
 package com.chronos.calc.enuns;
 
+import java.util.Objects;
+
 /**
  *
  * @author John Vanderson M L
@@ -21,6 +23,16 @@ public enum Crt {
     Crt(Integer codigo, String descricao) {
         this.descricao = descricao;
         this.codigo = codigo;
+    }
+    
+     public static Crt valueOfCodigo(final Integer codigo) {
+        for (final Crt crt : Crt.values()) {
+            if (Objects.equals(crt.getCodigo(), codigo)) {
+                return crt;
+            }
+        }
+       // throw new IllegalArgumentException(String.format("Csosn não definido."));
+        return null;
     }
 
     public String getDescricao() {

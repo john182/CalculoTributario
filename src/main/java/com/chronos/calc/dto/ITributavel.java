@@ -202,7 +202,7 @@ public class ITributavel  extends Ibpt{
     }
 
     public BigDecimal getPercentualDiferimento() {
-        return percentualDiferimento;
+        return Optional.ofNullable(percentualDiferimento).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualDiferimento(BigDecimal percentualDiferimento) {

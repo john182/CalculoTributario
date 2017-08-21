@@ -11,10 +11,34 @@ package com.chronos.calc.enuns;
  */
 public enum ModalidadeDeterminacaoBcIcmsSt {
 
-    PrecoTabeladoOuMaximoSugerido,
-    ListaNegativa,
-    ListaPositiva,
-    ListaNeutra,
-    MargemValorAgregado,
-    Pauta,
+    PrecoTabeladoOuMaximoSugerido("Preço tabelado ou máximo sugerido", "0"),
+    ListaNegativa("Lista Negativa (valor)", "1"),
+    ListaPositiva("Lista Positiva (valor)", "2"),
+    ListaNeutra("Lista Neutra (valor)", "3"),
+    MargemValorAgregado("Margem Valor Agregado(%)", "4"),
+    Pauta("Pauta (valor)", "5");
+    
+    private String codigo;
+    private String nomeExibicao;
+
+    private ModalidadeDeterminacaoBcIcmsSt(String nomeExibicao, String codigo) {
+        this.codigo = codigo;
+        this.nomeExibicao = nomeExibicao;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNomeExibicao() {
+        return nomeExibicao;
+    }
+
+    public void setNomeExibicao(String nomeExibicao) {
+        this.nomeExibicao = nomeExibicao;
+    }
 }

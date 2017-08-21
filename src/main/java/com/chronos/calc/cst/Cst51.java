@@ -31,11 +31,13 @@ public class Cst51 extends CstBase {
 
     public Cst51() {
         cst = Cst.Cst50;
+        modalidadeDeterminacaoBcIcms = ModalidadeDeterminacaoBcIcms.ValorOperacao;
     }
 
     public Cst51(OrigemMercadoria OrigemMercadoria) {
         super(OrigemMercadoria);
         cst = Cst.Cst50;
+        modalidadeDeterminacaoBcIcms = ModalidadeDeterminacaoBcIcms.ValorOperacao;
     }
 
     @Override

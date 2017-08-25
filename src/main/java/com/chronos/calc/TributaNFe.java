@@ -144,6 +144,7 @@ public class TributaNFe {
                         if (tipoPessoa == TipoPessoa.Fisica) {
                             BigDecimal valorIpi = calcular.calcularIpi().getValor();
                             produto.setValorIpi(valorIpi);
+                            cst10.calcular(produto);
                             valorBcIcms = cst10.getValorBcIcms();
                             percentualIcms = cst10.getPercentualIcms();
                             valorIcms = cst10.getValorIcms();
@@ -153,6 +154,7 @@ public class TributaNFe {
                             valorIcmsST = cst10.getValorIcmsSt();
                             percentualIcmsST = cst10.getPercentualIcmsSt();
                         } else {
+                            cst10.calcular(produto);
                             valorBcIcms = cst10.getValorBcIcms();
                             percentualIcms = cst10.getPercentualIcms();
                             valorIcms = cst10.getValorIcms();

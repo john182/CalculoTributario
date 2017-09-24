@@ -6,6 +6,7 @@
 package com.chronos.calc.dto;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Ipi {
     }
 
     public BigDecimal getValorBcIpi() {
-        return valorBcIpi;
+        return Optional.ofNullable(valorBcIpi).orElse(BigDecimal.ZERO);
     }
 
     public void setValorBcIpi(BigDecimal valorBcIpi) {
@@ -28,7 +29,7 @@ public class Ipi {
     }
 
     public BigDecimal getValorIpi() {
-        return valorIpi;
+        return Optional.ofNullable(valorIpi).orElse(BigDecimal.ZERO);
     }
 
     public void setValorIpi(BigDecimal valorIpi) {

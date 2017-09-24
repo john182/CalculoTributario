@@ -6,6 +6,7 @@
 package com.chronos.calc.dto;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Cofins {
     }
 
     public BigDecimal getValor() {
-        return valor;
+        return Optional.ofNullable(valor).orElse(BigDecimal.ZERO);
     }
 
     public void setValor(BigDecimal valor) {
@@ -28,7 +29,7 @@ public class Cofins {
     }
 
     public BigDecimal getBaseCalculo() {
-        return baseCalculo;
+        return Optional.ofNullable(baseCalculo).orElse(BigDecimal.ZERO);
     }
 
     public void setBaseCalculo(BigDecimal baseCalculo) {

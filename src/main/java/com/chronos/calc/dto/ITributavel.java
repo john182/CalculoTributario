@@ -178,7 +178,7 @@ public class ITributavel  extends Ibpt{
     }
 
     public BigDecimal getPercentualCofins() {
-        return percentualCofins;
+        return Optional.ofNullable(percentualCofins).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualCofins(BigDecimal percentualCofins) {
@@ -186,7 +186,7 @@ public class ITributavel  extends Ibpt{
     }
 
     public BigDecimal getPercentualPis() {
-        return percentualPis;
+        return Optional.ofNullable(percentualPis).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualPis(BigDecimal percentualPis) {

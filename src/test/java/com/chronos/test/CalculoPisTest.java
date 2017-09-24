@@ -7,7 +7,6 @@ package com.chronos.test;
 
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
-import com.chronos.calc.resultados.IResultadoCalculoCofins;
 import com.chronos.calc.resultados.IResultadoCalculoPis;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -17,7 +16,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -53,7 +51,7 @@ public class CalculoPisTest {
     public void CalculaPis() {
         ITributavel tributos = new ITributavel();
         tributos.setQuantidadeProduto(BigDecimal.ONE);
-        tributos.setPercentualCofins(BigDecimal.valueOf(1.65));
+        tributos.setPercentualPis(BigDecimal.valueOf(1.65));
         tributos.setValorProduto(BigDecimal.valueOf(1000));
 
         CalcTributacao calcular = new CalcTributacao(tributos);

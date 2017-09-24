@@ -90,20 +90,20 @@ public class TributaNFe {
      */
     private Icms tributarIcms(Cst cst, TipoPessoa tipoPessoa) {
         Icms calculo = new Icms();
-        BigDecimal valorBcIcms = null;
-        BigDecimal valorIcms = null;
-        BigDecimal percentualIcms = null;
-        BigDecimal percentualReducao = null;
+        BigDecimal valorBcIcms = BigDecimal.ZERO;
+        BigDecimal valorIcms = BigDecimal.ZERO;
+        BigDecimal percentualIcms = BigDecimal.ZERO;
+        BigDecimal percentualReducao = BigDecimal.ZERO;
 
-        BigDecimal percentualMva = null;
-        BigDecimal percentualReducaoST = null;
-        BigDecimal valorBcIcmsSt = null;
-        BigDecimal valorIcmsST = null;
-        BigDecimal percentualIcmsST = null;
+        BigDecimal percentualMva = BigDecimal.ZERO;
+        BigDecimal percentualReducaoST = BigDecimal.ZERO;
+        BigDecimal valorBcIcmsSt = BigDecimal.ZERO;
+        BigDecimal valorIcmsST = BigDecimal.ZERO;
+        BigDecimal percentualIcmsST = BigDecimal.ZERO;
 
-        BigDecimal valorIcmsOperacao;
-        BigDecimal percentualDiferimento;
-        BigDecimal valorIcmsDeferido;
+        BigDecimal valorIcmsOperacao = BigDecimal.ZERO;
+        BigDecimal percentualDiferimento = BigDecimal.ZERO;
+        BigDecimal valorIcmsDeferido = BigDecimal.ZERO;
 
         switch (cst) {
             case Cst00:
@@ -197,7 +197,7 @@ public class TributaNFe {
                             percentualIcms = cst20.getPercentualIcms();
                             percentualReducao = cst20.getPercentualReducao();
                         }
-
+                        
                         calculo.setPercentualReducao(percentualReducao);
                         calculo.setValorBcIcms(valorBcIcms);
                         calculo.setPercentualIcms(percentualIcms);
@@ -603,6 +603,9 @@ public class TributaNFe {
     }
 
     private Ipi calcularIpi() {
+        if(produto.getCstIpi()==null){
+            return  null;
+        }
         Ipi ipi = new Ipi();
         String cst = produto.getCstIpi().getCodigo();
         BigDecimal valor = BigDecimal.ZERO;
@@ -615,6 +618,8 @@ public class TributaNFe {
             IResultadoCalculoIpi result = calcular.calcularIpi();
             valor = result.getValor();
             baseCalculo = result.getBaseCalculo();
+        }else{
+            return null;
         }
 
         ipi.setValorBcIpi(baseCalculo);
@@ -625,6 +630,9 @@ public class TributaNFe {
 
     private Pis calcularPis() {
         Pis pis = new Pis();
+        if(produto.getCstPisCofins()==null){
+            return null;
+        }
         CstPisCofins cst = produto.getCstPisCofins();
 
         if (cst == CstPisCofins.Cst01 || cst == CstPisCofins.Cst02) {
@@ -639,6 +647,9 @@ public class TributaNFe {
     }
 
     private Cofins calcularCofins() {
+        if(produto.getCstPisCofins()==null){
+            return null;
+        }
         Cofins cofins = new Cofins();
         CstPisCofins cst = produto.getCstPisCofins();
         if (cst == CstPisCofins.Cst01 || cst == CstPisCofins.Cst02) {

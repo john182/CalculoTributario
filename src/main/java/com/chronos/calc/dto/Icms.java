@@ -6,6 +6,7 @@
 package com.chronos.calc.dto;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 /**
  *
@@ -44,7 +45,7 @@ public class Icms {
     }
 
     public BigDecimal getValorCredito() {
-        return valorCredito;
+        return Optional.ofNullable(valorCredito).orElse(BigDecimal.ZERO);
     }
 
     public void setValorCredito(BigDecimal valorCredito) {
@@ -52,7 +53,7 @@ public class Icms {
     }
 
     public BigDecimal getPercentualCredito() {
-        return percentualCredito;
+        return Optional.ofNullable(percentualCredito).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualCredito(BigDecimal percentualCredito) {
@@ -60,7 +61,7 @@ public class Icms {
     }
 
     public BigDecimal getPercentualMva() {
-        return percentualMva;
+        return Optional.ofNullable(percentualMva).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualMva(BigDecimal percentualMva) {
@@ -68,7 +69,7 @@ public class Icms {
     }
 
     public BigDecimal getPercentualIcmsST() {
-        return percentualIcmsST;
+        return Optional.ofNullable(percentualIcmsST).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualIcmsST(BigDecimal percentualIcmsST) {
@@ -76,7 +77,7 @@ public class Icms {
     }
 
     public BigDecimal getPercentualReducaoST() {
-        return percentualReducaoST;
+        return Optional.ofNullable(percentualReducaoST).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualReducaoST(BigDecimal percentualReducaoST) {
@@ -84,7 +85,7 @@ public class Icms {
     }
 
     public BigDecimal getValorIcmsST() {
-        return valorIcmsST;
+        return Optional.ofNullable(valorIcmsST).orElse(BigDecimal.ZERO);
     }
 
     public void setValorIcmsST(BigDecimal valorIcmsST) {
@@ -92,7 +93,7 @@ public class Icms {
     }
 
     public BigDecimal getValorBaseCalcST() {
-        return valorBaseCalcST;
+        return Optional.ofNullable(valorBaseCalcST).orElse(BigDecimal.ZERO);
     }
 
     public void setValorBaseCalcST(BigDecimal valorBaseCalcST) {
@@ -100,7 +101,7 @@ public class Icms {
     }
 
     public BigDecimal getValorIcms() {
-        return valorIcms;
+        return Optional.ofNullable(valorIcms).orElse(BigDecimal.ZERO);
     }
 
     public void setValorIcms(BigDecimal valorIcms) {
@@ -108,7 +109,7 @@ public class Icms {
     }
 
     public BigDecimal getValorBcIcms() {
-        return valorBcIcms;
+        return Optional.ofNullable(valorBcIcms).orElse(BigDecimal.ZERO);
     }
 
     public void setValorBcIcms(BigDecimal valorBcIcms) {
@@ -116,7 +117,7 @@ public class Icms {
     }
 
     public BigDecimal getPercentualIcms() {
-        return percentualIcms;
+        return Optional.ofNullable(percentualIcms).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualIcms(BigDecimal percentualIcms) {
@@ -124,7 +125,7 @@ public class Icms {
     }
 
     public BigDecimal getPercentualReducao() {
-        return percentualReducao;
+        return Optional.ofNullable(percentualReducao).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualReducao(BigDecimal percentualReducao) {
@@ -132,7 +133,7 @@ public class Icms {
     }
 
     public BigDecimal getPercentualDiferimento() {
-        return percentualDiferimento;
+        return Optional.ofNullable(percentualDiferimento).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualDiferimento(BigDecimal percentualDiferimento) {
@@ -140,7 +141,7 @@ public class Icms {
     }
 
     public BigDecimal getValorIcmsOperacao() {
-        return valorIcmsOperacao;
+        return Optional.ofNullable(valorIcmsOperacao).orElse(BigDecimal.ZERO);
     }
 
     public void setValorIcmsOperacao(BigDecimal valorIcmsOperacao) {
@@ -148,7 +149,7 @@ public class Icms {
     }
 
     public BigDecimal getValorIcmsDeferido() {
-        return valorIcmsDeferido;
+        return Optional.ofNullable(valorIcmsDeferido).orElse(BigDecimal.ZERO);
     }
 
     public void setValorIcmsDeferido(BigDecimal valorIcmsDeferido) {
@@ -156,7 +157,7 @@ public class Icms {
     }
 
     public BigDecimal getValorBcDifal() {
-        return valorBcDifal;
+        return Optional.ofNullable(valorBcDifal).orElse(BigDecimal.ZERO);
     }
 
     public void setValorBcDifal(BigDecimal valorBcDifal) {
@@ -164,7 +165,7 @@ public class Icms {
     }
 
     public BigDecimal getDifal() {
-        return difal;
+        return Optional.ofNullable(difal).orElse(BigDecimal.ZERO);
     }
 
     public void setDifal(BigDecimal difal) {
@@ -172,7 +173,7 @@ public class Icms {
     }
 
     public BigDecimal getFcp() {
-        return fcp;
+        return Optional.ofNullable(fcp).orElse(BigDecimal.ZERO);
     }
 
     public void setFcp(BigDecimal fcp) {
@@ -180,7 +181,7 @@ public class Icms {
     }
 
     public BigDecimal getValorIcmsDestino() {
-        return valorIcmsDestino;
+        return Optional.ofNullable(valorIcmsDestino).orElse(BigDecimal.ZERO);
     }
 
     public void setValorIcmsDestino(BigDecimal valorIcmsDestino) {
@@ -188,7 +189,7 @@ public class Icms {
     }
 
     public BigDecimal getValorIcmsOrigem() {
-        return valorIcmsOrigem;
+        return Optional.ofNullable(valorIcmsOrigem).orElse(BigDecimal.ZERO);
     }
 
     public void setValorIcmsOrigem(BigDecimal valorIcmsOrigem) {

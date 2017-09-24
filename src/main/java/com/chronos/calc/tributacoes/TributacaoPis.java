@@ -39,8 +39,9 @@ public class TributacaoPis  {
     }
 
     private BigDecimal calcularPis(BigDecimal baseCalculo) {
-        return baseCalculo.multiply(tributos.getPercentualCofins()).divide(BigDecimal.valueOf(100),RoundingMode.DOWN).setScale(2);
-        
+        BigDecimal valor = baseCalculo.multiply(tributos.getPercentualPis());
+        valor = valor.divide(BigDecimal.valueOf(100)).setScale(2,RoundingMode.DOWN);
+        return valor;        
     }
 
 }

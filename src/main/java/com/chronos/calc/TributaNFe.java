@@ -33,6 +33,7 @@ import com.chronos.calc.enuns.CstPisCofins;
 import com.chronos.calc.enuns.TipoOperacao;
 import com.chronos.calc.enuns.TipoPessoa;
 import com.chronos.calc.iss.Issqn;
+import com.chronos.calc.resultados.IResultadoCalculoCofins;
 import com.chronos.calc.resultados.IResultadoCalculoDifal;
 import com.chronos.calc.resultados.IResultadoCalculoIbpt;
 import com.chronos.calc.resultados.IResultadoCalculoIpi;
@@ -62,7 +63,8 @@ public class TributaNFe {
         this.operacao = operacao;
 
         if (produto.isServico()) {
-            Iss iss = calcularIssqn();
+            boolean calcularRetencao = (crt != Crt.SimplesNaciona && pessoa !=TipoPessoa.Fisica);
+            Iss iss = calcularIssqn(calcularRetencao);
             imposto.setIssqn(iss);
         } else {
 
@@ -577,7 +579,7 @@ public class TributaNFe {
 
     private Icms calcularDifal(Icms icms) {
         String cstCson = (produto.getCst() != null) ? produto.getCst().getCodigo() : produto.getCsosn().getCodigo();
-        if (pessoa == TipoPessoa.Fisica && operacao == TipoOperacao.OperacaoInterestadual && cstGeraDifal(cstCson)) {
+        if (operacao == TipoOperacao.OperacaoInterestadual && cstGeraDifal(cstCson)) {
             if (produto.getPercentualDifalInterna().signum() != 0 && produto.getPercentualDifalInterestadual().signum() != 0) {
 
                 IResultadoCalculoDifal result = calcular.calculaDifalFcp();
@@ -653,7 +655,7 @@ public class TributaNFe {
         Cofins cofins = new Cofins();
         CstPisCofins cst = produto.getCstPisCofins();
         if (cst == CstPisCofins.Cst01 || cst == CstPisCofins.Cst02) {
-            IResultadoCalculoPis result = calcular.calcularPis();
+            IResultadoCalculoCofins result = calcular.calcularCofins();
             BigDecimal valor = result.getValor();
             BigDecimal baseCalculo = result.getBaseCalculo();
             cofins.setBaseCalculo(baseCalculo);
@@ -663,10 +665,13 @@ public class TributaNFe {
         return cofins;
     }
 
-    private Iss calcularIssqn() {
+    private Iss calcularIssqn(boolean calcularRetencao) {
         Iss iss = new Iss();
         Issqn issqn = new Issqn();
-        issqn.calcular(produto);
+        
+        
+        
+        issqn.calcular(produto,calcularRetencao);
 
         BigDecimal valor = issqn.getValorIssqn();
         BigDecimal baseCalculo = issqn.getValorBcIssqn();
@@ -674,6 +679,12 @@ public class TributaNFe {
         iss.setValor(valor);
         iss.setBaseCalculo(baseCalculo);
         iss.setPercentualIss(percentual);
+        iss.setBaseCalculoInss(issqn.getBaseCalculoInss());
+        iss.setBaseCalculoIrrf(issqn.getPercentualIssqn());
+        iss.setValorRetCofins(issqn.getValorRetCofins());
+        iss.setValorRetPis(issqn.getValorRetPis());
+        iss.setValorRetIrrf(issqn.getValorRetIrrf());
+        iss.setValorRetInss(issqn.getBaseCalculoInss());
         return iss;
     }
 

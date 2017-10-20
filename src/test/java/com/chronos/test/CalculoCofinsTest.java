@@ -56,7 +56,7 @@ public class CalculoCofinsTest {
     public void CalculaCofins() {
         ITributavel tributos = new ITributavel();
         tributos.setQuantidadeProduto(BigDecimal.ONE);
-        tributos.setPercentualCofins(BigDecimal.valueOf(0.65));
+        tributos.setPercentualCofins(BigDecimal.valueOf(3.00));
         tributos.setValorProduto(BigDecimal.valueOf(1000));
         
         
@@ -66,7 +66,7 @@ public class CalculoCofinsTest {
         BigDecimal baseCalculo = resultado.getBaseCalculo();
         BigDecimal valor = resultado.getValor();
         BigDecimal baseCalculoTest = BigDecimal.valueOf(1000);
-        BigDecimal valorTest = BigDecimal.valueOf(6.5).setScale(2);
+        BigDecimal valorTest = BigDecimal.valueOf(30).setScale(2);
         
         baseCalculoTest = baseCalculoTest.setScale(2,RoundingMode.DOWN);
         

@@ -19,17 +19,32 @@ public class Issqn {
     private BigDecimal valorBcIssqn;
     private BigDecimal percentualIssqn;
     private BigDecimal valorIssqn;
+    
+    private BigDecimal baseCalculoInss;
+    private BigDecimal baseCalculoIrrf;
+    private BigDecimal valorRetPis;
+    private BigDecimal valorRetCofins;
+    private BigDecimal valorRetCsll;
+    private BigDecimal valorRetIrrf;
+    private BigDecimal valorRetInss;
 
     public Issqn() {
     }
     
     
     
-    public void calcular(ITributavel tributos) {
-        IResultadoCalculoIssqn result = new CalcTributacao(tributos).calcularIssqn();
+    public void calcular(ITributavel tributos,boolean calcularRetencao) {
+        IResultadoCalculoIssqn result = new CalcTributacao(tributos).calcularIssqn(calcularRetencao);
         valorBcIssqn = result.getBaseCalculo();
         valorIssqn = result.getValor();
         percentualIssqn = tributos.getPercentualIssqn();
+        //Retencoes
+        baseCalculoInss = result.getBaseCalculoInss();
+        baseCalculoIrrf = result.getBaseCalculoIrrf();
+        valorRetIrrf = result.getBaseCalculoIrrf();
+        valorRetPis = result.getValorRetPis();
+        valorRetCofins = result.getValorRetCofins();
+        valorRetCsll = result.getValorRetCsll();
     }
 
     public BigDecimal getValorBcIssqn() {
@@ -45,6 +60,36 @@ public class Issqn {
     public BigDecimal getValorIssqn() {
         return valorIssqn;
     }
+
+    public BigDecimal getBaseCalculoInss() {
+        return baseCalculoInss;
+    }
+
+    public BigDecimal getBaseCalculoIrrf() {
+        return baseCalculoIrrf;
+    }
+
+    public BigDecimal getValorRetPis() {
+        return valorRetPis;
+    }
+
+    public BigDecimal getValorRetCofins() {
+        return valorRetCofins;
+    }
+
+    public BigDecimal getValorRetCsll() {
+        return valorRetCsll;
+    }
+
+    public BigDecimal getValorRetIrrf() {
+        return valorRetIrrf;
+    }
+
+    public BigDecimal getValorRetInss() {
+        return valorRetInss;
+    }
+    
+    
     
     
 }

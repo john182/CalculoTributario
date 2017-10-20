@@ -13,7 +13,7 @@ import java.util.Optional;
  *
  * @author John Vanderson M L
  */
-public class ITributavel  extends Ibpt{
+public class ITributavel extends Ibpt {
 
     private BigDecimal valorProduto;
     private BigDecimal frete;
@@ -38,14 +38,18 @@ public class ITributavel  extends Ibpt{
     private BigDecimal percentualReducaoSt;
     private BigDecimal percentualDiferimento;
     private BigDecimal percentualIssqn;
-  
+    private BigDecimal percentualRetPis;
+    private BigDecimal percentualRetCofins;
+    private BigDecimal percentualRetIrrf;
+    private BigDecimal percentualRetInss;
+    private BigDecimal percentualRetCsll;
 
     public ITributavel() {
     }
-    
-    public BigDecimal getTotalProduto(){
+
+    public BigDecimal getTotalProduto() {
         BigDecimal total = getQuantidadeProduto().multiply(getValorProduto()).subtract(getDesconto());
-        total = total.setScale(2,RoundingMode.DOWN);
+        total = total.setScale(2, RoundingMode.DOWN);
         return total;
     }
 
@@ -122,7 +126,7 @@ public class ITributavel  extends Ibpt{
     }
 
     public BigDecimal getPercentualCredito() {
-        return Optional.ofNullable( percentualCredito).orElse(BigDecimal.ZERO);
+        return Optional.ofNullable(percentualCredito).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualCredito(BigDecimal percentualCredito) {
@@ -130,7 +134,7 @@ public class ITributavel  extends Ibpt{
     }
 
     public BigDecimal getPercentualDifalInterna() {
-        return Optional.ofNullable(percentualDifalInterna).orElse(BigDecimal.ZERO) ;
+        return Optional.ofNullable(percentualDifalInterna).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualDifalInterna(BigDecimal percentualDifalInterna) {
@@ -233,7 +237,47 @@ public class ITributavel  extends Ibpt{
         this.percentualCofinsRais = percentualCofinsRais;
     }
 
+    public BigDecimal getPercentualRetPis() {
+        return percentualRetPis;
+    }
+
+    public void setPercentualRetPis(BigDecimal percentualRetPis) {
+        this.percentualRetPis = percentualRetPis;
+    }
+
+    public BigDecimal getPercentualRetCofins() {
+        return percentualRetCofins;
+    }
+
+    public void setPercentualRetCofins(BigDecimal percentualRetCofins) {
+        this.percentualRetCofins = percentualRetCofins;
+    }
+
+    public BigDecimal getPercentualRetIrrf() {
+        return percentualRetIrrf;
+    }
+
+    public void setPercentualRetIrrf(BigDecimal percentualRetIrrf) {
+        this.percentualRetIrrf = percentualRetIrrf;
+    }
+
+    public BigDecimal getPercentualRetInss() {
+        return percentualRetInss;
+    }
+
+    public void setPercentualRetInss(BigDecimal percentualRetInss) {
+        this.percentualRetInss = percentualRetInss;
+    }
+
+    public BigDecimal getPercentualRetCsll() {
+        return percentualRetCsll;
+    }
+
+    public void setPercentualRetCsll(BigDecimal percentualRetCsll) {
+        this.percentualRetCsll = percentualRetCsll;
+    }
     
     
     
+
 }

@@ -42,4 +42,8 @@ public class CalcularBaseCalculoIssqn extends CalcularBaseCalculoBase{
     }
     
     
+    
+    
+    
+    
 }

@@ -65,8 +65,8 @@ public class CalcTributacao {
         return new TributacaoPis(tributos, desconto).calcular();
     }
 
-    public IResultadoCalculoIssqn calcularIssqn(){
-        return new TributacaoIssqn(tributos,desconto).calcular();
+    public IResultadoCalculoIssqn calcularIssqn(boolean calcularRetencao){
+        return new TributacaoIssqn(tributos,desconto).calcular(calcularRetencao);
     }
     
     public IResultadoCalculoDifal calculaDifalFcp() {

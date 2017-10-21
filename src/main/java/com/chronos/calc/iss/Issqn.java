@@ -38,13 +38,14 @@ public class Issqn {
         valorBcIssqn = result.getBaseCalculo();
         valorIssqn = result.getValor();
         percentualIssqn = tributos.getPercentualIssqn();
-        //Retencoes
-        baseCalculoInss = result.getBaseCalculoInss();
-        baseCalculoIrrf = result.getBaseCalculoIrrf();
-        valorRetIrrf = result.getBaseCalculoIrrf();
+        //Retencoes       
+        valorRetIrrf = result.getValorRetIrrf();
         valorRetPis = result.getValorRetPis();
         valorRetCofins = result.getValorRetCofins();
         valorRetCsll = result.getValorRetCsll();
+        valorRetInss = result.getValorRetInss();
+        baseCalculoInss = valorRetInss.signum()>0 ? result.getBaseCalculoInss():BigDecimal.ZERO;
+        baseCalculoIrrf = valorRetIrrf.signum() > 0? result.getBaseCalculoIrrf():BigDecimal.ZERO;
     }
 
     public BigDecimal getValorBcIssqn() {

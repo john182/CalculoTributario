@@ -54,7 +54,7 @@ public class TributacaoIssqn {
 
     private BigDecimal calcularIssqn(BigDecimal baseCalculo) {
         BigDecimal valor = baseCalculo.multiply(tributos.getPercentualIssqn()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
-        return valor.compareTo(BigDecimal.valueOf(29)) >= 0 ? valor : BigDecimal.ZERO;
+        return valor;
     }
 
     private BigDecimal calcularRetPis(BigDecimal baseCalculo) {
@@ -80,7 +80,7 @@ public class TributacaoIssqn {
 
     private BigDecimal calcularRetInss(BigDecimal baseCalculo) {
         BigDecimal valor = baseCalculo.multiply(tributos.getPercentualRetInss()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
-        return valor.compareTo(BigDecimal.valueOf(10)) >= 0 ? valor : BigDecimal.ZERO;
+        return valor.compareTo(BigDecimal.valueOf(29)) >= 0 ? valor : BigDecimal.ZERO;
     }
 
 }

@@ -3,7 +3,7 @@
     <repository>
         <id>chronosinfo</id>
         <name>chronos</name>
-        <url>http://167.114.103.6:8081/repository/chronos/</url>
+        <url>http://66.70.177.7:8081/repository/chronos/</url>
     </repository>
     <dependency>
         <groupId>com.chronos.calc</groupId>

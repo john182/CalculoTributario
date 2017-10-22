@@ -44,8 +44,8 @@ public class Issqn {
         valorRetCofins = result.getValorRetCofins();
         valorRetCsll = result.getValorRetCsll();
         valorRetInss = result.getValorRetInss();
-        baseCalculoInss = valorRetInss.signum()>0 ? result.getBaseCalculoInss():BigDecimal.ZERO;
-        baseCalculoIrrf = valorRetIrrf.signum() > 0? result.getBaseCalculoIrrf():BigDecimal.ZERO;
+        baseCalculoInss = valorRetInss!=null && valorRetInss.signum()>0 ? result.getBaseCalculoInss():BigDecimal.ZERO;
+        baseCalculoIrrf = valorRetIrrf!=null && valorRetIrrf.signum() > 0? result.getBaseCalculoIrrf():BigDecimal.ZERO;
     }
 
     public BigDecimal getValorBcIssqn() {

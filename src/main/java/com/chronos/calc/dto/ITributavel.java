@@ -238,7 +238,7 @@ public class ITributavel extends Ibpt {
     }
 
     public BigDecimal getPercentualRetPis() {
-        return percentualRetPis;
+        return Optional.ofNullable(percentualRetPis).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualRetPis(BigDecimal percentualRetPis) {
@@ -246,7 +246,7 @@ public class ITributavel extends Ibpt {
     }
 
     public BigDecimal getPercentualRetCofins() {
-        return percentualRetCofins;
+        return Optional.ofNullable(percentualRetCofins).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualRetCofins(BigDecimal percentualRetCofins) {
@@ -254,7 +254,7 @@ public class ITributavel extends Ibpt {
     }
 
     public BigDecimal getPercentualRetIrrf() {
-        return percentualRetIrrf;
+        return Optional.ofNullable(percentualRetIrrf).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualRetIrrf(BigDecimal percentualRetIrrf) {
@@ -262,7 +262,7 @@ public class ITributavel extends Ibpt {
     }
 
     public BigDecimal getPercentualRetInss() {
-        return percentualRetInss;
+        return Optional.ofNullable(percentualRetInss).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualRetInss(BigDecimal percentualRetInss) {
@@ -270,7 +270,7 @@ public class ITributavel extends Ibpt {
     }
 
     public BigDecimal getPercentualRetCsll() {
-        return percentualRetCsll;
+        return Optional.ofNullable(percentualRetCsll).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualRetCsll(BigDecimal percentualRetCsll) {

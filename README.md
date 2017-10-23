@@ -1,3 +1,6 @@
+# CalculoTributario
+Solução para Cálculos Tributários Do Brasil
+
 - Maven :
 ```
     <repository>
@@ -8,12 +11,11 @@
     <dependency>
         <groupId>com.chronos.calc</groupId>
         <artifactId>ChronosCalcTribut</artifactId>
-        <version>1.0.13</version>
+        <version>1.0.15</version>
     </dependency>
 ```
 
-# CalculoTributario
-Solução para Cálculos Tributários Do Brasil
+
 
 Cálculos para NF-e, NFC-e, CT-e, SAT-Fiscal
 

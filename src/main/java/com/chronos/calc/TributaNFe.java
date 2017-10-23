@@ -64,7 +64,7 @@ public class TributaNFe {
 
         if (produto.isServico()) {
             boolean calcularRetencao = (crt != Crt.SimplesNaciona && pessoa !=TipoPessoa.Fisica);
-            Iss iss = calcularIssqn(calcularRetencao);
+            Iss iss = calcularIssqn(false);
             imposto.setIssqn(iss);
         } else {
 

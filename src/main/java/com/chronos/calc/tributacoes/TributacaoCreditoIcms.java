@@ -27,19 +27,19 @@ public class TributacaoCreditoIcms {
         baseICMS = new CalcularBaseICMS(tributos, desconto);
     }
 
-    public IResultadoCalculoCredito Calcula() {
+    public IResultadoCalculoCredito calcular() {
         return calcularIcmsCredito();
     }
 
     private IResultadoCalculoCredito calcularIcmsCredito() {
         BigDecimal baseCalculo = baseICMS.getBaseCalculo();
 
-        BigDecimal valorCredito = CalculaCredito(baseCalculo);
+        BigDecimal valorCredito = calculaCredito(baseCalculo);
 
         return new ResultadoCalculoCredito(baseCalculo, valorCredito);
     }
 
-    private BigDecimal CalculaCredito(BigDecimal baseCalculo) {
+    private BigDecimal calculaCredito(BigDecimal baseCalculo) {
         return baseCalculo.multiply(tributos.getPercentualCredito()).divide(BigDecimal.valueOf(100), RoundingMode.HALF_DOWN);
     }
 

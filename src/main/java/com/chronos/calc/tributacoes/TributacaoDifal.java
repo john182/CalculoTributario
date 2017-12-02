@@ -28,7 +28,7 @@ public class TributacaoDifal {
         baseICMS = new CalcularBaseICMS(tributos, desconto);
     }
 
-    public IResultadoCalculoDifal Calcula() {
+    public IResultadoCalculoDifal calcular() {
         return calcularIcms();
     }
 
@@ -36,7 +36,7 @@ public class TributacaoDifal {
         BigDecimal baseCalculo = baseICMS.getBaseCalculo();
 
         BigDecimal fcp = baseCalculo.multiply(tributos.getPercentualFcp()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
-        BigDecimal difal = CalcularDifal(baseCalculo);
+        BigDecimal difal = calcularDifal(baseCalculo);
 
         BigDecimal percentualRateoOrigem = BigDecimal.valueOf(40);
         BigDecimal percentualReteoDestino = BigDecimal.valueOf(60);
@@ -58,7 +58,7 @@ public class TributacaoDifal {
         return new ResultadoCalculoDifal(baseCalculo, difal, fcp, aliquotaDestino, aliquotaOrigem);
     }
 
-    private BigDecimal CalcularDifal(BigDecimal baseCalculo) {
+    private BigDecimal calcularDifal(BigDecimal baseCalculo) {
         BigDecimal diferenca = tributos.getPercentualDifalInterna().subtract(tributos.getPercentualDifalInterestadual());
         baseCalculo = baseCalculo.multiply(diferenca.divide(BigDecimal.valueOf(100))).setScale(2,RoundingMode.DOWN);
         return baseCalculo;

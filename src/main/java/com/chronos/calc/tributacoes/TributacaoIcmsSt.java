@@ -5,7 +5,6 @@
  */
 package com.chronos.calc.tributacoes;
 
-import com.chronos.calc.CalcularBaseICMS;
 import com.chronos.calc.CalculoBaseIcmsSemIpi;
 import com.chronos.calc.CalculoBaseIcmsSt;
 import com.chronos.calc.dto.ITributavel;

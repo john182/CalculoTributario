@@ -13,9 +13,11 @@ import java.math.RoundingMode;
  *
  * @author John Vanderson M L
  */
-public class Biblioteca {
+public final class Biblioteca {
 
-        
+    private Biblioteca() {
+    }
+
     public static BigDecimal multiplica(BigDecimal valor1, BigDecimal valor2) {
         BigDecimal resultado = valor1.multiply(valor2, MathContext.DECIMAL64);
         resultado = resultado.setScale(2, RoundingMode.DOWN);

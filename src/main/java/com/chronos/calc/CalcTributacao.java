@@ -54,7 +54,7 @@ public class CalcTributacao {
     }
 
     public IResultadoCalculoCredito calcularIcmsCredito() {
-        return new TributacaoCreditoIcms(tributos, desconto).Calcula();
+        return new TributacaoCreditoIcms(tributos, desconto).calcular();
     }
 
     public IResultadoCalculoCofins calcularCofins() {
@@ -70,7 +70,7 @@ public class CalcTributacao {
     }
     
     public IResultadoCalculoDifal calculaDifalFcp() {
-        return new TributacaoDifal(tributos, desconto).Calcula();
+        return new TributacaoDifal(tributos, desconto).calcular();
     }
 
     public IResultadoCalculoIcmsSt calcularIcmsSt() {

@@ -31,8 +31,8 @@ public class Cst10 extends Cst00 {
         this.cst = Cst.Cst10;
         modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado;
     }
-    public Cst10(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
+    public Cst10(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
         this.cst = Cst.Cst10;
         modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado;
     }

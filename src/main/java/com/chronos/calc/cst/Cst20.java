@@ -24,8 +24,8 @@ public class Cst20 extends Cst00{
 
     
     
-    public Cst20(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
+    public Cst20(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
         cst = Cst.Cst20;
     }
     

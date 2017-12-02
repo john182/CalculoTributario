@@ -10,7 +10,6 @@ import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcms;
 import com.chronos.calc.enuns.OrigemMercadoria;
-import com.chronos.calc.resultados.IResultadoCalculoCredito;
 import com.chronos.calc.resultados.IResultadoCalculoIcms;
 import java.math.BigDecimal;
 
@@ -31,8 +30,8 @@ public class Cst00 extends CstBase {
         modalidadeDeterminacaoBcIcms = ModalidadeDeterminacaoBcIcms.ValorOperacao;
     }
 
-    public Cst00(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
+    public Cst00(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
         this.cst = Cst.Cst00;
         modalidadeDeterminacaoBcIcms = ModalidadeDeterminacaoBcIcms.ValorOperacao;
     }
@@ -65,7 +64,5 @@ public class Cst00 extends CstBase {
     public BigDecimal getValorIcms() {
         return valorIcms;
     }
-    
-    
 
 }

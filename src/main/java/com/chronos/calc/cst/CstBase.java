@@ -22,8 +22,8 @@ public abstract class CstBase {
         this.origemMercadoria = OrigemMercadoria.Nacional;
     }
 
-    public CstBase(OrigemMercadoria OrigemMercadoria) {
-        this.origemMercadoria = OrigemMercadoria;
+    public CstBase(OrigemMercadoria origemMercadoria) {
+        this.origemMercadoria = origemMercadoria;
     }
 
     public abstract void calcular(ITributavel tributos);
@@ -42,8 +42,8 @@ public abstract class CstBase {
         return origemMercadoria;
     }
 
-    public void setOrigemMercadoria(OrigemMercadoria OrigemMercadoria) {
-        this.origemMercadoria = OrigemMercadoria;
+    public void setOrigemMercadoria(OrigemMercadoria origemMercadoria) {
+        this.origemMercadoria = origemMercadoria;
     }
 
     public Cst getCst() {

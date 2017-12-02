@@ -22,8 +22,8 @@ public class Cst70 extends Cst10 {
         cst = Cst.Cst70;
     }
 
-    public Cst70(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
+    public Cst70(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
         cst = Cst.Cst70;
     }
 

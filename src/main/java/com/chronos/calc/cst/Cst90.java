@@ -42,8 +42,8 @@ public class Cst90 extends CstBase {
         cst = Cst.Cst90;
     }
 
-    public Cst90(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
+    public Cst90(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
         modalidadeDeterminacaoBcIcms = ModalidadeDeterminacaoBcIcms.ValorOperacao;
         modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado;
     }

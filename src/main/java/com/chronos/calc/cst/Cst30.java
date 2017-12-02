@@ -31,8 +31,8 @@ public class Cst30 extends CstBase {
         modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado;
     }
 
-    public Cst30(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
+    public Cst30(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
         cst = Cst.Cst30;
     }
 

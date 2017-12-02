@@ -34,8 +34,8 @@ public class Cst51 extends CstBase {
         modalidadeDeterminacaoBcIcms = ModalidadeDeterminacaoBcIcms.ValorOperacao;
     }
 
-    public Cst51(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
+    public Cst51(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
         cst = Cst.Cst50;
         modalidadeDeterminacaoBcIcms = ModalidadeDeterminacaoBcIcms.ValorOperacao;
     }

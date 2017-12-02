@@ -19,8 +19,8 @@ public class Cst40 extends CstBase {
         cst = Cst.Cst40;
     }
 
-    public Cst40(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
+    public Cst40(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
         cst = Cst.Cst40;
     }
 

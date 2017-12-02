@@ -25,8 +25,8 @@ public enum Cst {
     Cst70("70", "70 - Com redução da Base de Cálculo e cobrança do ICMS por substituição tributária"),
     Cst90("90", "90 - Outros");
 
-    private String descricao;
-    private String codigo;
+    private final String descricao;
+    private final String codigo;
 
     Cst(String codigo, String descricao) {
         this.descricao = descricao;
@@ -47,16 +47,8 @@ public enum Cst {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public String getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
 }

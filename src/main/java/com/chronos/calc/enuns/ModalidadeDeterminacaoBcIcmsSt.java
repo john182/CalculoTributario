@@ -18,8 +18,8 @@ public enum ModalidadeDeterminacaoBcIcmsSt {
     MargemValorAgregado("Margem Valor Agregado(%)", "4"),
     Pauta("Pauta (valor)", "5");
     
-    private String codigo;
-    private String nomeExibicao;
+    private final String codigo;
+    private final String nomeExibicao;
 
     private ModalidadeDeterminacaoBcIcmsSt(String nomeExibicao, String codigo) {
         this.codigo = codigo;
@@ -30,15 +30,8 @@ public enum ModalidadeDeterminacaoBcIcmsSt {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
     public String getNomeExibicao() {
         return nomeExibicao;
     }
 
-    public void setNomeExibicao(String nomeExibicao) {
-        this.nomeExibicao = nomeExibicao;
-    }
 }

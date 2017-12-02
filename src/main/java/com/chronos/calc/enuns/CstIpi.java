@@ -28,8 +28,8 @@ public enum CstIpi {
     Cst55("55", "55 - Saída com Suspensão"),
     Cst90("99", "90 - Outras Saídas");
 
-    private String descricao;
-    private String codigo;
+    private final String descricao;
+    private final String codigo;
 
     CstIpi(String codigo, String descricao) {
         this.descricao = descricao;
@@ -50,15 +50,8 @@ public enum CstIpi {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
 }

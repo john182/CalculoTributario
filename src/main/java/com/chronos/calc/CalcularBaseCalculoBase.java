@@ -15,23 +15,21 @@ import java.util.Optional;
  * @author John Vanderson M L
  */
 public abstract class CalcularBaseCalculoBase {
+
     private final ITributavel tributos;
 
     public CalcularBaseCalculoBase(ITributavel tributos) {
         this.tributos = tributos;
     }
-    
-    protected BigDecimal calcularBaseCalculo(){
-        BigDecimal valor = BigDecimal.ZERO;
-        valor =  tributos.getValorProduto().multiply(tributos.getQuantidadeProduto());
+
+    protected BigDecimal calcularBaseCalculo() {
+        BigDecimal valor = tributos.getValorProduto().multiply(tributos.getQuantidadeProduto());
         valor = valor.add(Optional.ofNullable(tributos.getFrete()).orElse(BigDecimal.ZERO))
                 .add(Optional.ofNullable(tributos.getOutrasDespesas()).orElse(BigDecimal.ZERO))
                 .add(Optional.ofNullable(tributos.getSeguro()).orElse(BigDecimal.ZERO));
-                      
-        valor = valor.setScale(2,RoundingMode.DOWN);
+
+        valor = valor.setScale(2, RoundingMode.DOWN);
         return valor;
     }
-    
-  
-    
+
 }

@@ -12,26 +12,26 @@ import java.util.Objects;
  * @author John Vanderson M L
  */
 public enum Crt {
-    
-    SimplesNaciona(1,"SIMPLES NACIONAL"),
-    SimplesNacionalExecesso(2,"SIMPLES NACIONAL – EXCESSO DE SUBLIMITE DE RECEITA BRUTA"),
-    RegimeNormal(3,"REGIME NORMAL");
-    
-    private String descricao;
-    private Integer codigo;
+
+    SimplesNaciona(1, "SIMPLES NACIONAL"),
+    SimplesNacionalExecesso(2, "SIMPLES NACIONAL – EXCESSO DE SUBLIMITE DE RECEITA BRUTA"),
+    RegimeNormal(3, "REGIME NORMAL");
+
+    private final String descricao;
+    private final Integer codigo;
 
     Crt(Integer codigo, String descricao) {
         this.descricao = descricao;
         this.codigo = codigo;
     }
-    
-     public static Crt valueOfCodigo(final Integer codigo) {
+
+    public static Crt valueOfCodigo(final Integer codigo) {
         for (final Crt crt : Crt.values()) {
             if (Objects.equals(crt.getCodigo(), codigo)) {
                 return crt;
             }
         }
-       // throw new IllegalArgumentException(String.format("Csosn não definido."));
+        // throw new IllegalArgumentException(String.format("Csosn não definido."));
         return null;
     }
 
@@ -39,15 +39,8 @@ public enum Crt {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
 }

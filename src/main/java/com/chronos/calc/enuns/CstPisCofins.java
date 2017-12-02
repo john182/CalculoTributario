@@ -47,8 +47,8 @@ public enum CstPisCofins {
     Cst98("98", "98 - Outras Operações de Entrada"),
     Cst99("99", "99 - Outras Operações");
 
-    private String descricao;
-    private String codigo;
+    private final String descricao;
+    private final String codigo;
 
     CstPisCofins(String codigo, String descricao) {
         this.descricao = descricao;
@@ -69,15 +69,8 @@ public enum CstPisCofins {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
 }

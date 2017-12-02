@@ -26,19 +26,15 @@ public class CalcularBaseCalculoCofins extends CalcularBaseCalculoBase {
 
     public BigDecimal getBaseCalculo() {
         BigDecimal baseCalculo = calcularBaseCalculo();
-
         return desconto == TipoDesconto.Condincional ? calculaIcmsComDescontoCondicional(baseCalculo) : calculaIcmsComDescontoIncondicional(baseCalculo);
     }
 
     private BigDecimal calculaIcmsComDescontoCondicional(BigDecimal baseCalculo) {
-        BigDecimal valor = baseCalculo.add(tributos.getDesconto());
-        return valor;
+        return baseCalculo.add(tributos.getDesconto());
     }
 
     private BigDecimal calculaIcmsComDescontoIncondicional(BigDecimal baseCalculo) {
-
-        baseCalculo = baseCalculo.subtract(tributos.getDesconto());
-        return baseCalculo;
+        return baseCalculo.subtract(tributos.getDesconto());
     }
 
 }

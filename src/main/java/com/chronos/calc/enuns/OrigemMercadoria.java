@@ -21,8 +21,8 @@ public enum OrigemMercadoria {
     EstrangeiraInternaSemSimilar(7, "Estrangeira Interna Sem Similar"),
     NacionalImportacaoSuperior70(8, "Nacional Importação Superior 70");
 
-    private String descricao;
-    private Integer codigo;
+    private final String descricao;
+    private final Integer codigo;
 
     OrigemMercadoria(Integer codigo, String descricao) {
         this.descricao = descricao;
@@ -33,15 +33,8 @@ public enum OrigemMercadoria {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
 }

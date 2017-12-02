@@ -15,8 +15,8 @@ public enum ModalidadeDeterminacaoBcIcms {
     PrecoTabeladoMax("Preço Tabelado Máx. (valor)", "2"),
     ValorOperacao("Valor da Operação", "3");
 
-    private String codigo;
-    private String nomeExibicao;
+    private final String codigo;
+    private final String nomeExibicao;
 
     private ModalidadeDeterminacaoBcIcms(String nomeExibicao, String codigo) {
         this.codigo = codigo;
@@ -27,15 +27,8 @@ public enum ModalidadeDeterminacaoBcIcms {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
     public String getNomeExibicao() {
         return nomeExibicao;
     }
 
-    public void setNomeExibicao(String nomeExibicao) {
-        this.nomeExibicao = nomeExibicao;
-    }
 }

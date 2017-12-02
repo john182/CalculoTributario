@@ -23,8 +23,8 @@ public enum Csosn {
     Csosn500("500", "500 - ICMS cobrado anteriormente por substituição tributária"),
     Csosn900("900", "900 - Outros");
 
-    private String descricao;
-    private String codigo;
+    private final String descricao;
+    private final String codigo;
 
     Csosn(String codigo, String descricao) {
         this.descricao = descricao;
@@ -37,7 +37,7 @@ public enum Csosn {
                 return csosn;
             }
         }
-       // throw new IllegalArgumentException(String.format("Csosn não definido."));
+        // throw new IllegalArgumentException(String.format("Csosn não definido."));
         return null;
     }
 
@@ -45,16 +45,8 @@ public enum Csosn {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public String getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
 }

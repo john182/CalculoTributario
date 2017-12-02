@@ -15,8 +15,8 @@ import com.chronos.calc.enuns.OrigemMercadoria;
  */
 public abstract class CsosnBase {
 
-    public OrigemMercadoria origemMercadoria;
-    public Csosn csosn;
+    protected OrigemMercadoria origemMercadoria;
+    protected Csosn csosn;
 
     public CsosnBase() {
         this.origemMercadoria = OrigemMercadoria.Nacional;

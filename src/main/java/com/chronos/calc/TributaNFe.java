@@ -63,12 +63,12 @@ public class TributaNFe {
         this.operacao = operacao;
 
         if (produto.isServico()) {
-            boolean calcularRetencao = (crt != Crt.SimplesNaciona && pessoa != TipoPessoa.Fisica);
+            boolean calcularRetencao = (crt != Crt.SimplesNacional && pessoa != TipoPessoa.Fisica);
             Iss iss = calcularIssqn(false);
             imposto.setIssqn(iss);
         } else {
 
-            Icms icms = crt.equals(Crt.SimplesNaciona) ? tributarIcmsSimplesNascinal(produto.getCsosn()) : tributarIcms(produto.getCst(), pessoa);
+            Icms icms = crt.equals(Crt.SimplesNacional) ? tributarIcmsSimplesNascinal(produto.getCsosn()) : tributarIcms(produto.getCst(), pessoa);
             icms = calcularDifal(icms);
 
             Ipi ipi = calcularIpi();

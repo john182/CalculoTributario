@@ -13,8 +13,8 @@ import java.util.Objects;
  */
 public enum Crt {
 
-    SimplesNaciona(1, "SIMPLES NACIONAL"),
-    SimplesNacionalExecesso(2, "SIMPLES NACIONAL – EXCESSO DE SUBLIMITE DE RECEITA BRUTA"),
+    SimplesNacional(1, "SIMPLES NACIONAL"),
+    SimplesNacionalExcesso(2, "SIMPLES NACIONAL – EXCESSO DE SUBLIMITE DE RECEITA BRUTA"),
     RegimeNormal(3, "REGIME NORMAL");
 
     private final String descricao;

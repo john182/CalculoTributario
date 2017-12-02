@@ -39,8 +39,8 @@ public class Csosn900 extends CsosnBase {
         this.modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado;
     }
 
-    public Csosn900(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
+    public Csosn900(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
         this.csosn = Csosn.Csosn900;
         this.modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado;
     }

@@ -20,8 +20,8 @@ public class Csosn203 extends Csosn202 {
         this.modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado;
     }
 
-    public Csosn203(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
+    public Csosn203(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
         this.csosn = Csosn.Csosn203;
         this.modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado;
     }

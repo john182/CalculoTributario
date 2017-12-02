@@ -16,7 +16,7 @@ import java.math.BigDecimal;
  *
  * @author John Vanderson M L
  */
-public class Csosn101 extends CsosnBase{
+public class Csosn101 extends CsosnBase {
 
     private BigDecimal percentualCredito;
     private BigDecimal valorCredito;
@@ -25,11 +25,11 @@ public class Csosn101 extends CsosnBase{
         this.csosn = Csosn.Csosn101;
     }
 
-    public Csosn101(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
-         this.csosn = Csosn.Csosn101;
+    public Csosn101(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
+        this.csosn = Csosn.Csosn101;
     }
-    
+
     @Override
     public void calcular(ITributavel tributos) {
         validacao(tributos);
@@ -38,11 +38,9 @@ public class Csosn101 extends CsosnBase{
         valorCredito = result.getValor().setScale(2);
     }
 
-
-    
-    private void validacao(ITributavel tributos){        
+    private void validacao(ITributavel tributos) {
         validacaoPadrao(tributos);
-        if(tributos.getPercentualCredito().signum()==0){
+        if (tributos.getPercentualCredito().signum() == 0) {
             throw new IllegalArgumentException("Percentual de credito de ICMS não informado");
         }
     }
@@ -54,7 +52,5 @@ public class Csosn101 extends CsosnBase{
     public BigDecimal getValorCredito() {
         return valorCredito;
     }
-    
-    
-    
+
 }

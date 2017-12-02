@@ -31,8 +31,8 @@ public class Csosn201 extends Csosn101 {
         this.modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado;
     }
 
-    public Csosn201(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
+    public Csosn201(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
         this.csosn = Csosn.Csosn201;
         this.modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado;
     }

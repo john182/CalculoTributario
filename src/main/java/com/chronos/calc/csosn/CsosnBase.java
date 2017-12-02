@@ -22,8 +22,8 @@ public abstract class CsosnBase {
         this.origemMercadoria = OrigemMercadoria.Nacional;
     }
 
-    public CsosnBase(OrigemMercadoria OrigemMercadoria) {
-        this.origemMercadoria = OrigemMercadoria;
+    public CsosnBase(OrigemMercadoria origemMercadoria) {
+        this.origemMercadoria = origemMercadoria;
     }
 
     protected void validacaoPadrao(ITributavel tributos) {
@@ -46,8 +46,8 @@ public abstract class CsosnBase {
         return origemMercadoria;
     }
 
-    public void setOrigemMercadoria(OrigemMercadoria OrigemMercadoria) {
-        this.origemMercadoria = OrigemMercadoria;
+    public void setOrigemMercadoria(OrigemMercadoria origemMercadoria) {
+        this.origemMercadoria = origemMercadoria;
     }
 
 }

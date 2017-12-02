@@ -19,8 +19,8 @@ public class Csosn102 extends CsosnBase {
         this.csosn = Csosn.Csosn102;
     }
 
-    public Csosn102(OrigemMercadoria OrigemMercadoria) {
-        super(OrigemMercadoria);
+    public Csosn102(OrigemMercadoria origemMercadoria) {
+        super(origemMercadoria);
          this.csosn = Csosn.Csosn102;
     }
 

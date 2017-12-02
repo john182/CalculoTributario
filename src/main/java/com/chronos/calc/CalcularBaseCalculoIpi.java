@@ -31,14 +31,11 @@ public class CalcularBaseCalculoIpi extends CalcularBaseCalculoBase {
     }
 
     private BigDecimal calculaIcmsComDescontoCondicional(BigDecimal baseCalculo) {
-        BigDecimal valor = baseCalculo.add(tributos.getDesconto());
-        return valor;
+        return baseCalculo.add(tributos.getDesconto());
     }
 
     private BigDecimal calculaIcmsComDescontoIncondicional(BigDecimal baseCalculo) {
-
-        baseCalculo = baseCalculo.subtract(tributos.getDesconto());
-        return baseCalculo;
+        return baseCalculo.subtract(tributos.getDesconto());
     }
 
 }

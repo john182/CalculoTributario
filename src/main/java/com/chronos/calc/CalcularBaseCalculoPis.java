@@ -8,7 +8,6 @@ package com.chronos.calc;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
 import java.math.BigDecimal;
-import java.util.Optional;
 
 /**
  *
@@ -32,14 +31,11 @@ public class CalcularBaseCalculoPis extends CalcularBaseCalculoBase {
     }
 
     private BigDecimal calculaIcmsComDescontoCondicional(BigDecimal baseCalculo) {
-        BigDecimal valor = baseCalculo.add(tributos.getDesconto());
-        return valor;
+        return baseCalculo.add(tributos.getDesconto());
     }
 
     private BigDecimal calculaIcmsComDescontoIncondicional(BigDecimal baseCalculo) {
-
-        baseCalculo = baseCalculo.subtract(tributos.getDesconto());
-        return baseCalculo;
+        return baseCalculo.subtract(tributos.getDesconto());
     }
-    
+
 }

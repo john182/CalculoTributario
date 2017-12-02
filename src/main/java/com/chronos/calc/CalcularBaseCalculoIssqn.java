@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  *
  * @author John Vanderson M L
  */
-public class CalcularBaseCalculoIssqn extends CalcularBaseCalculoBase{
+public class CalcularBaseCalculoIssqn extends CalcularBaseCalculoBase {
 
     private final ITributavel tributos;
     private final TipoDesconto desconto;
@@ -31,19 +31,11 @@ public class CalcularBaseCalculoIssqn extends CalcularBaseCalculoBase{
     }
 
     private BigDecimal calculaIcmsComDescontoCondicional(BigDecimal baseCalculo) {
-        BigDecimal valor = baseCalculo.add(tributos.getDesconto());
-        return valor;
+        return baseCalculo.add(tributos.getDesconto());
     }
 
     private BigDecimal calculaIcmsComDescontoIncondicional(BigDecimal baseCalculo) {
-
-        baseCalculo = baseCalculo.subtract(tributos.getDesconto());
-        return baseCalculo;
+        return baseCalculo.subtract(tributos.getDesconto());
     }
-    
-    
-    
-    
-    
-    
+
 }

@@ -63,14 +63,14 @@ public class TributaNFe {
         this.operacao = operacao;
 
         if (produto.isServico()) {
-            boolean calcularRetencao = (crt != Crt.SimplesNaciona && pessoa !=TipoPessoa.Fisica);
+            boolean calcularRetencao = (crt != Crt.SimplesNaciona && pessoa != TipoPessoa.Fisica);
             Iss iss = calcularIssqn(false);
             imposto.setIssqn(iss);
         } else {
 
             Icms icms = crt.equals(Crt.SimplesNaciona) ? tributarIcmsSimplesNascinal(produto.getCsosn()) : tributarIcms(produto.getCst(), pessoa);
             icms = calcularDifal(icms);
-            
+
             Ipi ipi = calcularIpi();
             imposto.setIcms(icms);
             imposto.setIpi(ipi);
@@ -85,7 +85,8 @@ public class TributaNFe {
     }
 
     /**
-     * Simples Nacional - excesso de sublimite de receita bruta; 3 - Regime Normal.
+     * Simples Nacional - excesso de sublimite de receita bruta; 3 - Regime
+     * Normal.
      *
      * @param cst
      * @return
@@ -199,7 +200,7 @@ public class TributaNFe {
                             percentualIcms = cst20.getPercentualIcms();
                             percentualReducao = cst20.getPercentualReducao();
                         }
-                        
+
                         calculo.setPercentualReducao(percentualReducao);
                         calculo.setValorBcIcms(valorBcIcms);
                         calculo.setPercentualIcms(percentualIcms);
@@ -579,34 +580,36 @@ public class TributaNFe {
 
     private Icms calcularDifal(Icms icms) {
         String cstCson = (produto.getCst() != null) ? produto.getCst().getCodigo() : produto.getCsosn().getCodigo();
-        if (operacao == TipoOperacao.OperacaoInterestadual && cstGeraDifal(cstCson)) {
-            if (produto.getPercentualDifalInterna().signum() != 0 && produto.getPercentualDifalInterestadual().signum() != 0) {
+        
+        if (operacao == TipoOperacao.OperacaoInterestadual
+                && cstGeraDifal(cstCson)
+                && produto.getPercentualDifalInterna().signum() != 0
+                && produto.getPercentualDifalInterestadual().signum() != 0) {
 
-                IResultadoCalculoDifal result = calcular.calculaDifalFcp();
-                BigDecimal baseCalculoDifal = result.getBaseCalculo();
-                BigDecimal fcp = result.getFcp();
-                BigDecimal difal = result.getDifal();
-                BigDecimal valorIcmsOrigem = result.getValorIcmsOrigem();
-                BigDecimal valorIcmsDestino = result.getValorIcmsDestino();
+            IResultadoCalculoDifal result = calcular.calculaDifalFcp();
+            BigDecimal baseCalculoDifal = result.getBaseCalculo();
+            BigDecimal fcp = result.getFcp();
+            BigDecimal difal = result.getDifal();
+            BigDecimal valorIcmsOrigem = result.getValorIcmsOrigem();
+            BigDecimal valorIcmsDestino = result.getValorIcmsDestino();
 
-                String obs = result.getObservacao(new DadosMensagemDifal(fcp, valorIcmsDestino, valorIcmsOrigem));
+            String obs = result.getObservacao(new DadosMensagemDifal(fcp, valorIcmsDestino, valorIcmsOrigem));
 
-                icms.setValorBcDifal(baseCalculoDifal);
-                icms.setFcp(fcp);
-                icms.setDifal(difal);
-                icms.setValorIcmsOrigem(valorIcmsOrigem);
-                icms.setValorIcmsDestino(valorIcmsDestino);
-                icms.setObsDifal(obs);
+            icms.setValorBcDifal(baseCalculoDifal);
+            icms.setFcp(fcp);
+            icms.setDifal(difal);
+            icms.setValorIcmsOrigem(valorIcmsOrigem);
+            icms.setValorIcmsDestino(valorIcmsDestino);
+            icms.setObsDifal(obs);
 
-            }
         }
 
         return icms;
     }
 
     private Ipi calcularIpi() {
-        if(produto.getCstIpi()==null){
-            return  null;
+        if (produto.getCstIpi() == null) {
+            return null;
         }
         Ipi ipi = new Ipi();
         String cst = produto.getCstIpi().getCodigo();
@@ -620,7 +623,7 @@ public class TributaNFe {
             IResultadoCalculoIpi result = calcular.calcularIpi();
             valor = result.getValor();
             baseCalculo = result.getBaseCalculo();
-        }else{
+        } else {
             return null;
         }
 
@@ -632,7 +635,7 @@ public class TributaNFe {
 
     private Pis calcularPis() {
         Pis pis = new Pis();
-        if(produto.getCstPisCofins()==null){
+        if (produto.getCstPisCofins() == null) {
             return null;
         }
         CstPisCofins cst = produto.getCstPisCofins();
@@ -649,7 +652,7 @@ public class TributaNFe {
     }
 
     private Cofins calcularCofins() {
-        if(produto.getCstPisCofins()==null){
+        if (produto.getCstPisCofins() == null) {
             return null;
         }
         Cofins cofins = new Cofins();
@@ -668,10 +671,8 @@ public class TributaNFe {
     private Iss calcularIssqn(boolean calcularRetencao) {
         Iss iss = new Iss();
         Issqn issqn = new Issqn();
-        
-        
-        
-        issqn.calcular(produto,calcularRetencao);
+
+        issqn.calcular(produto, calcularRetencao);
 
         BigDecimal valor = issqn.getValorIssqn();
         BigDecimal baseCalculo = issqn.getValorBcIssqn();

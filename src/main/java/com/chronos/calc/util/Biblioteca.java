@@ -42,8 +42,8 @@ public final class Biblioteca {
         return resultado;
     }
 
-    public static BigDecimal porcetagem(BigDecimal valor, BigDecimal porcetagem) {
-        BigDecimal result = valor.multiply(porcetagem).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
+    public static BigDecimal porcentagem(BigDecimal valor, BigDecimal porcentagem) {
+        BigDecimal result = valor.multiply(porcentagem).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
         result = result.setScale(2, RoundingMode.HALF_DOWN);
         return result;
     }

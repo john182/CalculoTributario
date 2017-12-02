@@ -8,13 +8,12 @@ package com.chronos.calc;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
 import java.math.BigDecimal;
-import java.util.Optional;
 
 /**
  *
  * @author John Vanderson M L
  */
-public class CalcularBaseCalculoIpi extends CalcularBaseCalculoBase{
+public class CalcularBaseCalculoIpi extends CalcularBaseCalculoBase {
 
     private final ITributavel tributos;
     private final TipoDesconto desconto;
@@ -41,6 +40,5 @@ public class CalcularBaseCalculoIpi extends CalcularBaseCalculoBase{
         baseCalculo = baseCalculo.subtract(tributos.getDesconto());
         return baseCalculo;
     }
-    
-    
+
 }

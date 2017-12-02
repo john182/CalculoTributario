@@ -1,7 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * The MIT License
+ *
+ * Copyright 2017 Chronusinfo.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 package com.chronos.calc.tributacoes;
 
@@ -28,7 +46,7 @@ public class TributacaoDifal {
         baseICMS = new CalcularBaseICMS(tributos, desconto);
     }
 
-    public IResultadoCalculoDifal Calcula() {
+    public IResultadoCalculoDifal calcular() {
         return calcularIcms();
     }
 
@@ -36,7 +54,7 @@ public class TributacaoDifal {
         BigDecimal baseCalculo = baseICMS.getBaseCalculo();
 
         BigDecimal fcp = baseCalculo.multiply(tributos.getPercentualFcp()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
-        BigDecimal difal = CalcularDifal(baseCalculo);
+        BigDecimal difal = calcularDifal(baseCalculo);
 
         BigDecimal percentualRateoOrigem = BigDecimal.valueOf(40);
         BigDecimal percentualReteoDestino = BigDecimal.valueOf(60);
@@ -58,7 +76,7 @@ public class TributacaoDifal {
         return new ResultadoCalculoDifal(baseCalculo, difal, fcp, aliquotaDestino, aliquotaOrigem);
     }
 
-    private BigDecimal CalcularDifal(BigDecimal baseCalculo) {
+    private BigDecimal calcularDifal(BigDecimal baseCalculo) {
         BigDecimal diferenca = tributos.getPercentualDifalInterna().subtract(tributos.getPercentualDifalInterestadual());
         baseCalculo = baseCalculo.multiply(diferenca.divide(BigDecimal.valueOf(100))).setScale(2,RoundingMode.DOWN);
         return baseCalculo;

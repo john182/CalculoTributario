@@ -21,32 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.chronos.calc.enuns;
+package com.chronos.calc;
+
+import java.math.BigDecimal;
 
 /**
  *
- * @author John Vanderson M L
+ * @author john
  */
-public enum ModalidadeDeterminacaoBcIcms {
-    MargemValorAgregado("Margem Valor Agregado (%)", "0"),
-    PautaValor("Pauta (Valor)", "1"),
-    PrecoTabeladoMax("Preço Tabelado Máx. (valor)", "2"),
-    ValorOperacao("Valor da Operação", "3");
-
-    private final String codigo;
-    private final String nomeExibicao;
-
-    private ModalidadeDeterminacaoBcIcms(String nomeExibicao, String codigo) {
-        this.codigo = codigo;
-        this.nomeExibicao = nomeExibicao;
+public class Calculo {
+    
+    public static void main(String[] args ){
+    
     }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public String getNomeExibicao() {
-        return nomeExibicao;
-    }
-
 }

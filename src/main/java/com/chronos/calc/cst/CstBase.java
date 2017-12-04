@@ -24,6 +24,7 @@
 package com.chronos.calc.cst;
 
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
@@ -46,6 +47,8 @@ public abstract class CstBase {
 
     public abstract void calcular(ITributavel tributos);
 
+    public abstract Icms getIcmsDto();
+    
     protected void validacaoPadrao(ITributavel tributos) {
         if (tributos == null) {
             throw new IllegalArgumentException("tributos nao  inicializado");

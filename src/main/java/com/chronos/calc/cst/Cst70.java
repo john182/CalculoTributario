@@ -24,6 +24,7 @@
 package com.chronos.calc.cst;
 
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.OrigemMercadoria;
 import java.math.BigDecimal;
@@ -34,8 +35,26 @@ import java.math.BigDecimal;
  */
 public class Cst70 extends Cst10 {
 
+    @Override
+    public Icms getIcmsDto() {
+        Icms icms = super.getIcmsDto();
+
+        icms.setPercentualReducao(getPercentualReducao());
+        icms.setValorBcIcms(getValorBcIcms());
+        icms.setPercentualIcms(getPercentualIcms());
+        icms.setValorIcms(getValorIcms());
+
+        icms.setPercentualMva(getPercentualMva());
+        icms.setPercentualReducaoST(getPercentualReducaoSt());
+        icms.setValorBaseCalcST(getValorBcIcmsSt());
+        icms.setPercentualIcmsST(getPercentualIcmsSt());
+        icms.setValorIcmsST(getValorIcmsSt());
+
+        return icms;
+    }
+
     private BigDecimal percentualReducao;
-    
+
     public Cst70() {
         cst = Cst.Cst70;
     }
@@ -47,15 +66,12 @@ public class Cst70 extends Cst10 {
 
     @Override
     public void calcular(ITributavel tributos) {
-        super.calcular(tributos); 
+        super.calcular(tributos);
         percentualReducao = tributos.getPercentualReducao().setScale(2);
     }
 
-    
-    
     public BigDecimal getPercentualReducao() {
         return percentualReducao;
     }
-    
-    
+
 }

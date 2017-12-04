@@ -139,7 +139,8 @@ public class TributaNFe {
                 switch (cst00.getModalidadeDeterminacaoBcIcms()) {
                     //Valor da Operação
                     case ValorOperacao:
-
+                        cst00.calcular(produto);
+                        
                         valorBcIcms = cst00.getValorBcIcms();
                         valorIcms = cst00.getValorIcms();
                         percentualIcms = cst00.getPercentualIcms();

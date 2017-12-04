@@ -25,6 +25,7 @@ package com.chronos.calc.cst;
 
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcms;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcmsSt;
@@ -165,6 +166,24 @@ public class Cst90 extends CstBase {
 
     public void setModalidadeDeterminacaoBcIcms(ModalidadeDeterminacaoBcIcms modalidadeDeterminacaoBcIcms) {
         this.modalidadeDeterminacaoBcIcms = modalidadeDeterminacaoBcIcms;
+    }
+
+    @Override
+    public Icms getIcmsDto() {
+        Icms icms = new Icms();
+
+        icms.setPercentualReducao(getPercentualReducaoIcmsBc());
+        icms.setValorBcIcms(getValorBcIcms());
+        icms.setPercentualIcms(getPercentualIcms());
+        icms.setValorIcms(getValorIcms());
+
+        icms.setPercentualMva(getPercentualMva());
+        icms.setPercentualReducaoST(getPercentualReducaoSt());
+        icms.setValorBaseCalcST(getValorBcIcmsSt());
+        icms.setPercentualIcmsST(getPercentualIcmsSt());
+        icms.setValorIcmsST(getValorIcmsSt());
+
+        return icms;
     }
 
 }

@@ -25,6 +25,7 @@ package com.chronos.calc.cst;
 
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcms;
 import com.chronos.calc.enuns.OrigemMercadoria;
@@ -60,15 +61,17 @@ public class Cst51 extends CstBase {
 
     @Override
     public void calcular(ITributavel tributos) {
-        CalcTributacao calc = new CalcTributacao(tributos);
-        IResultadoCalculoIcms result = calc.calcularIcms();
-        percentualReducao = tributos.getPercentualReducao().setScale(2);
-        valorBcIcms = result.getBaseCalculo().setScale(2);
-        percentualIcms = tributos.getPercentualIcms().setScale(2);
-        valorIcmsOperacao = valorBcIcms.multiply(percentualIcms).divide(BigDecimal.valueOf(100)).setScale(2);
-        percentualDiferimento = tributos.getPercentualDiferimento();
-        valorIcmsDiferido = percentualDiferimento.multiply(valorIcmsOperacao.divide(BigDecimal.valueOf(100))).setScale(2,RoundingMode.UP);
-        valorIcms = valorIcmsOperacao.subtract(valorIcmsDiferido).setScale(2);
+        if (ModalidadeDeterminacaoBcIcms.ValorOperacao.equals(getModalidadeDeterminacaoBcIcms())) {
+            CalcTributacao calc = new CalcTributacao(tributos);
+            IResultadoCalculoIcms result = calc.calcularIcms();
+            percentualReducao = tributos.getPercentualReducao().setScale(2);
+            valorBcIcms = result.getBaseCalculo().setScale(2);
+            percentualIcms = tributos.getPercentualIcms().setScale(2);
+            valorIcmsOperacao = valorBcIcms.multiply(percentualIcms).divide(BigDecimal.valueOf(100)).setScale(2);
+            percentualDiferimento = tributos.getPercentualDiferimento();
+            valorIcmsDiferido = percentualDiferimento.multiply(valorIcmsOperacao.divide(BigDecimal.valueOf(100))).setScale(2, RoundingMode.UP);
+            valorIcms = valorIcmsOperacao.subtract(valorIcmsDiferido).setScale(2);
+        }
     }
 
     public ModalidadeDeterminacaoBcIcms getModalidadeDeterminacaoBcIcms() {
@@ -105,6 +108,21 @@ public class Cst51 extends CstBase {
 
     public BigDecimal getValorIcms() {
         return valorIcms;
+    }
+
+    @Override
+    public Icms getIcmsDto() {
+        Icms icmsDto = new Icms();
+
+        icmsDto.setPercentualReducao(percentualReducao);
+        icmsDto.setValorBcIcms(valorBcIcms);
+        icmsDto.setPercentualIcms(percentualIcms);
+        icmsDto.setValorIcmsOperacao(valorIcmsOperacao);
+        icmsDto.setPercentualDiferimento(percentualDiferimento);
+        icmsDto.setValorIcmsDeferido(valorIcmsDiferido);
+        icmsDto.setValorIcms(valorIcms);
+
+        return icmsDto;
     }
 
 }

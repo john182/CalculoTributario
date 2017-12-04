@@ -24,6 +24,7 @@
 package com.chronos.calc.cst;
 
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
@@ -45,5 +46,10 @@ public class Cst50 extends CstBase {
     @Override
     public void calcular(ITributavel tributos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Icms getIcmsDto() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

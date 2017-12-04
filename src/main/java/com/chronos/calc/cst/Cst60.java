@@ -24,6 +24,7 @@
 package com.chronos.calc.cst;
 
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.OrigemMercadoria;
 import java.math.BigDecimal;
@@ -66,7 +67,11 @@ public class Cst60 extends CstBase {
     public void setValorBcStRetido(BigDecimal valorBcStRetido) {
         this.valorBcStRetido = valorBcStRetido;
     }
-    
-    
 
+    @Override
+    public Icms getIcmsDto() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    
 }

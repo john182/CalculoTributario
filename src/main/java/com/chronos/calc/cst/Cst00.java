@@ -25,6 +25,7 @@ package com.chronos.calc.cst;
 
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcms;
 import com.chronos.calc.enuns.OrigemMercadoria;
@@ -57,10 +58,12 @@ public class Cst00 extends CstBase {
     @Override
     public void calcular(ITributavel tributos) {
         validacaoPadrao(tributos);
-        IResultadoCalculoIcms result = new CalcTributacao(tributos).calcularIcms();
-        this.percentualIcms = tributos.getPercentualIcms().setScale(2);
-        this.valorBcIcms = result.getBaseCalculo();
-        this.valorIcms = result.getValor();
+        if (ModalidadeDeterminacaoBcIcms.ValorOperacao.equals(getModalidadeDeterminacaoBcIcms())) {
+            IResultadoCalculoIcms result = new CalcTributacao(tributos).calcularIcms();
+            this.percentualIcms = tributos.getPercentualIcms().setScale(2);
+            this.valorBcIcms = result.getBaseCalculo();
+            this.valorIcms = result.getValor();
+        }
     }
 
     public ModalidadeDeterminacaoBcIcms getModalidadeDeterminacaoBcIcms() {
@@ -83,4 +86,14 @@ public class Cst00 extends CstBase {
         return valorIcms;
     }
 
+    @Override
+    public Icms getIcmsDto() {
+        Icms icms = new Icms();
+        icms.setValorIcms(valorIcms);
+        icms.setValorBcIcms(valorBcIcms);
+        icms.setPercentualIcms(percentualIcms);
+
+        return icms;
+
+    }
 }

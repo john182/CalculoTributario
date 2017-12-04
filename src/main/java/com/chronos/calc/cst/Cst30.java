@@ -25,6 +25,7 @@ package com.chronos.calc.cst;
 
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcmsSt;
 import com.chronos.calc.enuns.OrigemMercadoria;
@@ -56,18 +57,21 @@ public class Cst30 extends CstBase {
 
     @Override
     public void calcular(ITributavel tributos) {
-        percentualMva = tributos.getPercentualMva().setScale(2);
-        percentualReducaoSt = tributos.getPercentualReducaoSt().setScale(2);
-        percentualIcmsSt = tributos.getPercentualIcmsSt().setScale(2);
+        if (ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado.equals(getModalidadeDeterminacaoBcIcmsSt())) {
+            percentualMva = tributos.getPercentualMva().setScale(2);
+            percentualReducaoSt = tributos.getPercentualReducaoSt().setScale(2);
+            percentualIcmsSt = tributos.getPercentualIcmsSt().setScale(2);
 
-        CalcTributacao calc = new CalcTributacao(tributos);
+            CalcTributacao calc = new CalcTributacao(tributos);
 
-        tributos.setValorIpi(calc.calcularIpi().getValor());
+            tributos.setValorIpi(calc.calcularIpi().getValor());
 
-        IResultadoCalculoIcmsSt result = calc.calcularIcmsSt();
+            IResultadoCalculoIcmsSt result = calc.calcularIcmsSt();
 
-        valorBcIcmsSt = result.getBaseCalculoIcmsSt();
-        valorIcmsSt = result.getValorIcmsSt();
+            valorBcIcmsSt = result.getBaseCalculoIcmsSt();
+            valorIcmsSt = result.getValorIcmsSt();
+        }
+
     }
 
     public BigDecimal getPercentualMva() {
@@ -96,6 +100,20 @@ public class Cst30 extends CstBase {
 
     public void setModalidadeDeterminacaoBcIcmsSt(ModalidadeDeterminacaoBcIcmsSt modalidadeDeterminacaoBcIcmsSt) {
         this.modalidadeDeterminacaoBcIcmsSt = modalidadeDeterminacaoBcIcmsSt;
+    }
+
+    @Override
+    public Icms getIcmsDto() {
+        Icms icmsDto = new Icms();
+
+        icmsDto.setPercentualMva(getPercentualMva());
+        icmsDto.setPercentualReducaoST(getPercentualReducaoSt());
+        icmsDto.setValorBaseCalcST(getValorBcIcmsSt());
+        icmsDto.setPercentualIcmsST(getPercentualIcmsSt());
+        icmsDto.setValorIcmsST(getValorIcmsSt());
+
+        return icmsDto;
+
     }
 
 }

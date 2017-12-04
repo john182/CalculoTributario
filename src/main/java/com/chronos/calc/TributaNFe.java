@@ -126,29 +126,23 @@ public class TributaNFe {
         BigDecimal percentualDiferimento = BigDecimal.ZERO;
         BigDecimal valorIcmsDeferido = BigDecimal.ZERO;
 
+        //pessoa fisica inclui ipi na base de calculo do icms
+        //pessoa fisica sempre usa a aliquota normal da UF emissao
+        if (tipoPessoa == TipoPessoa.Fisica) {
+            BigDecimal valorIpi = calcular.calcularIpi().getValor();
+            produto.setValorIpi(valorIpi);
+        }
+
         switch (cst) {
             case Cst00:
                 Cst00 cst00 = new Cst00();
                 switch (cst00.getModalidadeDeterminacaoBcIcms()) {
                     //Valor da Operação
                     case ValorOperacao:
-                        //pessoa fisica inclui ipi na base de calculo do icms
-                        //pessoa fisica sempre usa a aliquota normal da UF emissao
-                        if (tipoPessoa == TipoPessoa.Fisica) {
-                            BigDecimal valorIpi = calcular.calcularIpi().getValor();
-                            produto.setValorIpi(valorIpi);
-                            cst00.calcular(produto);
-                            valorBcIcms = cst00.getValorBcIcms();
-                            valorIcms = cst00.getValorIcms();
-                            percentualIcms = cst00.getPercentualIcms();
 
-                        } else {
-
-                            cst00.calcular(produto);
-                            valorBcIcms = cst00.getValorBcIcms();
-                            valorIcms = cst00.getValorIcms();
-                            percentualIcms = cst00.getPercentualIcms();
-                        }
+                        valorBcIcms = cst00.getValorBcIcms();
+                        valorIcms = cst00.getValorIcms();
+                        percentualIcms = cst00.getPercentualIcms();
 
                         calculo.setValorIcms(valorIcms);
                         calculo.setValorBcIcms(valorBcIcms);
@@ -162,29 +156,16 @@ public class TributaNFe {
                 switch (cst10.getModalidadeDeterminacaoBcIcmsSt()) {
                     case MargemValorAgregado:
 
-                        if (tipoPessoa == TipoPessoa.Fisica) {
-                            BigDecimal valorIpi = calcular.calcularIpi().getValor();
-                            produto.setValorIpi(valorIpi);
-                            cst10.calcular(produto);
-                            valorBcIcms = cst10.getValorBcIcms();
-                            percentualIcms = cst10.getPercentualIcms();
-                            valorIcms = cst10.getValorIcms();
-                            percentualMva = cst10.getPercentualMva();
-                            percentualReducaoST = cst10.getPercentualReducaoSt();
-                            valorBcIcmsSt = cst10.getValorBcIcmsSt();
-                            valorIcmsST = cst10.getValorIcmsSt();
-                            percentualIcmsST = cst10.getPercentualIcmsSt();
-                        } else {
-                            cst10.calcular(produto);
-                            valorBcIcms = cst10.getValorBcIcms();
-                            percentualIcms = cst10.getPercentualIcms();
-                            valorIcms = cst10.getValorIcms();
-                            percentualMva = cst10.getPercentualMva();
-                            percentualReducaoST = cst10.getPercentualReducaoSt();
-                            valorBcIcmsSt = cst10.getValorBcIcmsSt();
-                            valorIcmsST = cst10.getValorIcmsSt();
-                            percentualIcmsST = cst10.getPercentualIcmsSt();
-                        }
+                        cst10.calcular(produto);
+                        valorBcIcms = cst10.getValorBcIcms();
+                        percentualIcms = cst10.getPercentualIcms();
+                        valorIcms = cst10.getValorIcms();
+                        percentualMva = cst10.getPercentualMva();
+                        percentualReducaoST = cst10.getPercentualReducaoSt();
+                        valorBcIcmsSt = cst10.getValorBcIcmsSt();
+                        valorIcmsST = cst10.getValorIcmsSt();
+                        percentualIcmsST = cst10.getPercentualIcmsSt();
+
                         calculo.setValorBcIcms(valorBcIcms);
                         calculo.setPercentualIcms(percentualIcms);
                         calculo.setValorIcms(valorIcms);
@@ -201,23 +182,11 @@ public class TributaNFe {
                 Cst20 cst20 = new Cst20();
                 switch (cst20.getModalidadeDeterminacaoBcIcms()) {
                     case ValorOperacao:
-                        if (tipoPessoa == TipoPessoa.Fisica) {
-                            BigDecimal valorIpi = calcular.calcularIpi().getValor();
-                            produto.setValorIpi(valorIpi);
-                            cst20.calcular(produto);
-                            valorBcIcms = cst20.getValorBcIcms();
-                            valorIcms = cst20.getValorIcms();
-                            percentualIcms = cst20.getPercentualIcms();
-                            percentualReducao = cst20.getPercentualReducao();
-
-                        } else {
-
-                            cst20.calcular(produto);
-                            valorBcIcms = cst20.getValorBcIcms();
-                            valorIcms = cst20.getValorIcms();
-                            percentualIcms = cst20.getPercentualIcms();
-                            percentualReducao = cst20.getPercentualReducao();
-                        }
+                        cst20.calcular(produto);
+                        valorBcIcms = cst20.getValorBcIcms();
+                        valorIcms = cst20.getValorIcms();
+                        percentualIcms = cst20.getPercentualIcms();
+                        percentualReducao = cst20.getPercentualReducao();
 
                         calculo.setPercentualReducao(percentualReducao);
                         calculo.setValorBcIcms(valorBcIcms);
@@ -234,23 +203,12 @@ public class TributaNFe {
 
                 switch (cst30.getModalidadeDeterminacaoBcIcmsSt()) {
                     case MargemValorAgregado:
-                        if (tipoPessoa == TipoPessoa.Fisica) {
-                            BigDecimal valorIpi = calcular.calcularIpi().getValor();
-                            produto.setValorIpi(valorIpi);
-                            cst30.calcular(produto);
-                            percentualMva = cst30.getPercentualMva();
-                            percentualReducaoST = cst30.getPercentualReducaoSt();
-                            valorBcIcmsSt = cst30.getValorBcIcmsSt();
-                            valorIcmsST = cst30.getValorIcmsSt();
-                            percentualIcmsST = cst30.getPercentualIcmsSt();
-                        } else {
-                            cst30.calcular(produto);
-                            percentualMva = cst30.getPercentualMva();
-                            percentualReducaoST = cst30.getPercentualReducaoSt();
-                            valorBcIcmsSt = cst30.getValorBcIcmsSt();
-                            valorIcmsST = cst30.getValorIcmsSt();
-                            percentualIcmsST = cst30.getPercentualIcmsSt();
-                        }
+                        cst30.calcular(produto);
+                        percentualMva = cst30.getPercentualMva();
+                        percentualReducaoST = cst30.getPercentualReducaoSt();
+                        valorBcIcmsSt = cst30.getValorBcIcmsSt();
+                        valorIcmsST = cst30.getValorIcmsSt();
+                        percentualIcmsST = cst30.getPercentualIcmsSt();
 
                         calculo.setPercentualMva(percentualMva);
                         calculo.setPercentualReducaoST(percentualReducaoST);
@@ -275,31 +233,16 @@ public class TributaNFe {
                 Cst51 cst51 = new Cst51();
                 switch (cst51.getModalidadeDeterminacaoBcIcms()) {
                     case ValorOperacao:
-                        if (tipoPessoa == TipoPessoa.Fisica) {
-                            BigDecimal valorIpi = calcular.calcularIpi().getValor();
-                            produto.setValorIpi(valorIpi);
-                            cst51.calcular(produto);
 
-                            valorBcIcms = cst51.getValorBcIcms();
-                            valorIcms = cst51.getValorIcms();
-                            percentualIcms = cst51.getPercentualIcms();
-                            valorIcmsOperacao = cst51.getValorIcmsOperacao();
-                            percentualDiferimento = cst51.getPercentualDiferimento();
-                            valorIcmsDeferido = cst51.getValorIcmsDiferido();
-                            percentualReducao = cst51.getPercentualReducao();
+                        cst51.calcular(produto);
 
-                        } else {
-
-                            cst51.calcular(produto);
-
-                            valorBcIcms = cst51.getValorBcIcms();
-                            valorIcms = cst51.getValorIcms();
-                            percentualIcms = cst51.getPercentualIcms();
-                            valorIcmsOperacao = cst51.getValorIcmsOperacao();
-                            percentualDiferimento = cst51.getPercentualDiferimento();
-                            valorIcmsDeferido = cst51.getValorIcmsDiferido();
-                            percentualReducao = cst51.getPercentualReducao();
-                        }
+                        valorBcIcms = cst51.getValorBcIcms();
+                        valorIcms = cst51.getValorIcms();
+                        percentualIcms = cst51.getPercentualIcms();
+                        valorIcmsOperacao = cst51.getValorIcmsOperacao();
+                        percentualDiferimento = cst51.getPercentualDiferimento();
+                        valorIcmsDeferido = cst51.getValorIcmsDiferido();
+                        percentualReducao = cst51.getPercentualReducao();
 
                         calculo.setPercentualReducao(percentualReducao);
                         calculo.setValorBcIcms(valorBcIcms);
@@ -317,10 +260,7 @@ public class TributaNFe {
                 break;
             case Cst70:
                 Cst70 cst70 = new Cst70();
-                if (tipoPessoa == TipoPessoa.Fisica) {
-                    BigDecimal valorIpi = calcular.calcularIpi().getValor();
-                    produto.setValorIpi(valorIpi);
-                }
+
                 cst70.calcular(produto);
                 switch (cst70.getModalidadeDeterminacaoBcIcms()) {
                     case ValorOperacao:
@@ -354,10 +294,6 @@ public class TributaNFe {
                 break;
             case Cst90:
                 Cst90 cst90 = new Cst90();
-                if (tipoPessoa == TipoPessoa.Fisica) {
-                    BigDecimal valorIpi = calcular.calcularIpi().getValor();
-                    produto.setValorIpi(valorIpi);
-                }
                 cst90.calcular(produto);
                 switch (cst90.getModalidadeDeterminacaoBcIcms()) {
                     case ValorOperacao:
@@ -598,7 +534,7 @@ public class TributaNFe {
 
     private Icms calcularDifal(Icms icms) {
         String cstCson = (produto.getCst() != null) ? produto.getCst().getCodigo() : produto.getCsosn().getCodigo();
-        
+
         if (operacao == TipoOperacao.OperacaoInterestadual
                 && cstGeraDifal(cstCson)
                 && produto.getPercentualDifalInterna().signum() != 0

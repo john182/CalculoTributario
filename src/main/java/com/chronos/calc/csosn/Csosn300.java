@@ -24,11 +24,14 @@
 package com.chronos.calc.csosn;
 
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
 /**
- *
+ * Imune - Classificam-se neste código as operações praticadas por 
+ * optantes pelo Simples Nacional contempladas com imunidade do ICMS
+ * Não calcula
  * @author John Vanderson M L
  */
 public class Csosn300 extends CsosnBase {
@@ -46,5 +49,6 @@ public class Csosn300 extends CsosnBase {
     public void calcular(ITributavel tributos) {
         throw new UnsupportedOperationException("Não existe calculo para o  CSOSN informado"); //To change body of generated methods, choose Tools | Templates.
     }
+
 
 }

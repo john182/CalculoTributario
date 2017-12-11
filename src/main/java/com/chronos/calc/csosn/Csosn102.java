@@ -24,10 +24,12 @@
 package com.chronos.calc.csosn;
 
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
 /**
+ * Tributada pelo Simples Nacional sem permissão de crédito Não faz cálculo
  *
  * @author John Vanderson M L
  */
@@ -46,6 +48,6 @@ public class Csosn102 extends CsosnBase {
 
     @Override
     public void calcular(ITributavel tributos) {
-        throw new UnsupportedOperationException("Não existe calculo para o  CSOSN informado");
+        throw new UnsupportedOperationException("Não existe calculo para o CSOSN informado");
     }
 }

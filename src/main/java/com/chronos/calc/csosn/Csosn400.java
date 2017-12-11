@@ -28,7 +28,9 @@ import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
 /**
- *
+ * Não tributada pelo Simples Nacional - Classificam-se neste código 
+ * as operações praticadas por optantes pelo Simples Nacional não sujeitas 
+ * à tributação pelo ICMS dentro do Simples Nacional
  * @author John Vanderson M L
  */
 public class Csosn400 extends CsosnBase {

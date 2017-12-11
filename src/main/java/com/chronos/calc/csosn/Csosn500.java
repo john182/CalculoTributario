@@ -29,7 +29,10 @@ import com.chronos.calc.enuns.OrigemMercadoria;
 import java.math.BigDecimal;
 
 /**
- *
+ * ICMS cobrado anteriormente por substituição tributária (substituído) 
+ * ou por antecipação - Classificam-se neste código as operações sujeitas 
+ * exclusivamente ao regime de substituição tributária na condição 
+ * de substituído tributário ou no caso de antecipações
  * @author John Vanderson M L
  */
 public class Csosn500 extends CsosnBase {

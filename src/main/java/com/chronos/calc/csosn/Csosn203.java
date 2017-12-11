@@ -23,12 +23,14 @@
  */
 package com.chronos.calc.csosn;
 
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcmsSt;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
 /**
- *
+ * 203 Tributada pelo Simples Nacional sem permissão de crédito 
+ * e com cobrança do ICMS por substituição tributária
  * @author John Vanderson M L
  */
 public class Csosn203 extends Csosn202 {
@@ -42,6 +44,40 @@ public class Csosn203 extends Csosn202 {
         super(origemMercadoria);
         this.csosn = Csosn.Csosn203;
         this.modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado;
+    }
+
+    @Override
+    public Icms getIcmsDto() {
+        Icms icms = super.getIcmsDto();
+
+        switch (getModalidadeDeterminacaoBcIcmsSt()) {
+            case ListaNegativa:
+                //lista Negativa(valor)
+                break;
+            case ListaPositiva:
+                //Lista Positiva(valor)
+                break;
+            case ListaNeutra:
+                //Lista Neutra(valor)
+                break;
+            case MargemValorAgregado:
+                //Margem valor Agregado(%)
+
+                icms.setPercentualMva(getPercentualMva());
+                icms.setPercentualIcmsST(getPercentualIcmsSt());
+                icms.setPercentualReducaoST(getPercentualReducaoSt());
+                icms.setValorIcmsST(getValorIcmsSt());
+                icms.setValorBaseCalcST(getValorBcIcmsSt());
+
+                break;
+            case Pauta:
+
+                break;
+            case PrecoTabeladoOuMaximoSugerido:
+                //Preço Tabelado ou Máximo Sugerido
+                break;
+        }
+        return icms;
     }
 
 }

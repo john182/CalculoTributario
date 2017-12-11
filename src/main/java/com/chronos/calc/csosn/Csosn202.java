@@ -25,6 +25,7 @@ package com.chronos.calc.csosn;
 
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcmsSt;
 import com.chronos.calc.enuns.OrigemMercadoria;
@@ -32,7 +33,8 @@ import com.chronos.calc.resultados.IResultadoCalculoIcmsSt;
 import java.math.BigDecimal;
 
 /**
- *
+ * Tributada pelo Simples Nacional sem permissão de crédito 
+ * e com cobrança do ICMS por substituição tributária    
  * @author John Vanderson M L
  */
 public class Csosn202 extends Csosn102 {
@@ -80,8 +82,6 @@ public class Csosn202 extends Csosn102 {
         this.modalidadeDeterminacaoBcIcmsSt = modalidadeDeterminacaoBcIcmsSt;
     }
 
-    
-    
     public BigDecimal getPercentualMva() {
         return percentualMva;
     }
@@ -102,8 +102,38 @@ public class Csosn202 extends Csosn102 {
         return valorIcmsSt;
     }
 
- 
-    
-    
+    @Override
+    public Icms getIcmsDto() {
+        Icms icms = super.getIcmsDto();
+        switch (getModalidadeDeterminacaoBcIcmsSt()) {
+            case ListaNegativa:
+                //lista Negativa(valor)
+                break;
+            case ListaPositiva:
+                //Lista Positiva(valor)
+                break;
+            case ListaNeutra:
+                //Lista Neutra(valor)
+                break;
+            case MargemValorAgregado:
+                //Margem valor Agregado(%)
+
+                icms.setPercentualMva(getPercentualMva());
+                icms.setPercentualIcmsST(getPercentualIcmsSt());
+                icms.setPercentualReducaoST(getPercentualReducaoSt());
+                icms.setValorIcmsST(getValorIcmsSt());
+                icms.setValorBaseCalcST(getValorBcIcmsSt());
+
+                break;
+            case Pauta:
+
+                break;
+            case PrecoTabeladoOuMaximoSugerido:
+                //Preço Tabelado ou Máximo Sugerido
+                break;
+        }
+
+        return icms;
+    }
 
 }

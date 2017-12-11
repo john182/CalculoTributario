@@ -124,7 +124,5 @@ public class Iss {
     public void setValorRetInss(BigDecimal valorRetInss) {
         this.valorRetInss = valorRetInss;
     }
-    
-    
 
 }

@@ -33,8 +33,9 @@ import com.chronos.calc.resultados.IResultadoCalculoIcmsSt;
 import java.math.BigDecimal;
 
 /**
- * Tributada pelo Simples Nacional sem permissão de crédito 
- * e com cobrança do ICMS por substituição tributária    
+ * Tributada pelo Simples Nacional sem permissão de crédito e com cobrança do
+ * ICMS por substituição tributária
+ *
  * @author John Vanderson M L
  */
 public class Csosn202 extends Csosn102 {

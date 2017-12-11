@@ -31,7 +31,7 @@ import java.util.Optional;
  * @author John Vanderson M L
  */
 public class Ipi {
-    
+
     private BigDecimal valorBcIpi;
     private BigDecimal valorIpi;
 
@@ -53,6 +53,5 @@ public class Ipi {
     public void setValorIpi(BigDecimal valorIpi) {
         this.valorIpi = valorIpi;
     }
-    
-    
+
 }

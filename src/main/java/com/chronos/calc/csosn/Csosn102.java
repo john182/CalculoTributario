@@ -24,7 +24,6 @@
 package com.chronos.calc.csosn;
 
 import com.chronos.calc.dto.ITributavel;
-import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
 

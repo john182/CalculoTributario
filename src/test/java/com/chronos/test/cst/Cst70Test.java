@@ -12,10 +12,10 @@ import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcmsSt;
 import java.math.BigDecimal;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -80,7 +80,7 @@ public class Cst70Test {
         assertEquals(BigDecimal.valueOf(90.00).setScale(2), baseCalcIcms);
         assertEquals(BigDecimal.valueOf(18.00).setScale(2), percentualIcms);
         assertEquals(BigDecimal.valueOf(16.20).setScale(2), valorIcms);
-        
+
         assertEquals(cst.getModalidadeDeterminacaoBcIcmsSt(), ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado);
 
         assertEquals(BigDecimal.valueOf(100).setScale(2), percentualMva);

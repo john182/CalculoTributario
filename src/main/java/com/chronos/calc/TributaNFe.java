@@ -23,11 +23,6 @@
  */
 package com.chronos.calc;
 
-import com.chronos.calc.csosn.Csosn101;
-import com.chronos.calc.csosn.Csosn201;
-import com.chronos.calc.csosn.Csosn202;
-import com.chronos.calc.csosn.Csosn203;
-import com.chronos.calc.csosn.Csosn900;
 import com.chronos.calc.csosn.CsosnBase;
 import com.chronos.calc.csosn.CsosnFactory;
 import com.chronos.calc.cst.CstBase;
@@ -41,8 +36,6 @@ import com.chronos.calc.dto.Pis;
 import com.chronos.calc.dto.TributosProduto;
 import com.chronos.calc.enuns.Crt;
 import com.chronos.calc.enuns.Csosn;
-import static com.chronos.calc.enuns.Csosn.Csosn203;
-import static com.chronos.calc.enuns.Csosn.Csosn900;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.TipoOperacao;
 import com.chronos.calc.enuns.TipoPessoa;

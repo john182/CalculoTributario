@@ -30,11 +30,11 @@ import java.math.BigDecimal;
  *
  * @author John Vanderson M L
  */
-public class ResultadoCalculoIssqn implements IResultadoCalculoIssqn{
+public class ResultadoCalculoIssqn implements IResultadoCalculoIssqn {
 
     private final BigDecimal baseCalculo;
     private final BigDecimal valor;
-    
+
     private BigDecimal baseCalculoInss;
     private BigDecimal baseCalculoIrrf;
     private BigDecimal valorRetPis;
@@ -42,7 +42,6 @@ public class ResultadoCalculoIssqn implements IResultadoCalculoIssqn{
     private BigDecimal valorRetCsll;
     private BigDecimal valorRetIrrf;
     private BigDecimal valorRetInss;
-  
 
     public ResultadoCalculoIssqn(BigDecimal baseCalculo, BigDecimal valor) {
         this.baseCalculo = baseCalculo;
@@ -60,10 +59,7 @@ public class ResultadoCalculoIssqn implements IResultadoCalculoIssqn{
         this.valorRetIrrf = valorRetIrrf;
         this.valorRetInss = valorRetInss;
     }
-    
-    
-    
-    
+
     @Override
     public BigDecimal getBaseCalculo() {
         return baseCalculo;
@@ -108,7 +104,5 @@ public class ResultadoCalculoIssqn implements IResultadoCalculoIssqn{
     public BigDecimal getValorRetIrrf() {
         return valorRetIrrf;
     }
-    
-    
-    
+
 }

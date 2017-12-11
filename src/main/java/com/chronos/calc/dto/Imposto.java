@@ -124,7 +124,5 @@ public class Imposto {
     public void setValorTotalTributos(BigDecimal valorTotalTributos) {
         this.valorTotalTributos = valorTotalTributos;
     }
-    
-    
 
 }

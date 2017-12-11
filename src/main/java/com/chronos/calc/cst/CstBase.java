@@ -33,7 +33,7 @@ import com.chronos.calc.enuns.OrigemMercadoria;
  *
  * @author John Vanderson M L
  */
-public abstract class CstBase implements ICodigoTributario{
+public abstract class CstBase implements ICodigoTributario {
 
     protected OrigemMercadoria origemMercadoria;
     protected Cst cst;

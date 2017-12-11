@@ -36,7 +36,7 @@ public interface ICodigoTributario {
     public OrigemMercadoria getOrigemMercadoria();
 
     public void setOrigemMercadoria(OrigemMercadoria origemMercadoria);
-    
+
     public boolean isGeraDifal();
 
 }

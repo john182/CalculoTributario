@@ -33,13 +33,13 @@ import com.chronos.calc.enuns.OrigemMercadoria;
  *
  * @author John Vanderson M L
  */
-public abstract class CsosnBase implements ICodigoTributario{
+public abstract class CsosnBase implements ICodigoTributario {
 
     protected OrigemMercadoria origemMercadoria;
     protected Csosn csosn;
     protected boolean geraDifal;
 
-    public CsosnBase(){
+    public CsosnBase() {
         this.geraDifal = false;
         this.origemMercadoria = OrigemMercadoria.Nacional;
     }
@@ -79,8 +79,8 @@ public abstract class CsosnBase implements ICodigoTributario{
     public boolean isGeraDifal() {
         return geraDifal;
     }
-    
-    public Icms getIcmsDto(){
+
+    public Icms getIcmsDto() {
         return new Icms();
     }
 }

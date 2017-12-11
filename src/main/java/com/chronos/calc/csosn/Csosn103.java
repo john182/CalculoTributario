@@ -24,13 +24,13 @@
 package com.chronos.calc.csosn;
 
 import com.chronos.calc.dto.ITributavel;
-import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
 /**
- * Isenção do ICMS no Simples Nacional para faixa de receita bruta
- * Não faz cálculo
+ * Isenção do ICMS no Simples Nacional para faixa de receita bruta Não faz
+ * cálculo
+ *
  * @author John Vanderson M L
  */
 public class Csosn103 extends CsosnBase {

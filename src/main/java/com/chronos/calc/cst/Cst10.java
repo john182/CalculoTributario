@@ -27,7 +27,6 @@ import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
-import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcms;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcmsSt;
 import com.chronos.calc.enuns.OrigemMercadoria;
 import com.chronos.calc.resultados.IResultadoCalculoIcmsSt;

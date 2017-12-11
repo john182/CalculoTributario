@@ -29,8 +29,9 @@ import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcmsSt;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
 /**
- * 203 Tributada pelo Simples Nacional sem permissão de crédito 
- * e com cobrança do ICMS por substituição tributária
+ * 203 Tributada pelo Simples Nacional sem permissão de crédito e com cobrança
+ * do ICMS por substituição tributária
+ *
  * @author John Vanderson M L
  */
 public class Csosn203 extends Csosn202 {

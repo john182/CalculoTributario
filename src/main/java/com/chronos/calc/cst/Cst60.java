@@ -75,5 +75,4 @@ public class Cst60 extends CstBase {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    
 }

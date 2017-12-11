@@ -58,7 +58,8 @@ public class CalcTributacao {
         this.tributos = tributos;
         this.desconto = desconto;
     }
-     public CalcTributacao(ITributavel tributos) {
+
+    public CalcTributacao(ITributavel tributos) {
         this.tributos = tributos;
         this.desconto = TipoDesconto.Incondicional;
     }
@@ -83,10 +84,10 @@ public class CalcTributacao {
         return new TributacaoPis(tributos, desconto).calcular();
     }
 
-    public IResultadoCalculoIssqn calcularIssqn(boolean calcularRetencao){
-        return new TributacaoIssqn(tributos,desconto).calcular(calcularRetencao);
+    public IResultadoCalculoIssqn calcularIssqn(boolean calcularRetencao) {
+        return new TributacaoIssqn(tributos, desconto).calcular(calcularRetencao);
     }
-    
+
     public IResultadoCalculoDifal calculaDifalFcp() {
         return new TributacaoDifal(tributos, desconto).calcular();
     }

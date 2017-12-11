@@ -20,22 +20,22 @@ import org.junit.Test;
  * @author John Vanderson M L
  */
 public class Cst90Test {
-    
+
     public Cst90Test() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -52,19 +52,19 @@ public class Cst90Test {
         tributos.setValorProduto(BigDecimal.valueOf(100));
         tributos.setPercentualIcms(BigDecimal.valueOf(18));
         tributos.setPercentualReducao(BigDecimal.valueOf(10));
-        
+
         Cst90 cst = new Cst90();
         cst.calcular(tributos);
-        
-        BigDecimal percentualIcms = cst.getPercentualIcms();        
+
+        BigDecimal percentualIcms = cst.getPercentualIcms();
         BigDecimal valorIcms = cst.getValorIcms();
         BigDecimal valorBcIcms = cst.getValorBcIcms();
-        
-        assertEquals(BigDecimal.valueOf(90).setScale(2), valorBcIcms);        
+
+        assertEquals(BigDecimal.valueOf(90).setScale(2), valorBcIcms);
         assertEquals(BigDecimal.valueOf(18).setScale(2), percentualIcms);
         assertEquals(BigDecimal.valueOf(16.20).setScale(2), valorIcms);
     }
-    
+
     @Test
     public void CalculoCst90ICMSST() {
         ITributavel tributos = new ITributavel();
@@ -75,28 +75,21 @@ public class Cst90Test {
         tributos.setQuantidadeProduto(BigDecimal.ONE);
         tributos.setPercentualMva(BigDecimal.valueOf(100));
         tributos.setPercentualReducaoSt(BigDecimal.valueOf(10));
-        
-        
-        
-        
+
         Cst90 cst = new Cst90();
         cst.calcular(tributos);
-        
-      
+
         BigDecimal percentualMva = cst.getPercentualMva();
         BigDecimal percentualIcmsST = cst.getPercentualIcmsSt();
         BigDecimal percentualReducaoST = cst.getPercentualReducaoSt();
         BigDecimal valorIcmsST = cst.getValorIcmsSt();
         BigDecimal valorBaseCalcST = cst.getValorBcIcmsSt();
-   
-        
+
         assertEquals(BigDecimal.valueOf(100).setScale(2), percentualMva);
         assertEquals(BigDecimal.valueOf(162).setScale(2), valorBaseCalcST);
         assertEquals(BigDecimal.valueOf(10).setScale(2), percentualReducaoST);
         assertEquals(BigDecimal.valueOf(18).setScale(2), percentualIcmsST);
         assertEquals(BigDecimal.valueOf(12.96).setScale(2), valorIcmsST);
-        
-        
-        
+
     }
 }

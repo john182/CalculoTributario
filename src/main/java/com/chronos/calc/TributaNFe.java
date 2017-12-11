@@ -28,6 +28,7 @@ import com.chronos.calc.csosn.Csosn201;
 import com.chronos.calc.csosn.Csosn202;
 import com.chronos.calc.csosn.Csosn203;
 import com.chronos.calc.csosn.Csosn900;
+import com.chronos.calc.csosn.CsosnFactory;
 import com.chronos.calc.cst.CstBase;
 import com.chronos.calc.cst.CstFactory;
 import com.chronos.calc.dto.Cofins;
@@ -324,10 +325,15 @@ public class TributaNFe {
     }
 
     private Icms calcularDifal(Icms icms) {
-        String cstCson = (produto.getCst() != null) ? produto.getCst().getCodigo() : produto.getCsosn().getCodigo();
 
+        boolean geraDifal = produto.getCst() != null ? 
+                CstFactory.getCst(produto.getCst()).isGeraDifal() 
+                : produto.getCsosn() != null ? 
+                CsosnFactory.createCsosn(produto.getCsosn()).isGeraDifal()
+                : false;
+        
         if (operacao == TipoOperacao.OperacaoInterestadual
-                && cstGeraDifal(cstCson)
+                && geraDifal
                 && produto.getPercentualDifalInterna().signum() != 0
                 && produto.getPercentualDifalInterestadual().signum() != 0) {
 

@@ -326,12 +326,12 @@ public class TributaNFe {
 
     private Icms calcularDifal(Icms icms) {
 
-        boolean geraDifal = produto.getCst() != null ? 
-                CstFactory.getCst(produto.getCst()).isGeraDifal() 
-                : produto.getCsosn() != null ? 
-                CsosnFactory.createCsosn(produto.getCsosn()).isGeraDifal()
-                : false;
-        
+        boolean geraDifal = produto.getCst() != null
+                ? CstFactory.getCst(produto.getCst()).isGeraDifal()
+                : produto.getCsosn() != null
+                        ? CsosnFactory.createCsosn(produto.getCsosn()).isGeraDifal()
+                        : false;
+
         if (operacao == TipoOperacao.OperacaoInterestadual
                 && geraDifal
                 && produto.getPercentualDifalInterna().signum() != 0
@@ -359,29 +359,23 @@ public class TributaNFe {
     }
 
     private Ipi calcularIpi() {
-        if (produto.getCstIpi() == null) {
-            return null;
-        }
-        Ipi ipi = new Ipi();
-        String cst = produto.getCstIpi().getCodigo();
-        BigDecimal valor = BigDecimal.ZERO;
-        BigDecimal baseCalculo = BigDecimal.ZERO;
+        if (produto.getCstIpi() != null && produto.getCstIpi().isGeraIpi()) {
+            Ipi ipi = new Ipi();
+            BigDecimal valor = BigDecimal.ZERO;
+            BigDecimal baseCalculo = BigDecimal.ZERO;
 
-        if (cst.equals("00")
-                || cst.equals("49")
-                || cst.equals("50")
-                || cst.equals("99")) {
             IResultadoCalculoIpi result = calcular.calcularIpi();
             valor = result.getValor();
             baseCalculo = result.getBaseCalculo();
+
+            ipi.setValorBcIpi(baseCalculo);
+            ipi.setValorIpi(valor);
+
+            return ipi;
+
         } else {
             return null;
         }
-
-        ipi.setValorBcIpi(baseCalculo);
-        ipi.setValorIpi(valor);
-
-        return ipi;
     }
 
     private Pis calcularPis() {
@@ -456,7 +450,4 @@ public class TributaNFe {
         return imposto;
     }
 
-    private boolean cstGeraDifal(String cst) {
-        return cst.equals("00") || cst.equals("20") || cst.equals("40") || cst.equals("41") || cst.equals("60") || cst.equals("102") || cst.equals("103") || cst.equals("400") || cst.equals("500");
-    }
 }

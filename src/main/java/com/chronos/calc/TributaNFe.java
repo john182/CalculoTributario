@@ -359,7 +359,8 @@ public class TributaNFe {
     }
 
     private Ipi calcularIpi() {
-        if (produto.getCstIpi() != null && produto.getCstIpi().isGeraIpi()) {
+        if (produto.getCstIpi() != null 
+                && produto.getCstIpi().isGeraIpi()) {
             Ipi ipi = new Ipi();
             BigDecimal valor = BigDecimal.ZERO;
             BigDecimal baseCalculo = BigDecimal.ZERO;
@@ -379,38 +380,32 @@ public class TributaNFe {
     }
 
     private Pis calcularPis() {
-        Pis pis = new Pis();
-        if (produto.getCstPisCofins() == null) {
-            return null;
-        }
-        CstPisCofins cst = produto.getCstPisCofins();
-
-        if (cst == CstPisCofins.Cst01 || cst == CstPisCofins.Cst02) {
+        if (produto.getCstPisCofins() == null
+                && produto.getCstPisCofins().isGeraPisCofins()) {
+            Pis pis = new Pis();
             IResultadoCalculoPis result = calcular.calcularPis();
             BigDecimal valor = result.getValor();
             BigDecimal baseCalculo = result.getBaseCalculo();
             pis.setBaseCalculo(baseCalculo);
             pis.setValor(valor);
+            return pis;
         }
-
-        return pis;
+        return null;
     }
 
     private Cofins calcularCofins() {
-        if (produto.getCstPisCofins() == null) {
-            return null;
-        }
-        Cofins cofins = new Cofins();
-        CstPisCofins cst = produto.getCstPisCofins();
-        if (cst == CstPisCofins.Cst01 || cst == CstPisCofins.Cst02) {
+        if (produto.getCstPisCofins() != null
+                && produto.getCstPisCofins().isGeraPisCofins()) {
+            Cofins cofins = new Cofins();
             IResultadoCalculoCofins result = calcular.calcularCofins();
             BigDecimal valor = result.getValor();
             BigDecimal baseCalculo = result.getBaseCalculo();
             cofins.setBaseCalculo(baseCalculo);
             cofins.setValor(valor);
+            return cofins;
         }
 
-        return cofins;
+        return null;
     }
 
     private Iss calcularIssqn(boolean calcularRetencao) {

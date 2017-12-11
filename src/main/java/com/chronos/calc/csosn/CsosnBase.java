@@ -23,6 +23,7 @@
  */
 package com.chronos.calc.csosn;
 
+import com.chronos.calc.ICodigoTributario;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
@@ -31,16 +32,19 @@ import com.chronos.calc.enuns.OrigemMercadoria;
  *
  * @author John Vanderson M L
  */
-public abstract class CsosnBase {
+public abstract class CsosnBase implements ICodigoTributario{
 
     protected OrigemMercadoria origemMercadoria;
     protected Csosn csosn;
+    protected boolean geraDifal;
 
-    public CsosnBase() {
+    public CsosnBase(){
+        this.geraDifal = false;
         this.origemMercadoria = OrigemMercadoria.Nacional;
     }
 
     public CsosnBase(OrigemMercadoria origemMercadoria) {
+        this.geraDifal = false;
         this.origemMercadoria = origemMercadoria;
     }
 
@@ -68,4 +72,7 @@ public abstract class CsosnBase {
         this.origemMercadoria = origemMercadoria;
     }
 
+    public boolean isGeraDifal() {
+        return geraDifal;
+    }
 }

@@ -34,11 +34,13 @@ import com.chronos.calc.enuns.OrigemMercadoria;
 public class Csosn103 extends CsosnBase {
 
     public Csosn103() {
+        this.geraDifal = true;
         this.csosn = Csosn.Csosn103;
     }
 
     public Csosn103(OrigemMercadoria origemMercadoria) {
         super(origemMercadoria);
+        this.geraDifal = true;
         this.csosn = Csosn.Csosn103;
     }
 

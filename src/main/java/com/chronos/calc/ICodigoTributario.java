@@ -1,7 +1,7 @@
-/* 
+/*
  * The MIT License
  *
- * Copyright 2017 Chronusinfo.
+ * Copyright 2017 Chronosinfo.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,31 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.chronos.calc.csosn;
+package com.chronos.calc;
 
-import com.chronos.calc.dto.ITributavel;
-import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
 /**
+ * Interface para códigos tributários. Implementados por CST (Regimes presumido
+ * e Real) e CSOSN (Simples Nacional).
  *
- * @author John Vanderson M L
+ * @author Renan Esposte
  */
-public class Csosn102 extends CsosnBase {
+public interface ICodigoTributario {
 
-    public Csosn102() {
-        this.geraDifal = true;
-        this.csosn = Csosn.Csosn102;
-    }
+    public OrigemMercadoria getOrigemMercadoria();
 
-    public Csosn102(OrigemMercadoria origemMercadoria) {
-        super(origemMercadoria);
-        this.geraDifal = true;
-        this.csosn = Csosn.Csosn102;
-    }
+    public void setOrigemMercadoria(OrigemMercadoria origemMercadoria);
+    
+    public boolean isGeraDifal();
 
-    @Override
-    public void calcular(ITributavel tributos) {
-        throw new UnsupportedOperationException("Não existe calculo para o  CSOSN informado");
-    }
 }

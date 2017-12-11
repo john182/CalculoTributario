@@ -38,11 +38,13 @@ public class Csosn500 extends CsosnBase {
     private BigDecimal valorBcStRetido;
     
     public Csosn500() {
+        this.geraDifal = true;
         this.csosn = Csosn.Csosn500;
     }
 
     public Csosn500(OrigemMercadoria origemMercadoria) {
         super(origemMercadoria);
+        this.geraDifal = true;
         this.csosn = Csosn.Csosn500;
     }
 

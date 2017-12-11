@@ -46,12 +46,14 @@ public class Cst00 extends CstBase {
     public Cst00() {
         this.origemMercadoria = OrigemMercadoria.Nacional;
         this.cst = Cst.Cst00;
+        this.geraDifal = true;
         modalidadeDeterminacaoBcIcms = ModalidadeDeterminacaoBcIcms.ValorOperacao;
     }
 
     public Cst00(OrigemMercadoria origemMercadoria) {
         super(origemMercadoria);
         this.cst = Cst.Cst00;
+        this.geraDifal = true;
         modalidadeDeterminacaoBcIcms = ModalidadeDeterminacaoBcIcms.ValorOperacao;
     }
 

@@ -30,7 +30,7 @@ import java.math.BigDecimal;
  *
  * @author John Vanderson M L
  */
-public class ResultadoCalculoIpi implements IResultadoCalculoIpi{
+public class ResultadoCalculoIpi implements IResultadoCalculoIpi {
 
     private final BigDecimal baseCalculo;
     private final BigDecimal valor;
@@ -39,6 +39,7 @@ public class ResultadoCalculoIpi implements IResultadoCalculoIpi{
         this.baseCalculo = baseCalculo;
         this.valor = valor;
     }
+
     @Override
     public BigDecimal getBaseCalculo() {
         return baseCalculo;
@@ -48,5 +49,5 @@ public class ResultadoCalculoIpi implements IResultadoCalculoIpi{
     public BigDecimal getValor() {
         return valor;
     }
-    
+
 }

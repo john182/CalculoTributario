@@ -33,8 +33,8 @@ import java.math.RoundingMode;
  *
  * @author John Vanderson M L
  */
-public class CalculoBaseIcmsSemIpi extends CalcularBaseCalculoBase{
-    
+public class CalculoBaseIcmsSemIpi extends CalcularBaseCalculoBase {
+
     private final ITributavel tributos;
     private final TipoDesconto desconto;
 
@@ -43,30 +43,30 @@ public class CalculoBaseIcmsSemIpi extends CalcularBaseCalculoBase{
         this.tributos = tributos;
         this.desconto = desconto;
     }
-    
-    public BigDecimal getBaseCalculo(){
+
+    public BigDecimal getBaseCalculo() {
         BigDecimal baseCalculo = calcularBaseCalculo();
-        
-        return desconto == TipoDesconto.Condincional? calculaIcmsComDescontoCondicional(baseCalculo):calculaIcmsComDescontoIncondicional(baseCalculo);
+
+        return desconto == TipoDesconto.Condincional ? calculaIcmsComDescontoCondicional(baseCalculo) : calculaIcmsComDescontoIncondicional(baseCalculo);
     }
-    
-    private  BigDecimal calculaIcmsComDescontoIncondicional(BigDecimal baseCalculoInicial){
-        BigDecimal baseCalc = Biblioteca.subtrai(baseCalculoInicial, tributos.getDesconto());      
-        
-         return calcularDesconto(baseCalc);
+
+    private BigDecimal calculaIcmsComDescontoIncondicional(BigDecimal baseCalculoInicial) {
+        BigDecimal baseCalc = Biblioteca.subtrai(baseCalculoInicial, tributos.getDesconto());
+
+        return calcularDesconto(baseCalc);
     }
-    
-    private BigDecimal calculaIcmsComDescontoCondicional(BigDecimal baseCalculoInicial){
+
+    private BigDecimal calculaIcmsComDescontoCondicional(BigDecimal baseCalculoInicial) {
         BigDecimal baseCalc = baseCalculoInicial.add(tributos.getDesconto());
         return calcularDesconto(baseCalculoInicial);
     }
-    
-    private BigDecimal calcularDesconto(BigDecimal baseCalculoInicial){
+
+    private BigDecimal calcularDesconto(BigDecimal baseCalculoInicial) {
         BigDecimal reducao = baseCalculoInicial.multiply(tributos.getPercentualReducao()).divide(BigDecimal.valueOf(100));
         baseCalculoInicial = baseCalculoInicial.subtract(reducao);
         baseCalculoInicial = baseCalculoInicial.setScale(2, RoundingMode.DOWN);
-        
+
         return baseCalculoInicial;
     }
-    
+
 }

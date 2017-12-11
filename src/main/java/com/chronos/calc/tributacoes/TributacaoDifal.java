@@ -78,7 +78,7 @@ public class TributacaoDifal {
 
     private BigDecimal calcularDifal(BigDecimal baseCalculo) {
         BigDecimal diferenca = tributos.getPercentualDifalInterna().subtract(tributos.getPercentualDifalInterestadual());
-        baseCalculo = baseCalculo.multiply(diferenca.divide(BigDecimal.valueOf(100))).setScale(2,RoundingMode.DOWN);
+        baseCalculo = baseCalculo.multiply(diferenca.divide(BigDecimal.valueOf(100))).setScale(2, RoundingMode.DOWN);
         return baseCalculo;
     }
 

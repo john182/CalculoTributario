@@ -23,15 +23,13 @@
  */
 package com.chronos.calc;
 
-import java.math.BigDecimal;
-
 /**
  *
  * @author john
  */
 public class Calculo {
-    
-    public static void main(String[] args ){
-    
+
+    public static void main(String[] args) {
+
     }
 }

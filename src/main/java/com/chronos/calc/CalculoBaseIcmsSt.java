@@ -51,14 +51,13 @@ public class CalculoBaseIcmsSt extends CalcularBaseCalculoBase {
         baseCalculo = calcularBaseCalcST(baseCalculo);
         return baseCalculo;
     }
-    
-    
-    public BigDecimal calcularBaseCalcST(BigDecimal baseCalculoIcms){        
-        
-        BigDecimal baseCalcST = desconto == TipoDesconto.Condincional ? calculaIcmsComDescontoCondicional(baseCalculoIcms) : calculaIcmsComDescontoIncondicional(baseCalculoIcms);        
-        baseCalcST = baseCalcST.multiply( BigDecimal.ONE.add(tributos.getPercentualMva().divide(BigDecimal.valueOf(100))));        
+
+    public BigDecimal calcularBaseCalcST(BigDecimal baseCalculoIcms) {
+
+        BigDecimal baseCalcST = desconto == TipoDesconto.Condincional ? calculaIcmsComDescontoCondicional(baseCalculoIcms) : calculaIcmsComDescontoIncondicional(baseCalculoIcms);
+        baseCalcST = baseCalcST.multiply(BigDecimal.ONE.add(tributos.getPercentualMva().divide(BigDecimal.valueOf(100))));
         baseCalcST = baseCalcST.setScale(2, RoundingMode.HALF_DOWN);
-        
+
         return baseCalcST;
     }
 

@@ -28,6 +28,6 @@ package com.chronos.calc.enuns;
  * @author John Vanderson M L
  */
 public enum TipoPessoa {
-    
-   Fisica,Juridica;
+
+    Fisica, Juridica;
 }

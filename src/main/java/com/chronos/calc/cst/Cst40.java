@@ -36,10 +36,12 @@ public class Cst40 extends CstBase {
 
     public Cst40() {
         cst = Cst.Cst40;
+        this.geraDifal = true;
     }
 
     public Cst40(OrigemMercadoria origemMercadoria) {
         super(origemMercadoria);
+        this.geraDifal = true;
         cst = Cst.Cst40;
     }
 

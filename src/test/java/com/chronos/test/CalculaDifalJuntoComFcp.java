@@ -68,20 +68,20 @@ public class CalculaDifalJuntoComFcp {
 
         BigDecimal difal = result.getDifal();
         BigDecimal difalTest = BigDecimal.valueOf(60).setScale(2);
-        
+
         BigDecimal valorIcmsOrigem = result.getValorIcmsOrigem();
         BigDecimal valorIcmsOrigemTest = BigDecimal.valueOf(24).setScale(2);
-        
+
         BigDecimal valorIcmsDestino = result.getValorIcmsDestino();
         BigDecimal valorIcmsDestinoTest = BigDecimal.valueOf(36).setScale(2);
 
         String obs = result.getObservacao(new DadosMensagemDifal(fcp, valorIcmsDestino, valorIcmsOrigem));
-        
+
         Assert.assertEquals(baseCalculoTest, baseCalculo);
         Assert.assertEquals(fcpTest, fcp);
         Assert.assertEquals(difalTest, difal);
         Assert.assertEquals(valorIcmsOrigemTest, valorIcmsOrigem);
         Assert.assertEquals(valorIcmsDestinoTest, valorIcmsDestino);
-        
+
     }
 }

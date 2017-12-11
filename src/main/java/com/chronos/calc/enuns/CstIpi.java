@@ -31,27 +31,35 @@ import java.util.Objects;
  */
 public enum CstIpi {
 
-    Cst00("00", "00 - Entrada com Recuperação de Crédito"),
+    Cst00("00", "00 - Entrada com Recuperação de Crédito", true),
     Cst01("01", "01 - Entrada Tributada com Alíquota Zero"),
     Cst02("02", "02 - Entrada Isenta"),
     Cst03("03", "03 - Entrada Não Tributada"),
     Cst04("04", "04 - Entrada Imune"),
     Cst05("05", "05 - Entrada com Suspensão"),
-    Cst49("49", "49 - Outras Entradas"),
-    Cst50("50", "50 - Saída Tributada"),
+    Cst49("49", "49 - Outras Entradas", true),
+    Cst50("50", "50 - Saída Tributada", true),
     Cst51("51", "51 - Saída Tributável com Alíquota Zero"),
     Cst52("52", "52 - Saída Isenta"),
     Cst53("53", "53 - Saída Não Tributada"),
     Cst54("54", "54 - Saída Imune"),
     Cst55("55", "55 - Saída com Suspensão"),
-    Cst90("99", "90 - Outras Saídas");
+    Cst90("99", "90 - Outras Saídas", true);
 
     private final String descricao;
     private final String codigo;
+    private final boolean geraIpi;
+
+    CstIpi(String codigo, String descricao, boolean geraIpi) {
+        this.descricao = descricao;
+        this.codigo = codigo;
+        this.geraIpi = geraIpi;
+    }
 
     CstIpi(String codigo, String descricao) {
         this.descricao = descricao;
         this.codigo = codigo;
+        this.geraIpi = false;
     }
 
     public static CstIpi valueOfCodigo(final String codigo) {
@@ -70,6 +78,10 @@ public enum CstIpi {
 
     public String getCodigo() {
         return codigo;
+    }
+
+    public boolean isGeraIpi() {
+        return geraIpi;
     }
 
 }

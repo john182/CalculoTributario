@@ -58,8 +58,8 @@ public class TributacaoCofins {
     }
 
     private BigDecimal calcularCofins(BigDecimal baseCalculo) {
-        return baseCalculo.multiply(tributos.getPercentualCofins()).divide(BigDecimal.valueOf(100),RoundingMode.DOWN).setScale(2,RoundingMode.DOWN);
-        
+        return baseCalculo.multiply(tributos.getPercentualCofins()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN).setScale(2, RoundingMode.DOWN);
+
     }
 
 }

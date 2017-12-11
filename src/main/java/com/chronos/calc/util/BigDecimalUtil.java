@@ -30,31 +30,26 @@ import java.util.Optional;
  *
  * @author John Vanderson M L
  */
-public class BigDecimalUtil extends BigDecimal{
-    
+public class BigDecimalUtil extends BigDecimal {
+
     private final BigDecimal valor;
 
     public BigDecimalUtil(BigDecimal valor) {
-       super(valor.toPlainString());
-       this.valor = Optional.ofNullable(valor).orElse(BigDecimal.ZERO);
+        super(valor.toPlainString());
+        this.valor = Optional.ofNullable(valor).orElse(BigDecimal.ZERO);
     }
 
-
-    public BigDecimal somar(){
+    public BigDecimal somar() {
         return somar(valor);
     }
-    
-    public BigDecimalUtil somar(BigDecimal valor){
+
+    public BigDecimalUtil somar(BigDecimal valor) {
         valor = valor.add(Optional.ofNullable(valor).orElse(BigDecimal.ZERO));
         return new BigDecimalUtil(valor);
     }
 
- 
-
-    
-    
-    public BigDecimal adds(BigDecimal valor){        
-        valor = valor.add(Optional.ofNullable(valor).orElse(BigDecimal.ZERO));        
+    public BigDecimal adds(BigDecimal valor) {
+        valor = valor.add(Optional.ofNullable(valor).orElse(BigDecimal.ZERO));
         return valor;
     }
 }

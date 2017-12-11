@@ -23,6 +23,7 @@
  */
 package com.chronos.calc.cst;
 
+import com.chronos.calc.ICodigoTributario;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
@@ -32,23 +33,26 @@ import com.chronos.calc.enuns.OrigemMercadoria;
  *
  * @author John Vanderson M L
  */
-public abstract class CstBase {
+public abstract class CstBase implements ICodigoTributario {
 
     protected OrigemMercadoria origemMercadoria;
     protected Cst cst;
+    protected boolean geraDifal;
 
     public CstBase() {
+        this.geraDifal = false;
         this.origemMercadoria = OrigemMercadoria.Nacional;
     }
 
     public CstBase(OrigemMercadoria origemMercadoria) {
+        this.geraDifal = false;
         this.origemMercadoria = origemMercadoria;
     }
 
     public abstract void calcular(ITributavel tributos);
 
     public abstract Icms getIcmsDto();
-    
+
     protected void validacaoPadrao(ITributavel tributos) {
         if (tributos == null) {
             throw new IllegalArgumentException("tributos nao  inicializado");
@@ -70,6 +74,9 @@ public abstract class CstBase {
     public Cst getCst() {
         return cst;
     }
-    
-    
+
+    public boolean isGeraDifal() {
+        return geraDifal;
+    }
+
 }

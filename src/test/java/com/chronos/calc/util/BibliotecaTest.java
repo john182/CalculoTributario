@@ -24,9 +24,8 @@
 package com.chronos.calc.util;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  *

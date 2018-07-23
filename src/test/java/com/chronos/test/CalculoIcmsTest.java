@@ -8,15 +8,14 @@ package com.chronos.test;
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
-import com.chronos.calc.resultados.IResultadoCalculoCredito;
 import com.chronos.calc.resultados.IResultadoCalculoIcms;
 import java.math.BigDecimal;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *

@@ -8,10 +8,7 @@ package com.chronos.test;
 
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
-import com.chronos.calc.enuns.TipoDesconto;
 import com.chronos.calc.resultados.IResultadoCalculoCofins;
-import com.chronos.calc.resultados.imp.ResultadoCalculoCofins;
-import com.chronos.calc.tributacoes.TributacaoCofins;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import org.junit.After;
@@ -20,7 +17,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *

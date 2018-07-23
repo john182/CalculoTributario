@@ -57,8 +57,7 @@ public enum Cst {
                 return cst;
             }
         }
-        // throw new IllegalArgumentException(String.format("Cst não definido."));
-        return null;
+        throw new IllegalArgumentException(String.format("Cst %s não definido.", codigo));
     }
 
     public String getDescricao() {

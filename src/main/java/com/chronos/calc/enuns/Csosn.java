@@ -55,8 +55,7 @@ public enum Csosn {
                 return csosn;
             }
         }
-        // throw new IllegalArgumentException(String.format("Csosn não definido."));
-        return null;
+        throw new IllegalArgumentException(String.format("Csosn %s não definido.", codigo));
     }
 
     public String getDescricao() {

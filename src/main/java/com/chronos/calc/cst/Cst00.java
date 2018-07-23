@@ -72,8 +72,8 @@ public class Cst00 extends CstBase {
         return modalidadeDeterminacaoBcIcms;
     }
 
-    public void setModalidadeDeterminacaoBcIcms(ModalidadeDeterminacaoBcIcms ModalidadeDeterminacaoBcIcms) {
-        this.modalidadeDeterminacaoBcIcms = ModalidadeDeterminacaoBcIcms;
+    public void setModalidadeDeterminacaoBcIcms(ModalidadeDeterminacaoBcIcms modalidadeDeterminacaoBcIcms) {
+        this.modalidadeDeterminacaoBcIcms = modalidadeDeterminacaoBcIcms;
     }
 
     public BigDecimal getValorBcIcms() {

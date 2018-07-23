@@ -74,14 +74,14 @@ public class Cst70Test {
         BigDecimal valorIcmsST = cst.getValorIcmsSt();
         BigDecimal percentualIcmsST = cst.getPercentualIcmsSt();
 
-        assertEquals(cst.getModalidadeDeterminacaoBcIcms(), ModalidadeDeterminacaoBcIcms.ValorOperacao);
+        assertEquals(ModalidadeDeterminacaoBcIcms.ValorOperacao, cst.getModalidadeDeterminacaoBcIcms());
 
         assertEquals(BigDecimal.valueOf(10.00).setScale(2), percentualReducao);
         assertEquals(BigDecimal.valueOf(90.00).setScale(2), baseCalcIcms);
         assertEquals(BigDecimal.valueOf(18.00).setScale(2), percentualIcms);
         assertEquals(BigDecimal.valueOf(16.20).setScale(2), valorIcms);
-
-        assertEquals(cst.getModalidadeDeterminacaoBcIcmsSt(), ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado);
+        
+        assertEquals(ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado, cst.getModalidadeDeterminacaoBcIcmsSt());
 
         assertEquals(BigDecimal.valueOf(100).setScale(2), percentualMva);
         assertEquals(BigDecimal.valueOf(10).setScale(2), percentualReducaoST);

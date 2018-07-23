@@ -49,8 +49,8 @@ public enum Crt {
                 return crt;
             }
         }
-        // throw new IllegalArgumentException(String.format("Csosn não definido."));
-        return null;
+        throw new IllegalArgumentException(String.format("Regime tributário não definido."));
+
     }
 
     public String getDescricao() {

@@ -39,6 +39,7 @@ public class CalculoBaseIcmsSemIpi extends CalcularBaseCalculoBase{
         super(tributos, desconto);
     }
     
+    @Override
     public BigDecimal getBaseCalculo(){
         BigDecimal baseCalculo = super.getBaseCalculo();
         

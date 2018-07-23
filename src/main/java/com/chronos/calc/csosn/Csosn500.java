@@ -48,7 +48,7 @@ public class Csosn500 extends CsosnBase {
 
     @Override
     public void calcular(ITributavel tributos) {
-        
+        throw new UnsupportedOperationException("Não disponível");
     }
 
     public BigDecimal getPercentualBcStRetido() {

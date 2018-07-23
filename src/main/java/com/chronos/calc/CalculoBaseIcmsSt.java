@@ -40,6 +40,7 @@ public class CalculoBaseIcmsSt extends CalcularBaseCalculoBase {
         super(tributos, desconto);
     }
 
+    @Override
     public BigDecimal getBaseCalculo() {
         BigDecimal baseCalculo = super.getBaseCalculo().add(Optional.ofNullable(getTributos().getValorIpi()).orElse(BigDecimal.ZERO));
         baseCalculo = baseCalculo.subtract(baseCalculo.multiply(getTributos().getPercentualReducao()).divide(BigDecimal.valueOf(100)));

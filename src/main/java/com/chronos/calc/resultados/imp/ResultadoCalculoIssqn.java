@@ -64,6 +64,8 @@ public class ResultadoCalculoIssqn implements IResultadoCalculoIssqn{
     
     
     
+    
+    
     @Override
     public BigDecimal getBaseCalculo() {
         return baseCalculo;

@@ -60,8 +60,7 @@ public enum CstIpi {
                 return cst;
             }
         }
-        // throw new IllegalArgumentException(String.format("Cst não definido."));
-        return null;
+         throw new IllegalArgumentException(String.format("Cst IPI não definido."));
     }
 
     public String getDescricao() {

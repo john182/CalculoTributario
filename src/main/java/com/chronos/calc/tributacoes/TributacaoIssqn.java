@@ -71,8 +71,7 @@ public class TributacaoIssqn {
     }
 
     private BigDecimal calcularIssqn(BigDecimal baseCalculo) {
-        BigDecimal valor = baseCalculo.multiply(tributos.getPercentualIssqn()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
-        return valor;
+        return baseCalculo.multiply(tributos.getPercentualIssqn()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
     }
 
     private BigDecimal calcularRetPis(BigDecimal baseCalculo) {

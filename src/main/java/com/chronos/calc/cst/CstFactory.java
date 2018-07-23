@@ -32,6 +32,8 @@ import com.chronos.calc.enuns.OrigemMercadoria;
  */
 public class CstFactory {
 
+    private CstFactory() {}
+    
     public static final CstBase getCst(Cst cst) {
         switch (cst) {
             case Cst00:

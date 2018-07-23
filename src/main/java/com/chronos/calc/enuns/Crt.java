@@ -49,7 +49,7 @@ public enum Crt {
                 return crt;
             }
         }
-        throw new IllegalArgumentException(String.format("Regime tributário não definido."));
+        throw new IllegalArgumentException(String.format("Regime tributário %d não definido.", codigo));
 
     }
 

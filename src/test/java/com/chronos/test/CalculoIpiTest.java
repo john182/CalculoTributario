@@ -91,7 +91,7 @@ public class CalculoIpiTest {
         tributos.setDesconto(BigDecimal.valueOf(1000));
         tributos.setPercentualIpi(BigDecimal.valueOf(12));
 
-        calcular = new CalcTributacao(tributos, TipoDesconto.Condincional);
+        calcular = new CalcTributacao(tributos, TipoDesconto.Condicional);
         IResultadoCalculoIpi result = calcular.calcularIpi();
 
         BigDecimal baseCaculo = result.getBaseCalculo();
@@ -112,7 +112,7 @@ public class CalculoIpiTest {
         tributos.setPercentualIpi(BigDecimal.valueOf(15));
         tributos.setFrete(BigDecimal.valueOf(373.5));
 
-        calcular = new CalcTributacao(tributos, TipoDesconto.Condincional);
+        calcular = new CalcTributacao(tributos, TipoDesconto.Condicional);
         IResultadoCalculoIpi result = calcular.calcularIpi();
 
         BigDecimal baseCaculo = result.getBaseCalculo();
@@ -135,7 +135,7 @@ public class CalculoIpiTest {
         tributos.setSeguro(BigDecimal.valueOf(5.73));
         tributos.setOutrasDespesas(BigDecimal.valueOf(233.10));
 
-        calcular = new CalcTributacao(tributos, TipoDesconto.Condincional);
+        calcular = new CalcTributacao(tributos, TipoDesconto.Condicional);
         IResultadoCalculoIpi result = calcular.calcularIpi();
 
         BigDecimal baseCaculo = result.getBaseCalculo();

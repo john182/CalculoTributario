@@ -1,4 +1,6 @@
 # CalculoTributario
+[![Build Status](https://travis-ci.org/rfpe/CalculoTributario.svg?branch=master)](https://travis-ci.org/rfpe/CalculoTributario) [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.chronos.calc%3AChronosCalcTribut&metric=alert_status)](https://sonarcloud.io/dashboard/index/com.chronos.calc%3AChronosCalcTribut)
+
 Solução para Cálculos Tributários Do Brasil
 
 - Maven :

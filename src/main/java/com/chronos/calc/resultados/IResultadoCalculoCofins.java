@@ -27,6 +27,6 @@ package com.chronos.calc.resultados;
  *
  * @author John Vanderson M L
  */
-public interface IResultadoCalculoCofins extends IResultadoCalculoBase{
-    
+public interface IResultadoCalculoCofins extends IResultadoCalculoBase {
+
 }

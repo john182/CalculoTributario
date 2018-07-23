@@ -25,12 +25,14 @@ package com.chronos.calc.csosn;
 
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
 import com.chronos.calc.resultados.IResultadoCalculoCredito;
 import java.math.BigDecimal;
 
 /**
+ * Tributada pelo Simples Nacional com permissão de crédito
  *
  * @author John Vanderson M L
  */
@@ -71,4 +73,14 @@ public class Csosn101 extends CsosnBase {
         return valorCredito;
     }
 
+    @Override
+    public Icms getIcmsDto() {
+        Icms icms = super.getIcmsDto();
+
+        icms.setValorCredito(getValorCredito());
+        icms.setPercentualCredito(getPercentualCredito());
+
+        return icms;
+
+    }
 }

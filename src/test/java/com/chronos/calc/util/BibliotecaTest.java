@@ -32,7 +32,7 @@ import org.junit.Test;
  * @author Renan Esposte
  */
 public class BibliotecaTest {
-    
+
     public BibliotecaTest() {
     }
 
@@ -80,5 +80,5 @@ public class BibliotecaTest {
         BigDecimal result = Biblioteca.porcentagem(valor, porcetagem);
         assertEquals(expResult, result);
     }
-    
+
 }

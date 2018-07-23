@@ -35,7 +35,8 @@ import java.math.RoundingMode;
  *
  * @author John Vanderson M L
  */
-public class TributacaoPis  {
+public class TributacaoPis {
+
     private final ITributavel tributos;
     private final CalcularBaseCalculoPis baseCalculoPis;
 
@@ -58,8 +59,8 @@ public class TributacaoPis  {
 
     private BigDecimal calcularPis(BigDecimal baseCalculo) {
         BigDecimal valor = baseCalculo.multiply(tributos.getPercentualPis());
-        valor = valor.divide(BigDecimal.valueOf(100)).setScale(2,RoundingMode.DOWN);
-        return valor;        
+        valor = valor.divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.DOWN);
+        return valor;
     }
 
 }

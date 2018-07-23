@@ -25,6 +25,7 @@ package com.chronos.calc.csosn;
 
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcmsSt;
 import com.chronos.calc.enuns.OrigemMercadoria;
@@ -32,6 +33,8 @@ import com.chronos.calc.resultados.IResultadoCalculoIcmsSt;
 import java.math.BigDecimal;
 
 /**
+ * Tributada pelo Simples Nacional com permissão de crédito e com cobrança do
+ * ICMS por substituição tributária
  *
  * @author John Vanderson M L
  */
@@ -58,19 +61,20 @@ public class Csosn201 extends Csosn101 {
     @Override
     public void calcular(ITributavel tributos) {
         super.calcular(tributos);
-        
+
         percentualMva = tributos.getPercentualMva().setScale(2);
         percentualReducaoSt = tributos.getPercentualReducaoSt().setScale(2);
         percentualIcmsSt = tributos.getPercentualIcmsSt().setScale(2);
-        
+
         CalcTributacao calcular = new CalcTributacao(tributos);
-        
+
         tributos.setValorIpi(calcular.calcularIpi().getValor());
-        
-        IResultadoCalculoIcmsSt resultado =  calcular.calcularIcmsSt();
-        
+
+        IResultadoCalculoIcmsSt resultado = calcular.calcularIcmsSt();
+
         valorBcIcmsSt = resultado.getBaseCalculoIcmsSt();
         valorIcmsSt = resultado.getValorIcmsSt();
+
     }
 
     public ModalidadeDeterminacaoBcIcmsSt getModalidadeDeterminacaoBcIcmsSt() {
@@ -81,8 +85,6 @@ public class Csosn201 extends Csosn101 {
         this.modalidadeDeterminacaoBcIcmsSt = modalidadeDeterminacaoBcIcmsSt;
     }
 
-    
-    
     public BigDecimal getPercentualMva() {
         return percentualMva;
     }
@@ -103,6 +105,41 @@ public class Csosn201 extends Csosn101 {
         return valorIcmsSt;
     }
 
+    @Override
+    public Icms getIcmsDto() {
+        Icms icms = super.getIcmsDto();
 
+        icms.setValorCredito(getPercentualCredito());
+        icms.setPercentualCredito(getValorCredito());
 
+        switch (getModalidadeDeterminacaoBcIcmsSt()) {
+            case ListaNegativa:
+                //lista Negativa(valor)
+                break;
+            case ListaPositiva:
+                //Lista Positiva(valor)
+                break;
+            case ListaNeutra:
+                //Lista Neutra(valor)
+                break;
+            case MargemValorAgregado:
+                //Margem valor Agregado(%)
+                icms.setPercentualMva(getPercentualMva());
+                icms.setPercentualIcmsST(getPercentualIcmsSt());
+                icms.setPercentualReducaoST(getPercentualReducaoSt());
+                icms.setValorIcmsST(getValorIcmsSt());
+                icms.setValorBaseCalcST(getValorBcIcmsSt());
+
+                break;
+            case Pauta:
+
+                break;
+            case PrecoTabeladoOuMaximoSugerido:
+                //Preço Tabelado ou Máximo Sugerido
+                break;
+
+        }
+        return icms;
+
+    }
 }

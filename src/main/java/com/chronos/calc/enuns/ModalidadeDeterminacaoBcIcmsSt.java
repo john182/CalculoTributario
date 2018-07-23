@@ -35,7 +35,7 @@ public enum ModalidadeDeterminacaoBcIcmsSt {
     ListaNeutra("Lista Neutra (valor)", "3"),
     MargemValorAgregado("Margem Valor Agregado(%)", "4"),
     Pauta("Pauta (valor)", "5");
-    
+
     private final String codigo;
     private final String nomeExibicao;
 

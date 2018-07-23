@@ -61,12 +61,11 @@ public class Cst10Test {
 
         BigDecimal baseCalcIcms = cst.getValorBcIcms();
         BigDecimal percentualIcms = cst.getPercentualIcms();
-        BigDecimal percentualMva  = cst.getPercentualMva();
+        BigDecimal percentualMva = cst.getPercentualMva();
         BigDecimal percentualReducaoST = cst.getPercentualReducaoSt();
         BigDecimal baseCalcST = cst.getValorBcIcmsSt();
         BigDecimal valorIcmsST = cst.getValorIcmsSt();
         BigDecimal percentualIcmsST = cst.getPercentualIcmsSt();
-        
 
         assertEquals(BigDecimal.valueOf(100.00).setScale(2), baseCalcIcms);
         assertEquals(BigDecimal.valueOf(18.00).setScale(2), percentualIcms);

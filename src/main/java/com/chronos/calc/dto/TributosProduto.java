@@ -32,7 +32,8 @@ import com.chronos.calc.enuns.CstPisCofins;
  *
  * @author John Vanderson M L
  */
-public class TributosProduto extends ITributavel{
+public class TributosProduto extends ITributavel {
+
     private boolean servico;
     private Cst cst;
     private Csosn csosn;
@@ -81,8 +82,5 @@ public class TributosProduto extends ITributavel{
     public void setServico(boolean servico) {
         this.servico = servico;
     }
-    
-    
-    
-    
+
 }

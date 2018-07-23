@@ -28,6 +28,8 @@ import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
 /**
+ * Imune - Classificam-se neste código as operações praticadas por optantes pelo
+ * Simples Nacional contempladas com imunidade do ICMS Não calcula
  *
  * @author John Vanderson M L
  */

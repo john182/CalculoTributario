@@ -28,22 +28,25 @@ import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
 /**
+ * Tributada pelo Simples Nacional sem permissão de crédito Não faz cálculo
  *
  * @author John Vanderson M L
  */
 public class Csosn102 extends CsosnBase {
 
     public Csosn102() {
+        this.geraDifal = true;
         this.csosn = Csosn.Csosn102;
     }
 
     public Csosn102(OrigemMercadoria origemMercadoria) {
         super(origemMercadoria);
-         this.csosn = Csosn.Csosn102;
+        this.geraDifal = true;
+        this.csosn = Csosn.Csosn102;
     }
 
     @Override
     public void calcular(ITributavel tributos) {
-        throw new UnsupportedOperationException("Não existe calculo para o  CSOSN informado");
+        throw new UnsupportedOperationException("Não existe calculo para o CSOSN informado");
     }
 }

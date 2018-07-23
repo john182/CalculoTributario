@@ -31,7 +31,7 @@ import java.util.Optional;
  * @author John Vanderson M L
  */
 public class Pis {
- 
+
     private BigDecimal valor;
     private BigDecimal baseCalculo;
 
@@ -53,6 +53,5 @@ public class Pis {
     public void setBaseCalculo(BigDecimal baseCalculo) {
         this.baseCalculo = baseCalculo;
     }
-    
-    
+
 }

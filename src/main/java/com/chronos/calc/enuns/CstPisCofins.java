@@ -31,8 +31,8 @@ import java.util.Objects;
  */
 public enum CstPisCofins {
 
-    Cst01("01", "01 - Operação Tributável com Alíquota Básica"),
-    Cst02("02", "02 - Operação Tributável com Alíquota Diferenciada"),
+    Cst01("01", "01 - Operação Tributável com Alíquota Básica", true),
+    Cst02("02", "02 - Operação Tributável com Alíquota Diferenciada", true),
     Cst03("03", "03 - Operação Tributável com Alíquota por Unidade de Medida de Produto"),
     Cst04("04", "04 - Operação Tributável Monofásica - Revenda a Alíquota Zero"),
     Cst05("05", "05 - Operação Tributável por Substituição Tributária"),
@@ -67,10 +67,20 @@ public enum CstPisCofins {
 
     private final String descricao;
     private final String codigo;
+    private final boolean geraPisCofins;
+
+    CstPisCofins(String codigo, String descricao, boolean geraPisCofins) {
+        this.descricao = descricao;
+        this.codigo = codigo;
+        this.geraPisCofins = geraPisCofins;
+
+    }
 
     CstPisCofins(String codigo, String descricao) {
         this.descricao = descricao;
         this.codigo = codigo;
+        this.geraPisCofins = false;
+
     }
 
     public static CstPisCofins valueOfCodigo(final String codigo) {
@@ -89,6 +99,10 @@ public enum CstPisCofins {
 
     public String getCodigo() {
         return codigo;
+    }
+
+    public boolean isGeraPisCofins() {
+        return geraPisCofins;
     }
 
 }

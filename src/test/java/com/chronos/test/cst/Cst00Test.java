@@ -51,17 +51,16 @@ public class Cst00Test {
         tributos.setValorProduto(BigDecimal.valueOf(1000));
         tributos.setQuantidadeProduto(BigDecimal.ONE);
         tributos.setPercentualIcms(BigDecimal.valueOf(18));
-        
-        
+
         Cst00 cst = new Cst00();
-        
+
         cst.calcular(tributos);
-        
+
         BigDecimal valorIcm = cst.getValorIcms();
         BigDecimal percentual = cst.getPercentualIcms();
-        
+
         assertEquals(BigDecimal.valueOf(18).setScale(2), percentual);
         assertEquals(BigDecimal.valueOf(180).setScale(2), valorIcm);
-        
+
     }
 }

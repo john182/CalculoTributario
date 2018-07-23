@@ -73,7 +73,7 @@ public class CalculoIbptTest {
 
         BigDecimal tributacaoMunicipal = result.getTributacaoMunicipal();
         BigDecimal tributacaoMunicipalTest = BigDecimal.ZERO.setScale(2);
-        
+
         assertEquals(tributacaoEstadualTest, tributacaoEstadual);
         assertEquals(tributacaoFederalTest, tributacaoFederal);
         assertEquals(tributacaoFederalImpTest, tributacaoFederalImp);

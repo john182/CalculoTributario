@@ -59,15 +59,11 @@ public class Csosn202Test {
 
         csosn.calcular(tributos);
 
-       
         BigDecimal percentualMva = csosn.getPercentualMva();
         BigDecimal percentualIcmsST = csosn.getPercentualIcmsSt();
         BigDecimal percentualReducaoST = csosn.getPercentualReducaoSt();
         BigDecimal valorIcmsST = csosn.getValorIcmsSt();
         BigDecimal valorBaseCalcST = csosn.getValorBcIcmsSt();
-       
-
-       
 
         assertEquals(BigDecimal.valueOf(40).setScale(2), percentualMva);
         assertEquals(BigDecimal.valueOf(18).setScale(2), percentualIcmsST);

@@ -36,18 +36,13 @@ import java.util.Optional;
  */
 public class CalculoBaseIcmsSt extends CalcularBaseCalculoBase {
 
-    private final ITributavel tributos;
-    private final TipoDesconto desconto;
-
     public CalculoBaseIcmsSt(ITributavel tributos, TipoDesconto desconto) {
-        super(tributos);
-        this.tributos = tributos;
-        this.desconto = desconto;
+        super(tributos, desconto);
     }
 
     public BigDecimal getBaseCalculo() {
-        BigDecimal baseCalculo = calcularBaseCalculo().add(Optional.ofNullable(tributos.getValorIpi()).orElse(BigDecimal.ZERO));
-        baseCalculo = baseCalculo.subtract(baseCalculo.multiply(tributos.getPercentualReducao()).divide(BigDecimal.valueOf(100)));
+        BigDecimal baseCalculo = super.getBaseCalculo().add(Optional.ofNullable(getTributos().getValorIpi()).orElse(BigDecimal.ZERO));
+        baseCalculo = baseCalculo.subtract(baseCalculo.multiply(getTributos().getPercentualReducao()).divide(BigDecimal.valueOf(100)));
         baseCalculo = calcularBaseCalcST(baseCalculo);
         return baseCalculo;
     }
@@ -55,27 +50,27 @@ public class CalculoBaseIcmsSt extends CalcularBaseCalculoBase {
     
     public BigDecimal calcularBaseCalcST(BigDecimal baseCalculoIcms){        
         
-        BigDecimal baseCalcST = desconto == TipoDesconto.Condincional ? calculaIcmsComDescontoCondicional(baseCalculoIcms) : calculaIcmsComDescontoIncondicional(baseCalculoIcms);        
-        baseCalcST = baseCalcST.multiply( BigDecimal.ONE.add(tributos.getPercentualMva().divide(BigDecimal.valueOf(100))));        
+        BigDecimal baseCalcST = getDesconto() == TipoDesconto.Condicional ? calculaIcmsComDescontoCondicional(baseCalculoIcms) : calculaIcmsComDescontoIncondicional(baseCalculoIcms);        
+        baseCalcST = baseCalcST.multiply( BigDecimal.ONE.add(getTributos().getPercentualMva().divide(BigDecimal.valueOf(100))));        
         baseCalcST = baseCalcST.setScale(2, RoundingMode.HALF_DOWN);
         
         return baseCalcST;
     }
 
     private BigDecimal calculaIcmsComDescontoIncondicional(BigDecimal baseCalculoInicial) {
-        BigDecimal baseCalc = Biblioteca.subtrai(baseCalculoInicial, tributos.getDesconto());
+        BigDecimal baseCalc = Biblioteca.subtrai(baseCalculoInicial, getTributos().getDesconto());
 
         return calcularDesconto(baseCalc);
     }
 
     private BigDecimal calculaIcmsComDescontoCondicional(BigDecimal baseCalculoInicial) {
-        BigDecimal baseCalc = baseCalculoInicial.add(tributos.getDesconto());
+        BigDecimal baseCalc = baseCalculoInicial.add(getTributos().getDesconto());
 
         return calcularDesconto(baseCalculoInicial);
     }
 
     private BigDecimal calcularDesconto(BigDecimal baseCalculoInicial) {
-        BigDecimal reducao = baseCalculoInicial.multiply(tributos.getPercentualReducaoSt()).divide(BigDecimal.valueOf(100));
+        BigDecimal reducao = baseCalculoInicial.multiply(getTributos().getPercentualReducaoSt()).divide(BigDecimal.valueOf(100));
         baseCalculoInicial = baseCalculoInicial.subtract(reducao);
         baseCalculoInicial = baseCalculoInicial.setScale(2, RoundingMode.DOWN);
 

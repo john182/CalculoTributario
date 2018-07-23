@@ -24,6 +24,7 @@
 package com.chronos.calc;
 
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.enuns.TipoDesconto;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Optional;
@@ -35,19 +36,44 @@ import java.util.Optional;
 public abstract class CalcularBaseCalculoBase {
 
     private final ITributavel tributos;
+    private final TipoDesconto desconto;
 
     public CalcularBaseCalculoBase(ITributavel tributos) {
         this.tributos = tributos;
+        this.desconto = TipoDesconto.Incondicional;
     }
 
-    protected BigDecimal calcularBaseCalculo() {
+    public CalcularBaseCalculoBase(ITributavel tributos, TipoDesconto desconto) {
+        this.tributos = tributos;
+        this.desconto = desconto;
+    }
+
+    public ITributavel getTributos() {
+        return tributos;
+    }
+
+    public TipoDesconto getDesconto() {
+        return desconto;
+    }
+
+    public BigDecimal getBaseCalculo() {
         BigDecimal valor = tributos.getValorProduto().multiply(tributos.getQuantidadeProduto());
         valor = valor.add(Optional.ofNullable(tributos.getFrete()).orElse(BigDecimal.ZERO))
                 .add(Optional.ofNullable(tributos.getOutrasDespesas()).orElse(BigDecimal.ZERO))
                 .add(Optional.ofNullable(tributos.getSeguro()).orElse(BigDecimal.ZERO));
 
         valor = valor.setScale(2, RoundingMode.DOWN);
-        return valor;
+
+        return desconto == TipoDesconto.Condicional
+                ? calculaComDescontoCondicional(valor)
+                : calculaComDescontoIncondicional(valor);
     }
 
+    private BigDecimal calculaComDescontoCondicional(BigDecimal baseCalculo) {
+        return baseCalculo.add(tributos.getDesconto());
+    }
+
+    private BigDecimal calculaComDescontoIncondicional(BigDecimal baseCalculo) {
+        return baseCalculo.subtract(tributos.getDesconto());
+    }
 }

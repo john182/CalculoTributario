@@ -94,7 +94,7 @@ public class CalculoIcmsTest {
         tributos.setPercentualIcms(BigDecimal.valueOf(12));
         tributos.setDesconto(BigDecimal.valueOf(1000));
 
-        calcular = new CalcTributacao(tributos, TipoDesconto.Condincional);
+        calcular = new CalcTributacao(tributos, TipoDesconto.Condicional);
         IResultadoCalculoIcms result = calcular.calcularIcms();
 
         BigDecimal baseCaculo = result.getBaseCalculo();
@@ -115,7 +115,7 @@ public class CalculoIcmsTest {
         tributos.setDesconto(BigDecimal.valueOf(1000));
         tributos.setPercentualReducao(BigDecimal.valueOf(25));
 
-        calcular = new CalcTributacao(tributos, TipoDesconto.Condincional);
+        calcular = new CalcTributacao(tributos, TipoDesconto.Condicional);
         IResultadoCalculoIcms result = calcular.calcularIcms();
 
         BigDecimal baseCaculo = result.getBaseCalculo();
@@ -138,7 +138,7 @@ public class CalculoIcmsTest {
         tributos.setPercentualReducao(BigDecimal.valueOf(25));
         tributos.setFrete(BigDecimal.valueOf(373.5));
 
-        calcular = new CalcTributacao(tributos, TipoDesconto.Condincional);
+        calcular = new CalcTributacao(tributos, TipoDesconto.Condicional);
         IResultadoCalculoIcms result = calcular.calcularIcms();
 
         BigDecimal baseCaculo = result.getBaseCalculo();
@@ -162,7 +162,7 @@ public class CalculoIcmsTest {
         tributos.setSeguro(BigDecimal.valueOf(5.73));
         tributos.setOutrasDespesas(BigDecimal.valueOf(233.10));
 
-        calcular = new CalcTributacao(tributos, TipoDesconto.Condincional);
+        calcular = new CalcTributacao(tributos, TipoDesconto.Condicional);
 
         IResultadoCalculoIcms result = calcular.calcularIcms();
 

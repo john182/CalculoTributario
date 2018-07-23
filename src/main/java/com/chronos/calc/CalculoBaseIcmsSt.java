@@ -55,7 +55,7 @@ public class CalculoBaseIcmsSt extends CalcularBaseCalculoBase {
     
     public BigDecimal calcularBaseCalcST(BigDecimal baseCalculoIcms){        
         
-        BigDecimal baseCalcST = desconto == TipoDesconto.Condincional ? calculaIcmsComDescontoCondicional(baseCalculoIcms) : calculaIcmsComDescontoIncondicional(baseCalculoIcms);        
+        BigDecimal baseCalcST = desconto == TipoDesconto.Condicional ? calculaIcmsComDescontoCondicional(baseCalculoIcms) : calculaIcmsComDescontoIncondicional(baseCalculoIcms);        
         baseCalcST = baseCalcST.multiply( BigDecimal.ONE.add(tributos.getPercentualMva().divide(BigDecimal.valueOf(100))));        
         baseCalcST = baseCalcST.setScale(2, RoundingMode.HALF_DOWN);
         

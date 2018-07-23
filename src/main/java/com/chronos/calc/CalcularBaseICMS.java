@@ -48,7 +48,7 @@ public class CalcularBaseICMS extends CalcularBaseCalculoBase {
     public BigDecimal getBaseCalculo() {
         BigDecimal baseCalculo = calcularBaseCalculo().add(Optional.ofNullable(tributos.getValorIpi()).orElse(BigDecimal.ZERO));
         
-        return desconto == TipoDesconto.Condincional ? calculaIcmsComDescontoCondicional(baseCalculo) : calculaIcmsComDescontoIncondicional(baseCalculo);
+        return desconto == TipoDesconto.Condicional ? calculaIcmsComDescontoCondicional(baseCalculo) : calculaIcmsComDescontoIncondicional(baseCalculo);
     }
     
     private BigDecimal calculaIcmsComDescontoIncondicional(BigDecimal baseCalculoInicial) {

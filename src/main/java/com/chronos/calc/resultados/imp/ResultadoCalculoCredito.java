@@ -30,7 +30,7 @@ import java.math.BigDecimal;
  *
  * @author John Vanderson M L
  */
-public class ResultadoCalculoCredito implements IResultadoCalculoCredito{
+public class ResultadoCalculoCredito implements IResultadoCalculoCredito {
 
     private final BigDecimal baseCalculo;
     private final BigDecimal valor;
@@ -39,6 +39,7 @@ public class ResultadoCalculoCredito implements IResultadoCalculoCredito{
         this.baseCalculo = baseCalculo;
         this.valor = valor;
     }
+
     @Override
     public BigDecimal getBaseCalculo() {
         return baseCalculo;
@@ -48,5 +49,5 @@ public class ResultadoCalculoCredito implements IResultadoCalculoCredito{
     public BigDecimal getValor() {
         return valor;
     }
-    
+
 }

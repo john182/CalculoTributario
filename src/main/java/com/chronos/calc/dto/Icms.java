@@ -57,8 +57,6 @@ public class Icms {
     private BigDecimal valorIcmsOrigem;
     private String obsDifal;
 
- 
-
     public Icms() {
     }
 
@@ -212,8 +210,7 @@ public class Icms {
 
     public void setValorIcmsOrigem(BigDecimal valorIcmsOrigem) {
         this.valorIcmsOrigem = valorIcmsOrigem;
-    }   
-  
+    }
 
     public String getObsDifal() {
         return obsDifal;
@@ -222,9 +219,5 @@ public class Icms {
     public void setObsDifal(String obsDifal) {
         this.obsDifal = obsDifal;
     }
-
-   
-    
-    
 
 }

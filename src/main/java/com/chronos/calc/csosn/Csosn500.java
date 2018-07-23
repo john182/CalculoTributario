@@ -29,6 +29,10 @@ import com.chronos.calc.enuns.OrigemMercadoria;
 import java.math.BigDecimal;
 
 /**
+ * ICMS cobrado anteriormente por substituição tributária (substituído) ou por
+ * antecipação - Classificam-se neste código as operações sujeitas
+ * exclusivamente ao regime de substituição tributária na condição de
+ * substituído tributário ou no caso de antecipações
  *
  * @author John Vanderson M L
  */
@@ -36,19 +40,21 @@ public class Csosn500 extends CsosnBase {
 
     private BigDecimal percentualBcStRetido;
     private BigDecimal valorBcStRetido;
-    
+
     public Csosn500() {
+        this.geraDifal = true;
         this.csosn = Csosn.Csosn500;
     }
 
     public Csosn500(OrigemMercadoria origemMercadoria) {
         super(origemMercadoria);
+        this.geraDifal = true;
         this.csosn = Csosn.Csosn500;
     }
 
     @Override
     public void calcular(ITributavel tributos) {
-        throw new UnsupportedOperationException("Não disponível");
+
     }
 
     public BigDecimal getPercentualBcStRetido() {
@@ -66,7 +72,5 @@ public class Csosn500 extends CsosnBase {
     public void setValorBcStRetido(BigDecimal valorBcStRetido) {
         this.valorBcStRetido = valorBcStRetido;
     }
-    
-    
 
 }

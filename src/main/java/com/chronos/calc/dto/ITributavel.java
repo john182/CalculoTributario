@@ -294,8 +294,5 @@ public class ITributavel extends Ibpt {
     public void setPercentualRetCsll(BigDecimal percentualRetCsll) {
         this.percentualRetCsll = percentualRetCsll;
     }
-    
-    
-    
 
 }

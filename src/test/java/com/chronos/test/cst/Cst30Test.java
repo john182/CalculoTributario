@@ -48,7 +48,7 @@ public class Cst30Test {
     @Test
     public void CalculoCST30() {
         ITributavel tributos = new ITributavel();
-     
+
         tributos.setPercentualIcmsSt(BigDecimal.valueOf(18));
         tributos.setValorProduto(BigDecimal.valueOf(100));
         tributos.setQuantidadeProduto(BigDecimal.ONE);
@@ -57,15 +57,13 @@ public class Cst30Test {
 
         Cst30 cst = new Cst30();
 
-        cst.calcular(tributos);      
-      
+        cst.calcular(tributos);
+
         BigDecimal percentualMva = cst.getPercentualMva();
         BigDecimal percentualReducaoST = cst.getPercentualReducaoSt();
         BigDecimal baseCalcST = cst.getValorBcIcmsSt();
         BigDecimal valorIcmsST = cst.getValorIcmsSt();
         BigDecimal percentualIcmsST = cst.getPercentualIcmsSt();
-
-    
 
         assertEquals(BigDecimal.valueOf(50).setScale(2), percentualMva);
         assertEquals(BigDecimal.valueOf(10).setScale(2), percentualReducaoST);

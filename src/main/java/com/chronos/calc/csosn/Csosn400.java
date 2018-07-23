@@ -28,17 +28,22 @@ import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
 /**
+ * Não tributada pelo Simples Nacional - Classificam-se neste código as
+ * operações praticadas por optantes pelo Simples Nacional não sujeitas à
+ * tributação pelo ICMS dentro do Simples Nacional
  *
  * @author John Vanderson M L
  */
 public class Csosn400 extends CsosnBase {
 
     public Csosn400() {
+        this.geraDifal = true;
         this.csosn = Csosn.Csosn400;
     }
 
     public Csosn400(OrigemMercadoria origemMercadoria) {
         super(origemMercadoria);
+        this.geraDifal = true;
         this.csosn = Csosn.Csosn400;
     }
 

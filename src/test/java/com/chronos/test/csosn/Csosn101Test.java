@@ -20,22 +20,22 @@ import org.junit.Test;
  * @author John Vanderson M L
  */
 public class Csosn101Test {
-    
+
     public Csosn101Test() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -46,20 +46,20 @@ public class Csosn101Test {
     // @Test
     // public void hello() {}
     @Test
-    public void TestaCalculoCsosn101(){
+    public void TestaCalculoCsosn101() {
         ITributavel tributos = new ITributavel();
         tributos.setValorProduto(BigDecimal.valueOf(1000));
         tributos.setQuantidadeProduto(BigDecimal.ONE);
         tributos.setPercentualCredito(BigDecimal.valueOf(17));
         Csosn101 csosn = new Csosn101();
-        
+
         csosn.calcular(tributos);
-        
+
         BigDecimal valorCredito = csosn.getValorCredito();
         BigDecimal percentual = csosn.getPercentualCredito();
-        
+
         assertEquals(BigDecimal.valueOf(170).setScale(2), valorCredito);
         assertEquals(BigDecimal.valueOf(17).setScale(2), percentual);
-        
+
     }
 }

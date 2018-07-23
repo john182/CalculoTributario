@@ -25,6 +25,7 @@ package com.chronos.calc.csosn;
 
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcmsSt;
 import com.chronos.calc.enuns.OrigemMercadoria;
@@ -155,7 +156,21 @@ public class Csosn900 extends CsosnBase {
     public BigDecimal getValorIcms() {
         return valorIcms;
     }
-    
-    
+
+    @Override
+    public Icms getIcmsDto() {
+        Icms icms = super.getIcmsDto();
+        icms.setPercentualCredito(getPercentualCredito());
+        icms.setValorCredito(getValorCredito());
+        icms.setValorIcms(getValorIcms());
+        icms.setValorBcIcms(getValorBcIcms());
+        icms.setPercentualMva(getPercentualMva());
+        icms.setPercentualIcmsST(getPercentualIcmsSt());
+        icms.setPercentualReducaoST(getPercentualReducaoSt());
+        icms.setValorIcmsST(getValorIcmsSt());
+        icms.setValorBaseCalcST(getValorBcIcmsSt());
+
+        return icms;
+    }
 
 }

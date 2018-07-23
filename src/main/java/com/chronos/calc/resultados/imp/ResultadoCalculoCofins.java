@@ -30,8 +30,8 @@ import java.math.BigDecimal;
  *
  * @author John Vanderson M L
  */
-public class ResultadoCalculoCofins implements IResultadoCalculoCofins{
-    
+public class ResultadoCalculoCofins implements IResultadoCalculoCofins {
+
     private final BigDecimal baseCalculo;
     private final BigDecimal valor;
 
@@ -39,6 +39,7 @@ public class ResultadoCalculoCofins implements IResultadoCalculoCofins{
         this.baseCalculo = baseCalculo;
         this.valor = valor;
     }
+
     @Override
     public BigDecimal getBaseCalculo() {
         return baseCalculo;

@@ -55,26 +55,22 @@ public class Csosn201Test {
         tributos.setPercentualIcmsSt(BigDecimal.valueOf(18));
         tributos.setPercentualIpi(BigDecimal.valueOf(15));
         tributos.setPercentualMva(BigDecimal.valueOf(40));
-        
-        
+
         Csosn201 csosn = new Csosn201();
 
         csosn.calcular(tributos);
 
-        
         BigDecimal percentualCredito = csosn.getPercentualCredito();
-        BigDecimal percentualMva =  csosn.getPercentualMva();
-        BigDecimal percentualIcmsST =  csosn.getPercentualIcmsSt();
-        BigDecimal percentualReducaoST =  csosn.getPercentualReducaoSt();
+        BigDecimal percentualMva = csosn.getPercentualMva();
+        BigDecimal percentualIcmsST = csosn.getPercentualIcmsSt();
+        BigDecimal percentualReducaoST = csosn.getPercentualReducaoSt();
         BigDecimal valorIcmsST = csosn.getValorIcmsSt();
         BigDecimal valorBaseCalcST = csosn.getValorBcIcmsSt();
         BigDecimal valorCredito = csosn.getValorCredito();
-        
-        
-        
+
         assertEquals(BigDecimal.valueOf(100).setScale(2), valorCredito);
         assertEquals(BigDecimal.valueOf(5).setScale(2), percentualCredito);
-        
+
         assertEquals(BigDecimal.valueOf(40).setScale(2), percentualMva);
         assertEquals(BigDecimal.valueOf(18).setScale(2), percentualIcmsST);
         assertEquals(BigDecimal.ZERO.setScale(2), percentualReducaoST);

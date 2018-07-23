@@ -78,5 +78,4 @@ public class CalculoBaseIcmsSt extends CalcularBaseCalculoBase {
 
         return baseCalculoInicial;
     }
-
 }

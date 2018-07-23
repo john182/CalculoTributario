@@ -29,19 +29,19 @@ import java.math.BigDecimal;
  *
  * @author John Vanderson M L
  */
-public interface IResultadoCalculoIssqn extends IResultadoCalculoBase{
- 
+public interface IResultadoCalculoIssqn extends IResultadoCalculoBase {
+
     BigDecimal getBaseCalculoInss();
-    
+
     BigDecimal getBaseCalculoIrrf();
-    
+
     BigDecimal getValorRetPis();
-    
+
     BigDecimal getValorRetCofins();
-    
+
     BigDecimal getValorRetCsll();
-    
+
     BigDecimal getValorRetInss();
-    
+
     BigDecimal getValorRetIrrf();
 }

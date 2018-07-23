@@ -33,11 +33,11 @@ import java.math.BigDecimal;
  * @author john
  */
 public class Issqn {
-    
+
     private BigDecimal valorBcIssqn;
     private BigDecimal percentualIssqn;
     private BigDecimal valorIssqn;
-    
+
     private BigDecimal baseCalculoInss;
     private BigDecimal baseCalculoIrrf;
     private BigDecimal valorRetPis;
@@ -48,10 +48,8 @@ public class Issqn {
 
     public Issqn() {
     }
-    
-    
-    
-    public void calcular(ITributavel tributos,boolean calcularRetencao) {
+
+    public void calcular(ITributavel tributos, boolean calcularRetencao) {
         IResultadoCalculoIssqn result = new CalcTributacao(tributos).calcularIssqn(calcularRetencao);
         valorBcIssqn = result.getBaseCalculo();
         valorIssqn = result.getValor();
@@ -62,8 +60,8 @@ public class Issqn {
         valorRetCofins = result.getValorRetCofins();
         valorRetCsll = result.getValorRetCsll();
         valorRetInss = result.getValorRetInss();
-        baseCalculoInss = valorRetInss!=null && valorRetInss.signum()>0 ? result.getBaseCalculoInss():BigDecimal.ZERO;
-        baseCalculoIrrf = valorRetIrrf!=null && valorRetIrrf.signum() > 0? result.getBaseCalculoIrrf():BigDecimal.ZERO;
+        baseCalculoInss = valorRetInss != null && valorRetInss.signum() > 0 ? result.getBaseCalculoInss() : BigDecimal.ZERO;
+        baseCalculoIrrf = valorRetIrrf != null && valorRetIrrf.signum() > 0 ? result.getBaseCalculoIrrf() : BigDecimal.ZERO;
     }
 
     public BigDecimal getValorBcIssqn() {
@@ -73,8 +71,6 @@ public class Issqn {
     public BigDecimal getPercentualIssqn() {
         return percentualIssqn;
     }
-
-    
 
     public BigDecimal getValorIssqn() {
         return valorIssqn;
@@ -107,8 +103,5 @@ public class Issqn {
     public BigDecimal getValorRetInss() {
         return valorRetInss;
     }
-    
-    
-    
-    
+
 }

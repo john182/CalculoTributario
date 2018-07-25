@@ -21,44 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.chronos.calc.tributacoes;
+package com.chronos.calc.calculos.base;
 
-import com.chronos.calc.calculos.base.CalcularBaseCalculoIpi;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
-import com.chronos.calc.resultados.IResultadoCalculoIpi;
-import com.chronos.calc.resultados.imp.ResultadoCalculoIpi;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 /**
  *
  * @author John Vanderson M L
  */
-public class TributacaoIpi {
+public class CalcularBaseCalculoPis extends CalcularBaseCalculoBase {
 
-    private final ITributavel tributos;
-    private final CalcularBaseCalculoIpi baseCalculoIpi;
-
-    public TributacaoIpi(ITributavel tributos, TipoDesconto desconto) {
-        this.tributos = tributos;
-        baseCalculoIpi = new CalcularBaseCalculoIpi(tributos, desconto);
-    }
-
-    public IResultadoCalculoIpi calcular() {
-        return calcularIpi();
-    }
-
-    private IResultadoCalculoIpi calcularIpi() {
-        BigDecimal baseCalculo = baseCalculoIpi.getBaseCalculo();
-
-        BigDecimal valorIpi = calcularIpi(baseCalculo);
-
-        return new ResultadoCalculoIpi(baseCalculo, valorIpi);
-    }
-
-    private BigDecimal calcularIpi(BigDecimal baseCalculo) {
-        return baseCalculo.multiply(tributos.getPercentualIpi()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
+    public CalcularBaseCalculoPis(ITributavel tributos, TipoDesconto desconto) {
+        super(tributos, desconto);
     }
 }

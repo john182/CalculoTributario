@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.chronos.calc;
+package com.chronos.calc.calculos.base;
 
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
@@ -30,9 +30,10 @@ import com.chronos.calc.enuns.TipoDesconto;
  *
  * @author John Vanderson M L
  */
-public class CalcularBaseCalculoIssqn extends CalcularBaseCalculoBase {
+public class CalcularBaseCalculoIpi extends CalcularBaseCalculoBase {
 
-    public CalcularBaseCalculoIssqn(ITributavel tributos, TipoDesconto desconto) {
+    public CalcularBaseCalculoIpi(ITributavel tributos, TipoDesconto desconto) {
         super(tributos, desconto);
+
     }
 }

@@ -21,44 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.chronos.calc.tributacoes;
+package com.chronos.calc.calculos.base;
 
-import com.chronos.calc.calculos.base.CalcularBaseCalculoIpi;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
-import com.chronos.calc.resultados.IResultadoCalculoIpi;
-import com.chronos.calc.resultados.imp.ResultadoCalculoIpi;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Optional;
 
 /**
  *
  * @author John Vanderson M L
  */
-public class TributacaoIpi {
+public class CalcularBaseICMS extends CalcularBaseCalculoBase {
 
-    private final ITributavel tributos;
-    private final CalcularBaseCalculoIpi baseCalculoIpi;
-
-    public TributacaoIpi(ITributavel tributos, TipoDesconto desconto) {
-        this.tributos = tributos;
-        baseCalculoIpi = new CalcularBaseCalculoIpi(tributos, desconto);
+    public CalcularBaseICMS(ITributavel tributos, TipoDesconto desconto) {
+        super(tributos, desconto);
     }
 
-    public IResultadoCalculoIpi calcular() {
-        return calcularIpi();
+    @Override
+    public BigDecimal getBaseCalculo() {
+        BigDecimal baseCalculo = super.getBaseCalculo()
+                .add(Optional.ofNullable(getTributos().getValorIpi()).orElse(BigDecimal.ZERO));
+        return aplicarReducaoBaseCalculo(baseCalculo);
     }
 
-    private IResultadoCalculoIpi calcularIpi() {
-        BigDecimal baseCalculo = baseCalculoIpi.getBaseCalculo();
+    private BigDecimal aplicarReducaoBaseCalculo(BigDecimal baseCalculoInicial) {
+        BigDecimal reducao = baseCalculoInicial.multiply(getTributos().getPercentualReducao()).divide(BigDecimal.valueOf(100));
+        baseCalculoInicial = baseCalculoInicial.subtract(reducao);
+        baseCalculoInicial = baseCalculoInicial.setScale(2, RoundingMode.DOWN);
 
-        BigDecimal valorIpi = calcularIpi(baseCalculo);
-
-        return new ResultadoCalculoIpi(baseCalculo, valorIpi);
+        return baseCalculoInicial;
     }
 
-    private BigDecimal calcularIpi(BigDecimal baseCalculo) {
-        return baseCalculo.multiply(tributos.getPercentualIpi()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
-    }
 }

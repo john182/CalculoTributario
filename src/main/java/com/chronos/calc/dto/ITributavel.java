@@ -46,6 +46,7 @@ public class ITributavel extends Ibpt {
     private BigDecimal percentualDifalInterna;
     private BigDecimal percentualDifalInterestadual;
     private BigDecimal percentualFcp;
+    private BigDecimal percentualFcpSt;
     private BigDecimal percentualMva;
     private BigDecimal percentualIcmsSt;
     private BigDecimal percentualIpi;
@@ -169,6 +170,14 @@ public class ITributavel extends Ibpt {
 
     public BigDecimal getPercentualFcp() {
         return percentualFcp;
+    }
+
+    public BigDecimal getPercentualFcpSt() {
+        return percentualFcpSt;
+    }
+
+    public void setPercentualFcpSt(BigDecimal percentualFcpSt) {
+        this.percentualFcpSt = percentualFcpSt;
     }
 
     public void setPercentualFcp(BigDecimal percentualFcp) {

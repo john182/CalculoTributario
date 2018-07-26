@@ -80,6 +80,10 @@ public class CalcTributacao {
         return new TributacaoFcp(tributos, desconto).calcular();
     }
 
+    public IResultadoCalculoFcpSt calcularFcpSt() {
+        return new TributacaoFcpSt(tributos, desconto).calcular();
+    }
+
 
     public IResultadoCalculoIcmsSt calcularIcmsSt() {
         return new TributacaoIcmsSt(tributos, desconto).calcular();

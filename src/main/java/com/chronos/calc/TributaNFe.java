@@ -27,25 +27,12 @@ import com.chronos.calc.csosn.CsosnBase;
 import com.chronos.calc.csosn.CsosnFactory;
 import com.chronos.calc.cst.CstBase;
 import com.chronos.calc.cst.CstFactory;
-import com.chronos.calc.dto.Cofins;
-import com.chronos.calc.dto.Icms;
-import com.chronos.calc.dto.Imposto;
-import com.chronos.calc.dto.Ipi;
-import com.chronos.calc.dto.Iss;
-import com.chronos.calc.dto.Pis;
-import com.chronos.calc.dto.TributosProduto;
-import com.chronos.calc.enuns.Crt;
-import com.chronos.calc.enuns.Csosn;
-import com.chronos.calc.enuns.Cst;
-import com.chronos.calc.enuns.TipoOperacao;
-import com.chronos.calc.enuns.TipoPessoa;
+import com.chronos.calc.dto.*;
+import com.chronos.calc.enuns.*;
 import com.chronos.calc.iss.Issqn;
-import com.chronos.calc.resultados.IResultadoCalculoCofins;
-import com.chronos.calc.resultados.IResultadoCalculoDifal;
-import com.chronos.calc.resultados.IResultadoCalculoIbpt;
-import com.chronos.calc.resultados.IResultadoCalculoIpi;
-import com.chronos.calc.resultados.IResultadoCalculoPis;
+import com.chronos.calc.resultados.*;
 import com.chronos.calc.resultados.imp.DadosMensagemDifal;
+
 import java.math.BigDecimal;
 
 /**
@@ -185,7 +172,7 @@ public class TributaNFe {
     }
 
     private Pis calcularPis() {
-        if (produto.getCstPisCofins() == null
+        if (produto.getCstPisCofins() != null
                 && produto.getCstPisCofins().isGeraPisCofins()) {
             Pis pis = new Pis();
             IResultadoCalculoPis result = calcular.calcularPis();

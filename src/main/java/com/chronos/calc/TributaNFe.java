@@ -57,7 +57,6 @@ public class TributaNFe {
     private final TributosProduto produto;
     private final CalcTributacao calcular;
     private TipoOperacao operacao;
-    private TipoPessoa pessoa;
 
     public TributaNFe(TributosProduto produto) {
         this.produto = produto;
@@ -66,7 +65,7 @@ public class TributaNFe {
 
     public Imposto tributarNfe(TributosProduto produto, Crt crt, TipoOperacao operacao, TipoPessoa pessoa) {
         Imposto imposto = new Imposto();
-        this.pessoa = pessoa;
+        TipoPessoa pessoa1 = pessoa;
         this.operacao = operacao;
 
         if (produto.isServico()) {
@@ -136,9 +135,7 @@ public class TributaNFe {
 
         boolean geraDifal = produto.getCst() != null
                 ? CstFactory.getCst(produto.getCst()).isGeraDifal()
-                : produto.getCsosn() != null
-                        ? CsosnFactory.createCsosn(produto.getCsosn()).isGeraDifal()
-                        : false;
+                : produto.getCsosn() != null && CsosnFactory.createCsosn(produto.getCsosn()).isGeraDifal();
 
         if (operacao == TipoOperacao.OperacaoInterestadual
                 && geraDifal

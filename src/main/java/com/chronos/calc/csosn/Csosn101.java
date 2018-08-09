@@ -30,6 +30,7 @@ import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
 import com.chronos.calc.resultados.IResultadoCalculoCredito;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Tributada pelo Simples Nacional com permissão de crédito
@@ -55,7 +56,7 @@ public class Csosn101 extends CsosnBase {
         validacao(tributos);
         IResultadoCalculoCredito result = new CalcTributacao(tributos).calcularIcmsCredito();
         percentualCredito = tributos.getPercentualCredito().setScale(2);
-        valorCredito = result.getValor().setScale(2);
+        valorCredito = result.getValor().setScale(2, RoundingMode.HALF_DOWN);
     }
 
     private void validacao(ITributavel tributos) {

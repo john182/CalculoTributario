@@ -29,5 +29,5 @@ package com.chronos.calc.enuns;
  */
 public enum TipoPessoa {
 
-    Fisica, Juridica;
+    Fisica, Juridica
 }

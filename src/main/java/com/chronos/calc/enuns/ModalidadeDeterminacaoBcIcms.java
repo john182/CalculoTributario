@@ -36,7 +36,7 @@ public enum ModalidadeDeterminacaoBcIcms {
     private final String codigo;
     private final String nomeExibicao;
 
-    private ModalidadeDeterminacaoBcIcms(String nomeExibicao, String codigo) {
+    ModalidadeDeterminacaoBcIcms(String nomeExibicao, String codigo) {
         this.codigo = codigo;
         this.nomeExibicao = nomeExibicao;
     }

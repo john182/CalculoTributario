@@ -33,10 +33,10 @@ import com.chronos.calc.enuns.OrigemMercadoria;
  */
 public interface ICodigoTributario {
 
-    public OrigemMercadoria getOrigemMercadoria();
+     OrigemMercadoria getOrigemMercadoria();
 
-    public void setOrigemMercadoria(OrigemMercadoria origemMercadoria);
+     void setOrigemMercadoria(OrigemMercadoria origemMercadoria);
 
-    public boolean isGeraDifal();
+     boolean isGeraDifal();
 
 }

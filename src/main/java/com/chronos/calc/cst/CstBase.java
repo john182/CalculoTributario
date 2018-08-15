@@ -50,7 +50,7 @@ public abstract class CstBase implements ICodigoTributario {
         this.origemMercadoria = origemMercadoria;
     }
 
-    public abstract void calcular(ITributavel tributos);
+    public abstract void calcular(ITributavel tributos) throws TributacaoException;
 
     public abstract Icms getIcmsDto();
 

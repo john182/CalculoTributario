@@ -50,7 +50,7 @@ public class TributaNFe {
         this.calcular = new CalcTributacao(produto);
     }
 
-    public Imposto tributarNfe(TributosProduto produto, Crt crt, TipoOperacao operacao, TipoPessoa pessoa) {
+    public Imposto tributarNfe(TributosProduto produto, Crt crt, TipoOperacao operacao, TipoPessoa pessoa) throws TributacaoException {
         Imposto imposto = new Imposto();
         TipoPessoa pessoa1 = pessoa;
         this.operacao = operacao;
@@ -84,7 +84,7 @@ public class TributaNFe {
      * @param cst
      * @return
      */
-    private Icms tributarIcms(Cst cst, TipoPessoa tipoPessoa) {
+    private Icms tributarIcms(Cst cst, TipoPessoa tipoPessoa) throws TributacaoException {
         Icms calculo;
 
         //pessoa fisica inclui ipi na base de calculo do icms

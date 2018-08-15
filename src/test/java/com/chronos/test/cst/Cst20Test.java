@@ -5,15 +5,14 @@
  */
 package com.chronos.test.cst;
 
+import com.chronos.calc.TributacaoException;
 import com.chronos.calc.cst.Cst20;
 import com.chronos.calc.dto.ITributavel;
+import org.junit.*;
+
 import java.math.BigDecimal;
-import org.junit.After;
-import org.junit.AfterClass;
+
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  *
@@ -46,7 +45,7 @@ public class Cst20Test {
     // @Test
     // public void hello() {}
     @Test
-    public void CalculoCST20() {
+    public void CalculoCST20() throws TributacaoException {
         ITributavel tributos = new ITributavel();
         tributos.setPercentualIcms(BigDecimal.valueOf(18));
         tributos.setValorProduto(BigDecimal.valueOf(100));

@@ -85,7 +85,7 @@ public class TributaNFe {
      * @return
      */
     private Icms tributarIcms(Cst cst, TipoPessoa tipoPessoa) {
-        Icms calculo = new Icms();
+        Icms calculo;
 
         //pessoa fisica inclui ipi na base de calculo do icms
         //pessoa fisica sempre usa a aliquota normal da UF emissao
@@ -104,15 +104,20 @@ public class TributaNFe {
     /**
      * 1 = Simples Nacional
      *
-     * @param cosn
+     * @param csosn
      * @return
      */
-    private Icms tributarIcmsSimplesNascinal(Csosn cosn) {
-        Icms calculo = new Icms();
+    private Icms tributarIcmsSimplesNascinal(Csosn csosn) {
+        Icms calculo;
 
-        CsosnBase csosnBase = CsosnFactory.createCsosn(cosn);
-        csosnBase.calcular(produto);
-        calculo = csosnBase.getIcmsDto();
+        CsosnBase csosnBase = CsosnFactory.createCsosn(csosn);
+        if (csosn == Csosn.Csosn102 || csosn == Csosn.Csosn103 || csosn == Csosn.Csosn300 || csosn == Csosn.Csosn400) {
+            calculo = new Icms();
+        } else {
+            csosnBase.calcular(produto);
+            calculo = csosnBase.getIcmsDto();
+        }
+
 
         return calculo;
 

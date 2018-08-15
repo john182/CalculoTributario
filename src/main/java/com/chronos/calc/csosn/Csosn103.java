@@ -48,6 +48,6 @@ public class Csosn103 extends CsosnBase {
 
     @Override
     public void calcular(ITributavel tributos) {
-        throw new UnsupportedOperationException("Não existe calculo para o  CSOSN informado"); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Não existe calculo para o  CSOSN informado");
     }
 }

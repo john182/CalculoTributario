@@ -24,6 +24,7 @@
 package com.chronos.calc.cst;
 
 import com.chronos.calc.ICodigoTributario;
+import com.chronos.calc.TributacaoException;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
@@ -53,13 +54,13 @@ public abstract class CstBase implements ICodigoTributario {
 
     public abstract Icms getIcmsDto();
 
-    protected void validacaoPadrao(ITributavel tributos) {
+    protected void validacaoPadrao(ITributavel tributos) throws TributacaoException {
         if (tributos == null) {
-            throw new IllegalArgumentException("tributos nao  inicializado");
+            throw new TributacaoException("tributos nao  inicializado");
         } else if (tributos.getValorProduto().signum() == 0) {
-            throw new IllegalArgumentException("Valor do Produto não informado");
+            throw new TributacaoException("Valor do Produto não informado");
         } else if (tributos.getQuantidadeProduto().signum() == 0) {
-            throw new IllegalArgumentException("Quantidade do Produto não informada");
+            throw new TributacaoException("Quantidade do Produto não informada");
         }
     }
 

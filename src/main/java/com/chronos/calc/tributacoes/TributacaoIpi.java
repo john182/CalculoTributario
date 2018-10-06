@@ -23,11 +23,12 @@
  */
 package com.chronos.calc.tributacoes;
 
-import com.chronos.calc.CalcularBaseCalculoIpi;
+import com.chronos.calc.calculos.base.CalcularBaseCalculoIpi;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
 import com.chronos.calc.resultados.IResultadoCalculoIpi;
 import com.chronos.calc.resultados.imp.ResultadoCalculoIpi;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 

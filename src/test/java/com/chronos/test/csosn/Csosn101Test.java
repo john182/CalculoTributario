@@ -48,9 +48,9 @@ public class Csosn101Test {
     @Test
     public void TestaCalculoCsosn101() {
         ITributavel tributos = new ITributavel();
-        tributos.setValorProduto(BigDecimal.valueOf(1000));
+        tributos.setValorProduto(BigDecimal.valueOf(10));
         tributos.setQuantidadeProduto(BigDecimal.ONE);
-        tributos.setPercentualCredito(BigDecimal.valueOf(17));
+        tributos.setPercentualCredito(BigDecimal.valueOf(1.47));
         Csosn101 csosn = new Csosn101();
 
         csosn.calcular(tributos);
@@ -58,8 +58,8 @@ public class Csosn101Test {
         BigDecimal valorCredito = csosn.getValorCredito();
         BigDecimal percentual = csosn.getPercentualCredito();
 
-        assertEquals(BigDecimal.valueOf(170).setScale(2), valorCredito);
-        assertEquals(BigDecimal.valueOf(17).setScale(2), percentual);
+        assertEquals(BigDecimal.valueOf(0.15).setScale(2), valorCredito);
+        assertEquals(BigDecimal.valueOf(1.47).setScale(2), percentual);
 
     }
 }

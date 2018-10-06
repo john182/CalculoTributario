@@ -27,22 +27,6 @@ public class CalculaDifalJuntoComFcp {
     public CalculaDifalJuntoComFcp() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void CalculaDifalJuntoComFcp() {
         ITributavel tributos = new ITributavel();

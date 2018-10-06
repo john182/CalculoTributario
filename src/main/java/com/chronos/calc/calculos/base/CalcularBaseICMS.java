@@ -21,32 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.chronos.calc.enuns;
+package com.chronos.calc.calculos.base;
+
+import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.enuns.TipoDesconto;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Optional;
 
 /**
  *
  * @author John Vanderson M L
  */
-public enum ModalidadeDeterminacaoBcIcms {
-    MargemValorAgregado("Margem Valor Agregado (%)", "0"),
-    PautaValor("Pauta (Valor)", "1"),
-    PrecoTabeladoMax("Preço Tabelado Máx. (valor)", "2"),
-    ValorOperacao("Valor da Operação", "3");
+public class CalcularBaseICMS extends CalcularBaseCalculoBase {
 
-    private final String codigo;
-    private final String nomeExibicao;
-
-    ModalidadeDeterminacaoBcIcms(String nomeExibicao, String codigo) {
-        this.codigo = codigo;
-        this.nomeExibicao = nomeExibicao;
+    public CalcularBaseICMS(ITributavel tributos, TipoDesconto desconto) {
+        super(tributos, desconto);
     }
 
-    public String getCodigo() {
-        return codigo;
+    @Override
+    public BigDecimal getBaseCalculo() {
+        BigDecimal baseCalculo = super.getBaseCalculo()
+                .add(Optional.ofNullable(getTributos().getValorIpi()).orElse(BigDecimal.ZERO));
+        return aplicarReducaoBaseCalculo(baseCalculo);
     }
 
-    public String getNomeExibicao() {
-        return nomeExibicao;
+    private BigDecimal aplicarReducaoBaseCalculo(BigDecimal baseCalculoInicial) {
+        BigDecimal reducao = baseCalculoInicial.multiply(getTributos().getPercentualReducao()).divide(BigDecimal.valueOf(100));
+        baseCalculoInicial = baseCalculoInicial.subtract(reducao);
+        baseCalculoInicial = baseCalculoInicial.setScale(2, RoundingMode.DOWN);
+
+        return baseCalculoInicial;
     }
 
 }

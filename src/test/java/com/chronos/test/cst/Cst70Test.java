@@ -5,17 +5,16 @@
  */
 package com.chronos.test.cst;
 
+import com.chronos.calc.TributacaoException;
 import com.chronos.calc.cst.Cst70;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcms;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcmsSt;
+import org.junit.*;
+
 import java.math.BigDecimal;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -48,7 +47,7 @@ public class Cst70Test {
     // @Test
     // public void hello() {}
     @Test
-    public void CalculoCst70() {
+    public void CalculoCst70() throws TributacaoException {
 
         ITributavel tributos = new ITributavel();
 
@@ -74,14 +73,14 @@ public class Cst70Test {
         BigDecimal valorIcmsST = cst.getValorIcmsSt();
         BigDecimal percentualIcmsST = cst.getPercentualIcmsSt();
 
-        assertEquals(cst.getModalidadeDeterminacaoBcIcms(), ModalidadeDeterminacaoBcIcms.ValorOperacao);
+        assertEquals(ModalidadeDeterminacaoBcIcms.ValorOperacao, cst.getModalidadeDeterminacaoBcIcms());
 
         assertEquals(BigDecimal.valueOf(10.00).setScale(2), percentualReducao);
         assertEquals(BigDecimal.valueOf(90.00).setScale(2), baseCalcIcms);
         assertEquals(BigDecimal.valueOf(18.00).setScale(2), percentualIcms);
         assertEquals(BigDecimal.valueOf(16.20).setScale(2), valorIcms);
-
-        assertEquals(cst.getModalidadeDeterminacaoBcIcmsSt(), ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado);
+        
+        assertEquals(ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado, cst.getModalidadeDeterminacaoBcIcmsSt());
 
         assertEquals(BigDecimal.valueOf(100).setScale(2), percentualMva);
         assertEquals(BigDecimal.valueOf(10).setScale(2), percentualReducaoST);

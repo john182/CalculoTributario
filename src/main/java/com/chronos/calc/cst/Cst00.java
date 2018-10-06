@@ -24,12 +24,14 @@
 package com.chronos.calc.cst;
 
 import com.chronos.calc.CalcTributacao;
+import com.chronos.calc.TributacaoException;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcms;
 import com.chronos.calc.enuns.OrigemMercadoria;
 import com.chronos.calc.resultados.IResultadoCalculoIcms;
+
 import java.math.BigDecimal;
 
 /**
@@ -58,7 +60,7 @@ public class Cst00 extends CstBase {
     }
 
     @Override
-    public void calcular(ITributavel tributos) {
+    public void calcular(ITributavel tributos) throws TributacaoException {
         validacaoPadrao(tributos);
         if (ModalidadeDeterminacaoBcIcms.ValorOperacao.equals(getModalidadeDeterminacaoBcIcms())) {
             IResultadoCalculoIcms result = new CalcTributacao(tributos).calcularIcms();
@@ -72,8 +74,8 @@ public class Cst00 extends CstBase {
         return modalidadeDeterminacaoBcIcms;
     }
 
-    public void setModalidadeDeterminacaoBcIcms(ModalidadeDeterminacaoBcIcms ModalidadeDeterminacaoBcIcms) {
-        this.modalidadeDeterminacaoBcIcms = ModalidadeDeterminacaoBcIcms;
+    public void setModalidadeDeterminacaoBcIcms(ModalidadeDeterminacaoBcIcms modalidadeDeterminacaoBcIcms) {
+        this.modalidadeDeterminacaoBcIcms = modalidadeDeterminacaoBcIcms;
     }
 
     public BigDecimal getValorBcIcms() {

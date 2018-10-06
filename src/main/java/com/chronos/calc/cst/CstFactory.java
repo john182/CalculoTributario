@@ -32,7 +32,9 @@ import com.chronos.calc.enuns.OrigemMercadoria;
  */
 public class CstFactory {
 
-    public static final CstBase getCst(Cst cst) {
+    private CstFactory() {}
+    
+    public static CstBase getCst(Cst cst) {
         switch (cst) {
             case Cst00:
                 return new Cst00();
@@ -61,7 +63,7 @@ public class CstFactory {
         }
     }
 
-    public static final CstBase getCst(Cst cst, OrigemMercadoria origemMercadoria) {
+    public static CstBase getCst(Cst cst, OrigemMercadoria origemMercadoria) {
         switch (cst) {
             case Cst00:
                 return new Cst00(origemMercadoria);

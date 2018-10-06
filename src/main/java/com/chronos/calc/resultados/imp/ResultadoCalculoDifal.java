@@ -40,7 +40,6 @@ public class ResultadoCalculoDifal implements IResultadoCalculoDifal {
     private final BigDecimal fcp;
     private final BigDecimal valorIcmsDestino;
     private final BigDecimal valorIcmsOrigem;
-    private final DecimalFormatSymbols simboloDecimal;
     private final DecimalFormat formatoValor;
 
     public ResultadoCalculoDifal(BigDecimal baseCalculo, BigDecimal difal, BigDecimal fcp, BigDecimal valorIcmsDestino, BigDecimal valorIcmsOrigem) {
@@ -49,8 +48,8 @@ public class ResultadoCalculoDifal implements IResultadoCalculoDifal {
         this.fcp = fcp;
         this.valorIcmsDestino = valorIcmsDestino;
         this.valorIcmsOrigem = valorIcmsOrigem;
-        this.simboloDecimal = DecimalFormatSymbols.getInstance();
-        this.simboloDecimal.setDecimalSeparator('.');
+        DecimalFormatSymbols simboloDecimal = DecimalFormatSymbols.getInstance();
+        simboloDecimal.setDecimalSeparator('.');
         this.formatoValor = new DecimalFormat("0.00", simboloDecimal);
     }
 

@@ -27,25 +27,12 @@ import com.chronos.calc.csosn.CsosnBase;
 import com.chronos.calc.csosn.CsosnFactory;
 import com.chronos.calc.cst.CstBase;
 import com.chronos.calc.cst.CstFactory;
-import com.chronos.calc.dto.Cofins;
-import com.chronos.calc.dto.Icms;
-import com.chronos.calc.dto.Imposto;
-import com.chronos.calc.dto.Ipi;
-import com.chronos.calc.dto.Iss;
-import com.chronos.calc.dto.Pis;
-import com.chronos.calc.dto.TributosProduto;
-import com.chronos.calc.enuns.Crt;
-import com.chronos.calc.enuns.Csosn;
-import com.chronos.calc.enuns.Cst;
-import com.chronos.calc.enuns.TipoOperacao;
-import com.chronos.calc.enuns.TipoPessoa;
+import com.chronos.calc.dto.*;
+import com.chronos.calc.enuns.*;
 import com.chronos.calc.iss.Issqn;
-import com.chronos.calc.resultados.IResultadoCalculoCofins;
-import com.chronos.calc.resultados.IResultadoCalculoDifal;
-import com.chronos.calc.resultados.IResultadoCalculoIbpt;
-import com.chronos.calc.resultados.IResultadoCalculoIpi;
-import com.chronos.calc.resultados.IResultadoCalculoPis;
+import com.chronos.calc.resultados.*;
 import com.chronos.calc.resultados.imp.DadosMensagemDifal;
+
 import java.math.BigDecimal;
 
 /**
@@ -57,16 +44,15 @@ public class TributaNFe {
     private final TributosProduto produto;
     private final CalcTributacao calcular;
     private TipoOperacao operacao;
-    private TipoPessoa pessoa;
 
     public TributaNFe(TributosProduto produto) {
         this.produto = produto;
         this.calcular = new CalcTributacao(produto);
     }
 
-    public Imposto tributarNfe(TributosProduto produto, Crt crt, TipoOperacao operacao, TipoPessoa pessoa) {
+    public Imposto tributarNfe(TributosProduto produto, Crt crt, TipoOperacao operacao, TipoPessoa pessoa) throws TributacaoException {
         Imposto imposto = new Imposto();
-        this.pessoa = pessoa;
+        TipoPessoa pessoa1 = pessoa;
         this.operacao = operacao;
 
         if (produto.isServico()) {
@@ -98,8 +84,8 @@ public class TributaNFe {
      * @param cst
      * @return
      */
-    private Icms tributarIcms(Cst cst, TipoPessoa tipoPessoa) {
-        Icms calculo = new Icms();
+    private Icms tributarIcms(Cst cst, TipoPessoa tipoPessoa) throws TributacaoException {
+        Icms calculo;
 
         //pessoa fisica inclui ipi na base de calculo do icms
         //pessoa fisica sempre usa a aliquota normal da UF emissao
@@ -118,15 +104,20 @@ public class TributaNFe {
     /**
      * 1 = Simples Nacional
      *
-     * @param cosn
+     * @param csosn
      * @return
      */
-    private Icms tributarIcmsSimplesNascinal(Csosn cosn) {
-        Icms calculo = new Icms();
+    private Icms tributarIcmsSimplesNascinal(Csosn csosn) {
+        Icms calculo;
 
-        CsosnBase csosnBase = CsosnFactory.createCsosn(cosn);
-        csosnBase.calcular(produto);
-        calculo = csosnBase.getIcmsDto();
+        CsosnBase csosnBase = CsosnFactory.createCsosn(csosn);
+        if (csosn == Csosn.Csosn102 || csosn == Csosn.Csosn103 || csosn == Csosn.Csosn300 || csosn == Csosn.Csosn400) {
+            calculo = new Icms();
+        } else {
+            csosnBase.calcular(produto);
+            calculo = csosnBase.getIcmsDto();
+        }
+
 
         return calculo;
 
@@ -136,9 +127,7 @@ public class TributaNFe {
 
         boolean geraDifal = produto.getCst() != null
                 ? CstFactory.getCst(produto.getCst()).isGeraDifal()
-                : produto.getCsosn() != null
-                        ? CsosnFactory.createCsosn(produto.getCsosn()).isGeraDifal()
-                        : false;
+                : produto.getCsosn() != null && CsosnFactory.createCsosn(produto.getCsosn()).isGeraDifal();
 
         if (operacao == TipoOperacao.OperacaoInterestadual
                 && geraDifal
@@ -188,7 +177,7 @@ public class TributaNFe {
     }
 
     private Pis calcularPis() {
-        if (produto.getCstPisCofins() == null
+        if (produto.getCstPisCofins() != null
                 && produto.getCstPisCofins().isGeraPisCofins()) {
             Pis pis = new Pis();
             IResultadoCalculoPis result = calcular.calcularPis();

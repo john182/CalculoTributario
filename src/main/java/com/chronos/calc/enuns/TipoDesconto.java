@@ -30,5 +30,5 @@ package com.chronos.calc.enuns;
 public enum TipoDesconto {
 
     Incondicional,
-    Condincional;
+    Condicional
 }

@@ -23,12 +23,15 @@
  */
 package com.chronos.calc.cst;
 
+import com.chronos.calc.TributacaoException;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
-import static com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcms.ValorOperacao;
 import com.chronos.calc.enuns.OrigemMercadoria;
+
 import java.math.BigDecimal;
+
+import static com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcms.ValorOperacao;
 
 /**
  *
@@ -50,7 +53,7 @@ public class Cst20 extends Cst00 {
     }
 
     @Override
-    public void calcular(ITributavel tributos) {
+    public void calcular(ITributavel tributos) throws TributacaoException {
         super.calcular(tributos); //To change body of generated methods, choose Tools | Templates.
         if (ValorOperacao.equals(getModalidadeDeterminacaoBcIcms())) {
             percentualReducao = tributos.getPercentualReducao().setScale(2);

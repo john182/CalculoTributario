@@ -21,39 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.chronos.calc;
+package com.chronos.calc.calculos.base;
 
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
-import java.math.BigDecimal;
 
 /**
  *
  * @author John Vanderson M L
  */
-public class CalcularBaseCalculoIssqn extends CalcularBaseCalculoBase {
+public class CalcularBaseCalculoIpi extends CalcularBaseCalculoBase {
 
-    private final ITributavel tributos;
-    private final TipoDesconto desconto;
+    public CalcularBaseCalculoIpi(ITributavel tributos, TipoDesconto desconto) {
+        super(tributos, desconto);
 
-    public CalcularBaseCalculoIssqn(ITributavel tributos, TipoDesconto desconto) {
-        super(tributos);
-        this.tributos = tributos;
-        this.desconto = desconto;
     }
-
-    public BigDecimal getBaseCalculo() {
-        BigDecimal baseCalculo = calcularBaseCalculo();
-
-        return desconto == TipoDesconto.Condincional ? calculaIcmsComDescontoCondicional(baseCalculo) : calculaIcmsComDescontoIncondicional(baseCalculo);
-    }
-
-    private BigDecimal calculaIcmsComDescontoCondicional(BigDecimal baseCalculo) {
-        return baseCalculo.add(tributos.getDesconto());
-    }
-
-    private BigDecimal calculaIcmsComDescontoIncondicional(BigDecimal baseCalculo) {
-        return baseCalculo.subtract(tributos.getDesconto());
-    }
-
 }

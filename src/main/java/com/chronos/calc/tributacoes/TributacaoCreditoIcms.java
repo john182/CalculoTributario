@@ -23,11 +23,12 @@
  */
 package com.chronos.calc.tributacoes;
 
-import com.chronos.calc.CalcularBaseICMS;
+import com.chronos.calc.calculos.base.CalcularBaseICMS;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
 import com.chronos.calc.resultados.IResultadoCalculoCredito;
 import com.chronos.calc.resultados.imp.ResultadoCalculoCredito;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 

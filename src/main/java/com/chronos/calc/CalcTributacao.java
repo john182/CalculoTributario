@@ -26,24 +26,8 @@ package com.chronos.calc;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.dto.Ibpt;
 import com.chronos.calc.enuns.TipoDesconto;
-import com.chronos.calc.resultados.IResultadoCalculoCofins;
-import com.chronos.calc.resultados.IResultadoCalculoCredito;
-import com.chronos.calc.resultados.IResultadoCalculoDifal;
-import com.chronos.calc.resultados.IResultadoCalculoIbpt;
-import com.chronos.calc.resultados.IResultadoCalculoIcms;
-import com.chronos.calc.resultados.IResultadoCalculoIcmsSt;
-import com.chronos.calc.resultados.IResultadoCalculoIpi;
-import com.chronos.calc.resultados.IResultadoCalculoIssqn;
-import com.chronos.calc.resultados.IResultadoCalculoPis;
-import com.chronos.calc.tributacoes.TributacaoCofins;
-import com.chronos.calc.tributacoes.TributacaoCreditoIcms;
-import com.chronos.calc.tributacoes.TributacaoDifal;
-import com.chronos.calc.tributacoes.TributacaoIbpt;
-import com.chronos.calc.tributacoes.TributacaoIcms;
-import com.chronos.calc.tributacoes.TributacaoIcmsSt;
-import com.chronos.calc.tributacoes.TributacaoIpi;
-import com.chronos.calc.tributacoes.TributacaoIssqn;
-import com.chronos.calc.tributacoes.TributacaoPis;
+import com.chronos.calc.resultados.*;
+import com.chronos.calc.tributacoes.*;
 
 /**
  *
@@ -91,6 +75,15 @@ public class CalcTributacao {
     public IResultadoCalculoDifal calculaDifalFcp() {
         return new TributacaoDifal(tributos, desconto).calcular();
     }
+
+    public IResultadoCalculoFcp calcularFcp() {
+        return new TributacaoFcp(tributos, desconto).calcular();
+    }
+
+    public IResultadoCalculoFcpSt calcularFcpSt() {
+        return new TributacaoFcpSt(tributos, desconto).calcular();
+    }
+
 
     public IResultadoCalculoIcmsSt calcularIcmsSt() {
         return new TributacaoIcmsSt(tributos, desconto).calcular();

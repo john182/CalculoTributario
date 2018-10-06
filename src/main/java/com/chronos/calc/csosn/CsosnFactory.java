@@ -32,7 +32,7 @@ import com.chronos.calc.enuns.OrigemMercadoria;
  */
 public class CsosnFactory {
 
-    public static final CsosnBase createCsosn(Csosn csosn) {
+    public static CsosnBase createCsosn(Csosn csosn) {
 
         switch (csosn) {
             case Csosn101:
@@ -61,7 +61,7 @@ public class CsosnFactory {
 
     }
 
-    public static final CsosnBase createCsosn(Csosn csosn, OrigemMercadoria origemMercadoria) {
+    public static CsosnBase createCsosn(Csosn csosn, OrigemMercadoria origemMercadoria) {
 
         switch (csosn) {
             case Csosn101:

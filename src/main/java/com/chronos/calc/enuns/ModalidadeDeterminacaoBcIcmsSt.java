@@ -39,7 +39,7 @@ public enum ModalidadeDeterminacaoBcIcmsSt {
     private final String codigo;
     private final String nomeExibicao;
 
-    private ModalidadeDeterminacaoBcIcmsSt(String nomeExibicao, String codigo) {
+    ModalidadeDeterminacaoBcIcmsSt(String nomeExibicao, String codigo) {
         this.codigo = codigo;
         this.nomeExibicao = nomeExibicao;
     }

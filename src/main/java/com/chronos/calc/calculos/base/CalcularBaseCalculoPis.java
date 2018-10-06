@@ -21,32 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.chronos.calc.enuns;
+package com.chronos.calc.calculos.base;
+
+import com.chronos.calc.dto.ITributavel;
+import com.chronos.calc.enuns.TipoDesconto;
 
 /**
  *
  * @author John Vanderson M L
  */
-public enum ModalidadeDeterminacaoBcIcms {
-    MargemValorAgregado("Margem Valor Agregado (%)", "0"),
-    PautaValor("Pauta (Valor)", "1"),
-    PrecoTabeladoMax("Preço Tabelado Máx. (valor)", "2"),
-    ValorOperacao("Valor da Operação", "3");
+public class CalcularBaseCalculoPis extends CalcularBaseCalculoBase {
 
-    private final String codigo;
-    private final String nomeExibicao;
-
-    ModalidadeDeterminacaoBcIcms(String nomeExibicao, String codigo) {
-        this.codigo = codigo;
-        this.nomeExibicao = nomeExibicao;
+    public CalcularBaseCalculoPis(ITributavel tributos, TipoDesconto desconto) {
+        super(tributos, desconto);
     }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public String getNomeExibicao() {
-        return nomeExibicao;
-    }
-
 }

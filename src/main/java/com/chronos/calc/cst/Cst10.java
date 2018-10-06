@@ -24,12 +24,14 @@
 package com.chronos.calc.cst;
 
 import com.chronos.calc.CalcTributacao;
+import com.chronos.calc.TributacaoException;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcmsSt;
 import com.chronos.calc.enuns.OrigemMercadoria;
 import com.chronos.calc.resultados.IResultadoCalculoIcmsSt;
+
 import java.math.BigDecimal;
 
 /**
@@ -58,7 +60,7 @@ public class Cst10 extends Cst00 {
     }
 
     @Override
-    public void calcular(ITributavel tributos) {
+    public void calcular(ITributavel tributos) throws TributacaoException {
         super.calcular(tributos);
 
         if (ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado.equals(getModalidadeDeterminacaoBcIcmsSt())) {

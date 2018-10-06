@@ -23,11 +23,12 @@
  */
 package com.chronos.calc.tributacoes;
 
-import com.chronos.calc.CalcularBaseCalculoIssqn;
+import com.chronos.calc.calculos.base.CalcularBaseCalculoIssqn;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
 import com.chronos.calc.resultados.IResultadoCalculoIssqn;
 import com.chronos.calc.resultados.imp.ResultadoCalculoIssqn;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -71,8 +72,7 @@ public class TributacaoIssqn {
     }
 
     private BigDecimal calcularIssqn(BigDecimal baseCalculo) {
-        BigDecimal valor = baseCalculo.multiply(tributos.getPercentualIssqn()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
-        return valor;
+        return baseCalculo.multiply(tributos.getPercentualIssqn()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
     }
 
     private BigDecimal calcularRetPis(BigDecimal baseCalculo) {

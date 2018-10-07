@@ -32,6 +32,7 @@ import java.util.Optional;
  */
 public class Ipi {
 
+    private String cst;
     private BigDecimal valorBcIpi;
     private BigDecimal valorIpi;
 
@@ -54,4 +55,11 @@ public class Ipi {
         this.valorIpi = valorIpi;
     }
 
+    public String getCst() {
+        return cst;
+    }
+
+    public void setCst(String cst) {
+        this.cst = cst;
+    }
 }

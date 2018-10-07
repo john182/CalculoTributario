@@ -31,7 +31,7 @@ import java.util.Optional;
  * @author John Vanderson M L
  */
 public class Cofins {
-
+    private String cst;
     private BigDecimal valor;
     private BigDecimal baseCalculo;
 
@@ -52,5 +52,13 @@ public class Cofins {
 
     public void setBaseCalculo(BigDecimal baseCalculo) {
         this.baseCalculo = baseCalculo;
+    }
+
+    public String getCst() {
+        return cst;
+    }
+
+    public void setCst(String cst) {
+        this.cst = cst;
     }
 }

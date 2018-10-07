@@ -97,7 +97,7 @@ public class TributaNFe {
         CstBase cstOperacao = CstFactory.getCst(cst);
         cstOperacao.calcular(produto);
         calculo = cstOperacao.getIcmsDto();
-
+        calculo.setCst(produto.getCst().getCodigo());
         return calculo;
     }
 
@@ -118,7 +118,7 @@ public class TributaNFe {
             calculo = csosnBase.getIcmsDto();
         }
 
-
+        calculo.setCst(produto.getCsosn().getCodigo());
         return calculo;
 
     }
@@ -166,6 +166,7 @@ public class TributaNFe {
             valor = result.getValor();
             baseCalculo = result.getBaseCalculo();
 
+            ipi.setCst(produto.getCst().getCodigo());
             ipi.setValorBcIpi(baseCalculo);
             ipi.setValorIpi(valor);
 
@@ -183,6 +184,8 @@ public class TributaNFe {
             IResultadoCalculoPis result = calcular.calcularPis();
             BigDecimal valor = result.getValor();
             BigDecimal baseCalculo = result.getBaseCalculo();
+
+            pis.setCst(produto.getCstPisCofins().getCodigo());
             pis.setBaseCalculo(baseCalculo);
             pis.setValor(valor);
             return pis;
@@ -197,6 +200,8 @@ public class TributaNFe {
             IResultadoCalculoCofins result = calcular.calcularCofins();
             BigDecimal valor = result.getValor();
             BigDecimal baseCalculo = result.getBaseCalculo();
+
+            cofins.setCst(produto.getCstPisCofins().getCodigo());
             cofins.setBaseCalculo(baseCalculo);
             cofins.setValor(valor);
             return cofins;

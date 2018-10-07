@@ -23,6 +23,8 @@
  */
 package com.chronos.calc.enuns;
 
+import java.util.Objects;
+
 /**
  *
  * @author John Vanderson M L
@@ -41,6 +43,16 @@ public enum TipoOperacao {
         this.codigo = codigo;
     }
 
+    public static TipoOperacao valueOfCodigo(final Integer codigo) {
+        for (final TipoOperacao tipoOperacao : TipoOperacao.values()) {
+            if (Objects.equals(tipoOperacao.getCodigo(), codigo)) {
+                return tipoOperacao;
+            }
+        }
+        throw new IllegalArgumentException(String.format("Operação %d não definida.", codigo));
+
+    }
+
     public String getDescricao() {
         return descricao;
     }
@@ -48,5 +60,4 @@ public enum TipoOperacao {
     public Integer getCodigo() {
         return codigo;
     }
-
 }

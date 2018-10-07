@@ -32,6 +32,7 @@ import java.util.Optional;
  */
 public class Pis {
 
+    private String cst;
     private BigDecimal valor;
     private BigDecimal baseCalculo;
 
@@ -54,4 +55,11 @@ public class Pis {
         this.baseCalculo = baseCalculo;
     }
 
+    public String getCst() {
+        return cst;
+    }
+
+    public void setCst(String cst) {
+        this.cst = cst;
+    }
 }

@@ -32,6 +32,8 @@ import java.util.Optional;
  */
 public class Icms {
 
+    private String cst;
+
     private BigDecimal valorCredito;
     private BigDecimal percentualCredito;
     private BigDecimal percentualReducao;
@@ -220,4 +222,11 @@ public class Icms {
         this.obsDifal = obsDifal;
     }
 
+    public String getCst() {
+        return cst;
+    }
+
+    public void setCst(String cst) {
+        this.cst = cst;
+    }
 }

@@ -9,14 +9,11 @@ import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.resultados.IResultadoCalculoDifal;
 import com.chronos.calc.resultados.imp.DadosMensagemDifal;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  *

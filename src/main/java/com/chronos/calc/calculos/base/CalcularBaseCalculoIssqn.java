@@ -26,6 +26,10 @@ package com.chronos.calc.calculos.base;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Optional;
+
 /**
  *
  * @author John Vanderson M L
@@ -34,5 +38,20 @@ public class CalcularBaseCalculoIssqn extends CalcularBaseCalculoBase {
 
     public CalcularBaseCalculoIssqn(ITributavel tributos, TipoDesconto desconto) {
         super(tributos, desconto);
+    }
+
+    @Override
+    public BigDecimal getBaseCalculo() {
+        BigDecimal baseCalculo = super.getBaseCalculo()
+                .add(Optional.ofNullable(getTributos().getValorIpi()).orElse(BigDecimal.ZERO));
+        return aplicarReducaoBaseCalculo(baseCalculo);
+    }
+
+    private BigDecimal aplicarReducaoBaseCalculo(BigDecimal baseCalculoInicial) {
+        BigDecimal reducao = baseCalculoInicial.multiply(getTributos().getPercentualReducao()).divide(BigDecimal.valueOf(100));
+        baseCalculoInicial = baseCalculoInicial.subtract(reducao);
+        baseCalculoInicial = baseCalculoInicial.setScale(2, RoundingMode.DOWN);
+
+        return baseCalculoInicial;
     }
 }

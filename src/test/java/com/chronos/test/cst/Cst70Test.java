@@ -79,7 +79,7 @@ public class Cst70Test {
         assertEquals(BigDecimal.valueOf(90.00).setScale(2), baseCalcIcms);
         assertEquals(BigDecimal.valueOf(18.00).setScale(2), percentualIcms);
         assertEquals(BigDecimal.valueOf(16.20).setScale(2), valorIcms);
-        
+
         assertEquals(ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado, cst.getModalidadeDeterminacaoBcIcmsSt());
 
         assertEquals(BigDecimal.valueOf(100).setScale(2), percentualMva);

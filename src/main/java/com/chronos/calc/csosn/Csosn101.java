@@ -29,6 +29,7 @@ import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Csosn;
 import com.chronos.calc.enuns.OrigemMercadoria;
 import com.chronos.calc.resultados.IResultadoCalculoCredito;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 

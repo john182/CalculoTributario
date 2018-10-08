@@ -7,8 +7,7 @@ package com.chronos.test;
 
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
-import com.chronos.calc.enuns.TipoDesconto;
-import com.chronos.calc.resultados.IResultadoCalculoIpi;
+import com.chronos.calc.resultados.IResultadoCalculoIssqn;
 import org.junit.*;
 
 import java.math.BigDecimal;
@@ -16,7 +15,6 @@ import java.math.BigDecimal;
 import static org.junit.Assert.assertEquals;
 
 /**
- *
  * @author John Vanderson M L
  */
 public class CalculoIssqnTest {
@@ -53,96 +51,36 @@ public class CalculoIssqnTest {
     // @Test
     // public void hello() {}
     @Test
-    public void CalcularIpiComQuantidadeUm() {
+    public void CalcularIssqnComQuantidadeUm() {
         tributos.setValorProduto(BigDecimal.valueOf(1000));
         tributos.setQuantidadeProduto(BigDecimal.ONE);
-        tributos.setPercentualIpi(BigDecimal.valueOf(17));
+        tributos.setPercentualIssqn(BigDecimal.valueOf(5));
 
-        IResultadoCalculoIpi result = calcular.calcularIpi();
+        IResultadoCalculoIssqn result = calcular.calcularIssqn(false);
 
         BigDecimal valor = result.getValor();
         BigDecimal baseCalculo = result.getBaseCalculo();
-        BigDecimal valorTest = BigDecimal.valueOf(170).setScale(2);
+        BigDecimal valorTest = BigDecimal.valueOf(50).setScale(2);
 
         assertEquals(valorTest, valor);
     }
 
     @Test
-    public void CalcularIpiComQuantidadeDois() {
-        tributos.setValorProduto(BigDecimal.valueOf(2000));
-        tributos.setQuantidadeProduto(BigDecimal.valueOf(2));
-        tributos.setPercentualIpi(BigDecimal.valueOf(17));
+    public void CalcularIssqnComRetencao() {
+        tributos.setValorProduto(BigDecimal.valueOf(1000));
+        tributos.setQuantidadeProduto(BigDecimal.ONE);
+        tributos.setPercentualIssqn(BigDecimal.valueOf(5));
+        tributos.setPercentualReducao(BigDecimal.valueOf(50));
 
-        IResultadoCalculoIpi result = calcular.calcularIpi();
-
-        BigDecimal valor = result.getValor();
-        BigDecimal valorTest = BigDecimal.valueOf(680).setScale(2);
-
-        assertEquals(valorTest, valor);
-    }
-
-    @Test
-    public void CalcularIpiComDescontoCondicional() {
-        tributos.setValorProduto(BigDecimal.valueOf(2000));
-        tributos.setQuantidadeProduto(BigDecimal.valueOf(2));
-        tributos.setDesconto(BigDecimal.valueOf(1000));
-        tributos.setPercentualIpi(BigDecimal.valueOf(12));
-
-        calcular = new CalcTributacao(tributos, TipoDesconto.Condicional);
-        IResultadoCalculoIpi result = calcular.calcularIpi();
-
-        BigDecimal baseCaculo = result.getBaseCalculo();
-        BigDecimal baseCalculoTest = BigDecimal.valueOf(5000).setScale(2);
+        IResultadoCalculoIssqn result = calcular.calcularIssqn(false);
 
         BigDecimal valor = result.getValor();
-        BigDecimal valorTest = BigDecimal.valueOf(600).setScale(2);
+        BigDecimal baseCalculo = result.getBaseCalculo();
+        BigDecimal valorTest = BigDecimal.valueOf(25).setScale(2);
 
-        assertEquals(baseCalculoTest, baseCaculo);
         assertEquals(valorTest, valor);
+        assertEquals(BigDecimal.valueOf(500).setScale(2), baseCalculo);
     }
 
-    @Test
-    public void CalcularIpiComFrete() {
-        tributos.setValorProduto(BigDecimal.valueOf(2000));
-        tributos.setQuantidadeProduto(BigDecimal.valueOf(2));
-        tributos.setDesconto(BigDecimal.valueOf(1000));
-        tributos.setPercentualIpi(BigDecimal.valueOf(15));
-        tributos.setFrete(BigDecimal.valueOf(373.5));
-
-        calcular = new CalcTributacao(tributos, TipoDesconto.Condicional);
-        IResultadoCalculoIpi result = calcular.calcularIpi();
-
-        BigDecimal baseCaculo = result.getBaseCalculo();
-        BigDecimal baseCalculoTest = BigDecimal.valueOf(5373.50).setScale(2);
-
-        BigDecimal valor = result.getValor();
-        BigDecimal valorTest = BigDecimal.valueOf(806.02).setScale(2);
-
-        assertEquals(baseCalculoTest, baseCaculo);
-        assertEquals(valorTest, valor);
-    }
-
-    @Test
-    public void CalcularIpiComOutrasDespesasESeguro() {
-        tributos.setValorProduto(BigDecimal.valueOf(2000));
-        tributos.setQuantidadeProduto(BigDecimal.valueOf(2));
-        tributos.setDesconto(BigDecimal.valueOf(1000));
-        tributos.setPercentualIpi(BigDecimal.valueOf(12));
-        tributos.setFrete(BigDecimal.valueOf(373.5));
-        tributos.setSeguro(BigDecimal.valueOf(5.73));
-        tributos.setOutrasDespesas(BigDecimal.valueOf(233.10));
-
-        calcular = new CalcTributacao(tributos, TipoDesconto.Condicional);
-        IResultadoCalculoIpi result = calcular.calcularIpi();
-
-        BigDecimal baseCaculo = result.getBaseCalculo();
-        BigDecimal baseCalculoTest = BigDecimal.valueOf(5612.33).setScale(2);
-
-        BigDecimal valor = result.getValor();
-        BigDecimal valorTest = BigDecimal.valueOf(673.47).setScale(2);
-
-        assertEquals(baseCalculoTest, baseCaculo);
-        assertEquals(valorTest, valor);
-    }
 
 }

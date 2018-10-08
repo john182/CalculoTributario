@@ -1,4 +1,4 @@
-/* 
+/*
  * The MIT License
  *
  * Copyright 2017 Chronusinfo.
@@ -31,7 +31,6 @@ import java.math.RoundingMode;
 import java.util.Optional;
 
 /**
- *
  * @author John Vanderson M L
  */
 public class CalcularBaseICMS extends CalcularBaseCalculoBase {

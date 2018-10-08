@@ -25,6 +25,7 @@ package com.chronos.calc.resultados.imp;
 
 import com.chronos.calc.resultados.IDadosMensagemDifal;
 import com.chronos.calc.resultados.IResultadoCalculoDifal;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;

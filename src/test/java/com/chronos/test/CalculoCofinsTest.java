@@ -5,17 +5,14 @@ package com.chronos.test;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.resultados.IResultadoCalculoCofins;
+import org.junit.*;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  *

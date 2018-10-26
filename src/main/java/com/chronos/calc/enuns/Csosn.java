@@ -33,7 +33,7 @@ public enum Csosn {
     Csosn101("101", "101 - Tributada pelo Simples Nacional com permissão de crédito"),
     Csosn102("102", "102 - Tributada pelo Simples Nacional sem permissão de crédito"),
     Csosn103("103", "103 - Isenção do ICMS no Simples Nacional para faixa de receita bruta"),
-    Csosn201("104", "201 - Tributada pelo Simples Nacional com permissão de crédito e com cobrança do ICMS substituição tributária"),
+    Csosn201("201", "201 - Tributada pelo Simples Nacional com permissão de crédito e com cobrança do ICMS substituição tributária"),
     Csosn202("202", "202 - Tributada pelo Simples Nacional sem permissão de crédito e com cobrança do ICMS substituição tributária"),
     Csosn203("203", "203 - Isenção do ICMS no Simples Nacional para faixa de receita bruta e com cobrança do ICMS por substituição tributária"),
     Csosn300("300", "300 - Imune"),

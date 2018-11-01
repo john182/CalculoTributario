@@ -59,7 +59,9 @@ public class TributacaoCreditoIcms {
     }
 
     private BigDecimal calculaCredito(BigDecimal baseCalculo) {
-        return baseCalculo.multiply(tributos.getPercentualCredito()).divide(BigDecimal.valueOf(100), RoundingMode.HALF_DOWN);
+        BigDecimal valorCredito = baseCalculo.multiply(tributos.getPercentualCredito()).divide(BigDecimal.valueOf(100), RoundingMode.HALF_DOWN);
+        valorCredito = valorCredito.setScale(2, RoundingMode.HALF_DOWN);
+        return valorCredito;
     }
 
 }

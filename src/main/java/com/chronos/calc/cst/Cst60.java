@@ -23,10 +23,13 @@
  */
 package com.chronos.calc.cst;
 
+import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.OrigemMercadoria;
+import com.chronos.calc.resultados.IResultadoCalculoIcmsSt;
+
 import java.math.BigDecimal;
 
 /**
@@ -37,6 +40,8 @@ public class Cst60 extends CstBase {
 
     private BigDecimal percentualBcStRetido;
     private BigDecimal valorBcStRetido;
+    private BigDecimal valorCreditoOutorgadoOuPresumido;
+    private BigDecimal ValorIcmsStRetido;
 
     public Cst60() {
         cst = Cst.Cst60;
@@ -51,7 +56,11 @@ public class Cst60 extends CstBase {
 
     @Override
     public void calcular(ITributavel tributos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        IResultadoCalculoIcmsSt result = new CalcTributacao(tributos).calcularIcmsSt();
+
+        percentualBcStRetido = tributos.getPercentualIcmsSt();
+        valorBcStRetido = result.getBaseCalculoIcmsSt();
+        ValorIcmsStRetido = result.getValorIcmsSt();
     }
 
     public BigDecimal getPercentualBcStRetido() {
@@ -74,5 +83,15 @@ public class Cst60 extends CstBase {
     public Icms getIcmsDto() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    public BigDecimal getValorCreditoOutorgadoOuPresumido() {
+        return valorCreditoOutorgadoOuPresumido;
+    }
+
+
+    public BigDecimal getValorIcmsStRetido() {
+        return ValorIcmsStRetido;
+    }
+
 
 }

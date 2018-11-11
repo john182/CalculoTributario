@@ -57,6 +57,13 @@ public class Icms {
     private BigDecimal fcp;
     private BigDecimal valorIcmsDestino;
     private BigDecimal valorIcmsOrigem;
+
+
+    private BigDecimal percentualBcStRetido;
+    private BigDecimal valorBcStRetido;
+    private BigDecimal valorCreditoOutorgadoOuPresumido;
+    private BigDecimal valorIcmsStRetido;
+
     private String obsDifal;
 
     public Icms() {
@@ -228,5 +235,37 @@ public class Icms {
 
     public void setCst(String cst) {
         this.cst = cst;
+    }
+
+    public BigDecimal getPercentualBcStRetido() {
+        return percentualBcStRetido;
+    }
+
+    public void setPercentualBcStRetido(BigDecimal percentualBcStRetido) {
+        this.percentualBcStRetido = percentualBcStRetido;
+    }
+
+    public BigDecimal getValorBcStRetido() {
+        return valorBcStRetido;
+    }
+
+    public void setValorBcStRetido(BigDecimal valorBcStRetido) {
+        this.valorBcStRetido = valorBcStRetido;
+    }
+
+    public BigDecimal getValorCreditoOutorgadoOuPresumido() {
+        return valorCreditoOutorgadoOuPresumido;
+    }
+
+    public void setValorCreditoOutorgadoOuPresumido(BigDecimal valorCreditoOutorgadoOuPresumido) {
+        this.valorCreditoOutorgadoOuPresumido = valorCreditoOutorgadoOuPresumido;
+    }
+
+    public BigDecimal getValorIcmsStRetido() {
+        return valorIcmsStRetido;
+    }
+
+    public void setValorIcmsStRetido(BigDecimal valorIcmsStRetido) {
+        this.valorIcmsStRetido = valorIcmsStRetido;
     }
 }

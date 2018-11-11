@@ -41,7 +41,7 @@ public class Cst60 extends CstBase {
     private BigDecimal percentualBcStRetido;
     private BigDecimal valorBcStRetido;
     private BigDecimal valorCreditoOutorgadoOuPresumido;
-    private BigDecimal ValorIcmsStRetido;
+    private BigDecimal valorIcmsStRetido;
 
     public Cst60() {
         cst = Cst.Cst60;
@@ -60,28 +60,19 @@ public class Cst60 extends CstBase {
 
         percentualBcStRetido = tributos.getPercentualIcmsSt();
         valorBcStRetido = result.getBaseCalculoIcmsSt();
-        ValorIcmsStRetido = result.getValorIcmsSt();
+        valorIcmsStRetido = result.getValorIcmsSt();
     }
 
-    public BigDecimal getPercentualBcStRetido() {
-        return percentualBcStRetido;
-    }
 
-    public void setPercentualBcStRetido(BigDecimal percentualBcStRetido) {
-        this.percentualBcStRetido = percentualBcStRetido;
-    }
-
-    public BigDecimal getValorBcStRetido() {
-        return valorBcStRetido;
-    }
-
-    public void setValorBcStRetido(BigDecimal valorBcStRetido) {
-        this.valorBcStRetido = valorBcStRetido;
-    }
 
     @Override
     public Icms getIcmsDto() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Icms icmsDto = new Icms();
+        icmsDto.setPercentualBcStRetido(percentualBcStRetido);
+        icmsDto.setValorIcmsStRetido(valorIcmsStRetido);
+        icmsDto.setValorBcStRetido(valorBcStRetido);
+
+        return icmsDto;
     }
 
     public BigDecimal getValorCreditoOutorgadoOuPresumido() {
@@ -89,9 +80,6 @@ public class Cst60 extends CstBase {
     }
 
 
-    public BigDecimal getValorIcmsStRetido() {
-        return ValorIcmsStRetido;
-    }
 
 
 }

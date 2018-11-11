@@ -21,9 +21,9 @@ public class Cst60Test {
         Cst60 cst = new Cst60();
         cst.calcular(tributos);
 
-        BigDecimal baseCalcST = cst.getValorBcStRetido();
-        BigDecimal valorIcmsST = cst.getValorIcmsStRetido();
-        BigDecimal percentualIcmsST = cst.getPercentualBcStRetido();
+        BigDecimal baseCalcST = cst.getIcmsDto().getValorBcStRetido();
+        BigDecimal valorIcmsST = cst.getIcmsDto().getValorIcmsStRetido();
+        BigDecimal percentualIcmsST = cst.getIcmsDto().getPercentualBcStRetido();
 
 
         assertEquals(BigDecimal.valueOf(1000).setScale(2), baseCalcST);

@@ -159,14 +159,14 @@ public class TributaNFe {
         if (produto.getCstIpi() != null
                 && produto.getCstIpi().isGeraIpi()) {
             Ipi ipi = new Ipi();
-            BigDecimal valor = BigDecimal.ZERO;
-            BigDecimal baseCalculo = BigDecimal.ZERO;
+            BigDecimal valor;
+            BigDecimal baseCalculo;
 
             IResultadoCalculoIpi result = calcular.calcularIpi();
             valor = result.getValor();
             baseCalculo = result.getBaseCalculo();
 
-            ipi.setCst(produto.getCst().getCodigo());
+            ipi.setCst(produto.getCstIpi().getCodigo());
             ipi.setValorBcIpi(baseCalculo);
             ipi.setValorIpi(valor);
 

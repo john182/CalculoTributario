@@ -41,6 +41,7 @@ public class TributosProduto extends ITributavel {
     private CstPisCofins cstPisCofins;
 
     public TributosProduto() {
+        this.servico = false;
     }
 
     public Cst getCst() {

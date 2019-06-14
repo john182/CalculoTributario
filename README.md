@@ -13,7 +13,7 @@ Solução para Cálculos Tributários Do Brasil
     <dependency>
         <groupId>com.chronos.calc</groupId>
         <artifactId>ChronosCalcTribut</artifactId>
-        <version>1.0.27</version>
+        <version>1.0.28</version>
     </dependency>
 ```
 

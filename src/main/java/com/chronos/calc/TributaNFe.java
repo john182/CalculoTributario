@@ -50,14 +50,14 @@ public class TributaNFe {
         this.calcular = new CalcTributacao(produto);
     }
 
-    public Imposto tributarNfe(TributosProduto produto, Crt crt, TipoOperacao operacao, TipoPessoa pessoa) throws TributacaoException {
+    public Imposto tributarNfe(Crt crt, TipoOperacao operacao, TipoPessoa pessoa) throws TributacaoException {
         Imposto imposto = new Imposto();
-        TipoPessoa pessoa1 = pessoa;
+
         this.operacao = operacao;
 
         if (produto.isServico()) {
             boolean calcularRetencao = (crt != Crt.SimplesNacional && pessoa != TipoPessoa.Fisica);
-            Iss iss = calcularIssqn(false);
+            Iss iss = calcularIssqn(calcularRetencao);
             imposto.setIssqn(iss);
         } else {
 

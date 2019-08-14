@@ -67,7 +67,7 @@ public class Cst51 extends CstBase {
             percentualReducao = tributos.getPercentualReducao().setScale(2);
             valorBcIcms = result.getBaseCalculo().setScale(2);
             percentualIcms = tributos.getPercentualIcms().setScale(2);
-            valorIcmsOperacao = valorBcIcms.multiply(percentualIcms).divide(BigDecimal.valueOf(100)).setScale(2);
+            valorIcmsOperacao = valorBcIcms.multiply(percentualIcms).divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.UP);
             percentualDiferimento = tributos.getPercentualDiferimento();
             valorIcmsDiferido = percentualDiferimento.multiply(valorIcmsOperacao.divide(BigDecimal.valueOf(100))).setScale(2, RoundingMode.UP);
             valorIcms = valorIcmsOperacao.subtract(valorIcmsDiferido).setScale(2);

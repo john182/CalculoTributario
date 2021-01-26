@@ -41,8 +41,7 @@ public class CalcularBaseICMS extends CalcularBaseCalculoBase {
 
     @Override
     public BigDecimal getBaseCalculo() {
-        BigDecimal baseCalculo = super.getBaseCalculo()
-                .add(Optional.ofNullable(getTributos().getValorIpi()).orElse(BigDecimal.ZERO));
+        BigDecimal baseCalculo = super.getBaseCalculo();
         return aplicarReducaoBaseCalculo(baseCalculo);
     }
 

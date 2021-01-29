@@ -35,7 +35,6 @@ import com.chronos.calc.resultados.IResultadoCalculoIcms;
 import java.math.BigDecimal;
 
 /**
- *
  * @author John Vanderson M L
  */
 public class Cst00 extends CstBase {

@@ -60,6 +60,10 @@ public class CalcTributacao {
         return new TributacaoCreditoIcms(tributos, desconto).calcular();
     }
 
+    public IResultadoCalculoValorDesonerado calcularIcmsDesonerado() {
+        return new TributacaoIcmsDesonerado(tributos, desconto).calcular();
+    }
+
     public IResultadoCalculoCofins calcularCofins() {
         return new TributacaoCofins(tributos, desconto).calcular();
     }

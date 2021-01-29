@@ -51,6 +51,7 @@ public class Icms {
     private BigDecimal percentualDiferimento;
     private BigDecimal valorIcmsOperacao;
     private BigDecimal valorIcmsDeferido;
+    private BigDecimal valorIcmsDesonerado;
 
     private BigDecimal valorBcDifal;
     private BigDecimal difal;
@@ -267,5 +268,13 @@ public class Icms {
 
     public void setValorIcmsStRetido(BigDecimal valorIcmsStRetido) {
         this.valorIcmsStRetido = valorIcmsStRetido;
+    }
+
+    public BigDecimal getValorIcmsDesonerado() {
+        return Optional.ofNullable(valorIcmsDesonerado).orElse(BigDecimal.ZERO);
+    }
+
+    public void setValorIcmsDesonerado(BigDecimal valorIcmsDesonerado) {
+        this.valorIcmsDesonerado = valorIcmsDesonerado;
     }
 }

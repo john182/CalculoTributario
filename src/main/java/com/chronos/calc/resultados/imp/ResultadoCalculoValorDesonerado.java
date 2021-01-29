@@ -21,40 +21,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.chronos.calc.calculos.base;
+package com.chronos.calc.resultados.imp;
 
-import com.chronos.calc.dto.ITributavel;
-import com.chronos.calc.enuns.TipoDesconto;
+import com.chronos.calc.resultados.IResultadoCalculoValorDesonerado;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 /**
  * @author John Vanderson M L
  */
-public class CalcularBaseICMS extends CalcularBaseCalculoBase {
+public class ResultadoCalculoValorDesonerado implements IResultadoCalculoValorDesonerado {
 
-    public CalcularBaseICMS(ITributavel tributos, TipoDesconto desconto) {
-        super(tributos, desconto);
+    private final BigDecimal baseCalculo;
+    private final BigDecimal valor;
+
+    public ResultadoCalculoValorDesonerado(BigDecimal baseCalculo, BigDecimal valor) {
+        this.baseCalculo = baseCalculo;
+        this.valor = valor;
     }
 
     @Override
     public BigDecimal getBaseCalculo() {
-        BigDecimal baseCalculo = super.getBaseCalculo();
-        return aplicarReducaoBaseCalculo(baseCalculo);
-    }
-
-    public BigDecimal getBaseCalculoSemReducao() {
-        BigDecimal baseCalculo = super.getBaseCalculo();
         return baseCalculo;
     }
 
-    private BigDecimal aplicarReducaoBaseCalculo(BigDecimal baseCalculoInicial) {
-        BigDecimal reducao = baseCalculoInicial.multiply(getTributos().getPercentualReducao()).divide(BigDecimal.valueOf(100));
-        baseCalculoInicial = baseCalculoInicial.subtract(reducao);
-        baseCalculoInicial = baseCalculoInicial.setScale(2, RoundingMode.DOWN);
-
-        return baseCalculoInicial;
+    @Override
+    public BigDecimal getValor() {
+        return valor;
     }
 
 }

@@ -21,40 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.chronos.calc.calculos.base;
-
-import com.chronos.calc.dto.ITributavel;
-import com.chronos.calc.enuns.TipoDesconto;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+package com.chronos.calc.resultados;
 
 /**
  * @author John Vanderson M L
  */
-public class CalcularBaseICMS extends CalcularBaseCalculoBase {
-
-    public CalcularBaseICMS(ITributavel tributos, TipoDesconto desconto) {
-        super(tributos, desconto);
-    }
-
-    @Override
-    public BigDecimal getBaseCalculo() {
-        BigDecimal baseCalculo = super.getBaseCalculo();
-        return aplicarReducaoBaseCalculo(baseCalculo);
-    }
-
-    public BigDecimal getBaseCalculoSemReducao() {
-        BigDecimal baseCalculo = super.getBaseCalculo();
-        return baseCalculo;
-    }
-
-    private BigDecimal aplicarReducaoBaseCalculo(BigDecimal baseCalculoInicial) {
-        BigDecimal reducao = baseCalculoInicial.multiply(getTributos().getPercentualReducao()).divide(BigDecimal.valueOf(100));
-        baseCalculoInicial = baseCalculoInicial.subtract(reducao);
-        baseCalculoInicial = baseCalculoInicial.setScale(2, RoundingMode.DOWN);
-
-        return baseCalculoInicial;
-    }
+public interface IResultadoCalculoValorDesonerado extends IResultadoCalculoBase {
 
 }

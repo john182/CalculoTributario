@@ -23,16 +23,22 @@
  */
 package com.chronos.calc.cst;
 
+import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.dto.Icms;
 import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.OrigemMercadoria;
+import com.chronos.calc.resultados.IResultadoCalculoValorDesonerado;
+
+import java.math.BigDecimal;
 
 /**
- *
  * @author John Vanderson M L
  */
 public class Cst40 extends CstBase {
+
+    private BigDecimal percentualReducao;
+    private BigDecimal valorIcmsDesoneado;
 
     public Cst40() {
         cst = Cst.Cst40;
@@ -47,12 +53,27 @@ public class Cst40 extends CstBase {
 
     @Override
     public void calcular(ITributavel tributos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        IResultadoCalculoValorDesonerado result = new CalcTributacao(tributos).calcularIcmsDesonerado();
+        this.percentualReducao = tributos.getPercentualReducao();
+        this.valorIcmsDesoneado = result.getValor();
     }
 
     @Override
     public Icms getIcmsDto() {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        Icms icms = new Icms();
+
+        icms.setPercentualReducao(getPercentualReducao());
+        icms.setValorIcmsDesonerado(getValorIcmsDesoneado());
+
+        return icms;
     }
 
+    public BigDecimal getPercentualReducao() {
+        return percentualReducao;
+    }
+
+    public BigDecimal getValorIcmsDesoneado() {
+        return valorIcmsDesoneado;
+    }
 }

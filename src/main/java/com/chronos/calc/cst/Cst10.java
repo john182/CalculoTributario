@@ -33,6 +33,7 @@ import com.chronos.calc.enuns.OrigemMercadoria;
 import com.chronos.calc.resultados.IResultadoCalculoIcmsSt;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  *
@@ -64,9 +65,9 @@ public class Cst10 extends Cst00 {
         super.calcular(tributos);
 
         if (ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado.equals(getModalidadeDeterminacaoBcIcmsSt())) {
-            percentualMva = tributos.getPercentualMva().setScale(2);
-            percentualReducaoSt = tributos.getPercentualReducaoSt().setScale(2);
-            percentualIcmsSt = tributos.getPercentualIcmsSt().setScale(2);
+            percentualMva = tributos.getPercentualMva().setScale(2, RoundingMode.HALF_UP);
+            percentualReducaoSt = tributos.getPercentualReducaoSt().setScale(2, RoundingMode.HALF_UP);
+            percentualIcmsSt = tributos.getPercentualIcmsSt().setScale(2, RoundingMode.HALF_UP);
 
             CalcTributacao calc = new CalcTributacao(tributos);
 

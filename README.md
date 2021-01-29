@@ -8,12 +8,12 @@ Solução para Cálculos Tributários Do Brasil
     <repository>
         <id>chronosinfo</id>
         <name>chronos</name>
-        <url>http://66.70.177.7:8081/repository/chronos/</url>
+        <url>http://207.244.230.253:8081/repository/chronos/</url>
     </repository>
     <dependency>
         <groupId>com.chronos.calc</groupId>
         <artifactId>ChronosCalcTribut</artifactId>
-        <version>1.0.28</version>
+        <version>1.1.0</version>
     </dependency>
 ```
 

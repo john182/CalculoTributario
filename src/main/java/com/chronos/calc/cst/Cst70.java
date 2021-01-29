@@ -30,6 +30,7 @@ import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.OrigemMercadoria;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  *
@@ -69,7 +70,7 @@ public class Cst70 extends Cst10 {
     @Override
     public void calcular(ITributavel tributos) throws TributacaoException {
         super.calcular(tributos);
-        percentualReducao = tributos.getPercentualReducao().setScale(2);
+        percentualReducao = tributos.getPercentualReducao().setScale(2, RoundingMode.HALF_UP);
     }
 
     public BigDecimal getPercentualReducao() {

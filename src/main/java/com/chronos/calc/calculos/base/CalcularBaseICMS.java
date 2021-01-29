@@ -28,24 +28,33 @@ import com.chronos.calc.enuns.TipoDesconto;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Optional;
 
 /**
  * @author John Vanderson M L
  */
 public class CalcularBaseICMS extends CalcularBaseCalculoBase {
 
+    private BigDecimal valorIpi;
+
+    // Não compreenderá, na base de cálculo do ICMS, o montante do imposto sobre produtos industrializados,
+    // quando a operação, realizada entre contribuintes e relativa a produto destinado à industrialização ou à comercialização,
+    // configure fato gerador dos dois impostos (ICMS e IPI).
+    // http://www.portaltributario.com.br/artigos/icmssobreipi.htm
+    // Caso precisamos contralar essa situação teremos que alguma flag
     public CalcularBaseICMS(ITributavel tributos, TipoDesconto desconto) {
         super(tributos, desconto);
+        valorIpi = Optional.ofNullable(getTributos().getValorIpi()).orElse(BigDecimal.ZERO);
     }
 
     @Override
     public BigDecimal getBaseCalculo() {
-        BigDecimal baseCalculo = super.getBaseCalculo();
+        BigDecimal baseCalculo = super.getBaseCalculo().add(valorIpi);
         return aplicarReducaoBaseCalculo(baseCalculo);
     }
 
     public BigDecimal getBaseCalculoSemReducao() {
-        BigDecimal baseCalculo = super.getBaseCalculo();
+        BigDecimal baseCalculo = super.getBaseCalculo().add(valorIpi);
         return baseCalculo;
     }
 

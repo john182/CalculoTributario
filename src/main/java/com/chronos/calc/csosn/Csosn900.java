@@ -32,6 +32,7 @@ import com.chronos.calc.enuns.OrigemMercadoria;
 import com.chronos.calc.resultados.IResultadoCalculoCredito;
 import com.chronos.calc.resultados.IResultadoCalculoIcms;
 import com.chronos.calc.resultados.IResultadoCalculoIcmsSt;
+
 import java.math.BigDecimal;
 
 /**
@@ -66,9 +67,11 @@ public class Csosn900 extends CsosnBase {
 
     @Override
     public void calcular(ITributavel tributos) {
+
         calcularIcms(tributos);
-        calcularCredito(tributos);
         calculatIcmsSt(tributos);
+        calcularCredito(tributos);
+
     }
 
     private void calcularCredito(ITributavel tributos) {

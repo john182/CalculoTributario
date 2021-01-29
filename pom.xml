@@ -22,7 +22,7 @@
     <distributionManagement>
         <repository>
             <id>chronosinfo</id>
-            <url>http://66.70.177.7:8081/repository/chronos/</url>
+            <url>http://207.244.230.253:8081/repository/chronos/</url>
         </repository>
     </distributionManagement>
     <properties>

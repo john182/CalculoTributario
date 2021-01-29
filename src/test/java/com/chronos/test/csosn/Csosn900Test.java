@@ -8,13 +8,11 @@ package com.chronos.test.csosn;
 import com.chronos.calc.CalcTributacao;
 import com.chronos.calc.csosn.Csosn900;
 import com.chronos.calc.dto.ITributavel;
+import org.junit.*;
+
 import java.math.BigDecimal;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  *

@@ -30,6 +30,8 @@ import com.chronos.calc.enuns.Cst;
 import com.chronos.calc.enuns.ModalidadeDeterminacaoBcIcmsSt;
 import com.chronos.calc.enuns.OrigemMercadoria;
 import com.chronos.calc.resultados.IResultadoCalculoIcmsSt;
+import com.chronos.calc.resultados.IResultadoCalculoValorDesonerado;
+
 import java.math.BigDecimal;
 
 /**
@@ -45,6 +47,9 @@ public class Cst30 extends CstBase {
     private BigDecimal percentualIcmsSt;
     private BigDecimal valorIcmsSt;
 
+    private BigDecimal percentualReducao;
+    private BigDecimal valorIcmsDesoneado;
+
     public Cst30() {
         cst = Cst.Cst30;
         modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado;
@@ -57,7 +62,11 @@ public class Cst30 extends CstBase {
 
     @Override
     public void calcular(ITributavel tributos) {
+        BigDecimal aliquotaDesonerada = tributos.getPercentualIcms();
+        percentualReducao = tributos.getPercentualReducao();
         if (ModalidadeDeterminacaoBcIcmsSt.MargemValorAgregado.equals(getModalidadeDeterminacaoBcIcmsSt())) {
+            tributos.setPercentualIcms(BigDecimal.ZERO);
+            tributos.setPercentualReducao(BigDecimal.ZERO);
             percentualMva = tributos.getPercentualMva().setScale(2);
             percentualReducaoSt = tributos.getPercentualReducaoSt().setScale(2);
             percentualIcmsSt = tributos.getPercentualIcmsSt().setScale(2);
@@ -71,6 +80,26 @@ public class Cst30 extends CstBase {
             valorBcIcmsSt = result.getBaseCalculoIcmsSt();
             valorIcmsSt = result.getValorIcmsSt();
         }
+
+        tributos.setPercentualIcms(aliquotaDesonerada);
+        tributos.setPercentualReducao(percentualReducao);
+        IResultadoCalculoValorDesonerado result = new CalcTributacao(tributos).calcularIcmsDesonerado();
+
+        this.valorIcmsDesoneado = result.getValor();
+
+    }
+
+    @Override
+    public Icms getIcmsDto() {
+        Icms icmsDto = new Icms();
+
+        icmsDto.setPercentualMva(getPercentualMva());
+        icmsDto.setPercentualReducaoST(getPercentualReducaoSt());
+        icmsDto.setValorBaseCalcST(getValorBcIcmsSt());
+        icmsDto.setPercentualIcmsST(getPercentualIcmsSt());
+        icmsDto.setValorIcmsST(getValorIcmsSt());
+
+        return icmsDto;
 
     }
 
@@ -102,18 +131,11 @@ public class Cst30 extends CstBase {
         this.modalidadeDeterminacaoBcIcmsSt = modalidadeDeterminacaoBcIcmsSt;
     }
 
-    @Override
-    public Icms getIcmsDto() {
-        Icms icmsDto = new Icms();
-
-        icmsDto.setPercentualMva(getPercentualMva());
-        icmsDto.setPercentualReducaoST(getPercentualReducaoSt());
-        icmsDto.setValorBaseCalcST(getValorBcIcmsSt());
-        icmsDto.setPercentualIcmsST(getPercentualIcmsSt());
-        icmsDto.setValorIcmsST(getValorIcmsSt());
-
-        return icmsDto;
-
+    public BigDecimal getPercentualReducao() {
+        return percentualReducao;
     }
 
+    public BigDecimal getValorIcmsDesoneado() {
+        return valorIcmsDesoneado;
+    }
 }

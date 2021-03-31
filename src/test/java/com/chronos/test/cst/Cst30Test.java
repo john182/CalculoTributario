@@ -82,7 +82,7 @@ public class Cst30Test {
         tributos.setQuantidadeProduto(BigDecimal.ONE);
         tributos.setPercentualMva(BigDecimal.valueOf(50));
         tributos.setPercentualReducaoSt(BigDecimal.valueOf(10));
-        tributos.setPercentualIcms(BigDecimal.valueOf(0.2));
+        tributos.setPercentualIcms(BigDecimal.valueOf(20));
 
         Cst30 cst = new Cst30();
 
@@ -116,8 +116,8 @@ public class Cst30Test {
         tributos.setQuantidadeProduto(BigDecimal.ONE);
         tributos.setPercentualMva(BigDecimal.valueOf(50));
         tributos.setPercentualReducaoSt(BigDecimal.valueOf(10));
-        tributos.setPercentualIcms(BigDecimal.valueOf(0.2));
-        tributos.setPercentualReducao(BigDecimal.valueOf(0.5));
+        tributos.setPercentualIcms(BigDecimal.valueOf(20));
+        tributos.setPercentualReducao(BigDecimal.valueOf(50));
 
         Cst30 cst = new Cst30();
 

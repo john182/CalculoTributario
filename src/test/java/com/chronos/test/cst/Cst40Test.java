@@ -17,7 +17,7 @@ public class Cst40Test {
         ITributavel tributos = new ITributavel();
         tributos.setValorProduto(BigDecimal.valueOf(31000));
         tributos.setQuantidadeProduto(BigDecimal.ONE);
-        tributos.setPercentualIcms(BigDecimal.valueOf(0.2));
+        tributos.setPercentualIcms(BigDecimal.valueOf(20));
 
         Cst40 cst = new Cst40();
 
@@ -37,8 +37,8 @@ public class Cst40Test {
         ITributavel tributos = new ITributavel();
         tributos.setValorProduto(BigDecimal.valueOf(31000));
         tributos.setQuantidadeProduto(BigDecimal.ONE);
-        tributos.setPercentualIcms(BigDecimal.valueOf(0.2));
-        tributos.setPercentualReducao(BigDecimal.valueOf(0.5));
+        tributos.setPercentualIcms(BigDecimal.valueOf(20));
+        tributos.setPercentualReducao(BigDecimal.valueOf(50));
 
         Cst40 cst = new Cst40();
 

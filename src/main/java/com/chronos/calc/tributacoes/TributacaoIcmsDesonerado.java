@@ -53,8 +53,11 @@ public class TributacaoIcmsDesonerado {
     private IResultadoCalculoValorDesonerado calcularIcmsDesonerado() {
         BigDecimal baseCalculo = baseICMS.getBaseCalculoSemReducao();
 
+        BigDecimal aliquota = tributos.getPercentualIcms().divide(BigDecimal.valueOf(100), MathContext.DECIMAL64);
+        tributos.setPercentualIcms(aliquota);
+
         BigDecimal valorDesonerado = tributos.getPercentualReducao().signum() > 0
-                ? calcularComReducao(baseCalculo, tributos.getPercentualReducao())
+                ? calcularComReducao(baseCalculo, tributos.getPercentualReducao().divide(BigDecimal.valueOf(100), MathContext.DECIMAL64))
                 : calcular(baseCalculo);
 
         return new ResultadoCalculoValorDesonerado(baseCalculo, valorDesonerado);
@@ -71,10 +74,10 @@ public class TributacaoIcmsDesonerado {
 
     private BigDecimal calcularComReducao(BigDecimal baseCalculo, BigDecimal percentualReducao) {
         // Valor do ICMS desonerado = Preço na Nota Fiscal * (1 - (Alíquota * (1 - Percentual de redução da BC))) / (1 - Alíquota) - Preço na Nota Fiscal
-        float valorNf = baseCalculo.floatValue();
-        float valorReducao = percentualReducao.floatValue();
-        float valorAliquota = tributos.getPercentualIcms().floatValue();
-        float valor = valorNf * (1 - (valorAliquota * (1 - valorReducao))) / (1 - valorAliquota) - valorNf;
+//        float valorNf = baseCalculo.floatValue();
+//        float valorReducao = percentualReducao.floatValue();
+//        float valorAliquota = tributos.getPercentualIcms().floatValue();
+//        float valor = valorNf * (1 - (valorAliquota * (1 - valorReducao))) / (1 - valorAliquota) - valorNf;
 
         BigDecimal one = BigDecimal.ONE;
 

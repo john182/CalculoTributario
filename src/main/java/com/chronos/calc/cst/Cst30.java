@@ -91,15 +91,18 @@ public class Cst30 extends CstBase {
 
     @Override
     public Icms getIcmsDto() {
-        Icms icmsDto = new Icms();
+        Icms icms = new Icms();
 
-        icmsDto.setPercentualMva(getPercentualMva());
-        icmsDto.setPercentualReducaoST(getPercentualReducaoSt());
-        icmsDto.setValorBaseCalcST(getValorBcIcmsSt());
-        icmsDto.setPercentualIcmsST(getPercentualIcmsSt());
-        icmsDto.setValorIcmsST(getValorIcmsSt());
+        icms.setPercentualMva(getPercentualMva());
+        icms.setPercentualReducaoST(getPercentualReducaoSt());
+        icms.setValorBaseCalcST(getValorBcIcmsSt());
+        icms.setPercentualIcmsST(getPercentualIcmsSt());
+        icms.setValorIcmsST(getValorIcmsSt());
+        icms.setPercentualReducao(getPercentualReducao());
+        icms.setValorIcmsDesonerado(getValorIcmsDesoneado());
 
-        return icmsDto;
+
+        return icms;
 
     }
 

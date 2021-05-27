@@ -105,5 +105,53 @@ public class TributaNFeTest {
         assertNull(imposto.getIpi());
     }
 
+    @Test
+    public void devemos_garantir_que_seja_gerado_valores_de_icms_CST40() throws TributacaoException {
+
+        produto.setQuantidadeProduto(BigDecimal.valueOf(2));
+        produto.setDesconto(BigDecimal.valueOf(1000));
+        produto.setCst(Cst.Cst40);
+
+        tributaNFe = new TributaNFe(produto);
+
+        Imposto imposto = tributaNFe.tributarNfe(Crt.RegimeNormal, TipoOperacao.OperacaoInterna, TipoPessoa.Fisica);
+
+        BigDecimal valorIpi = BigDecimal.valueOf(170).setScale(2);
+        BigDecimal valorIcms = BigDecimal.valueOf(239.64).setScale(2);
+
+        BigDecimal valorCofins = BigDecimal.valueOf(30).setScale(2);
+        BigDecimal valorPis = BigDecimal.valueOf(16.50).setScale(2);
+
+        assertEquals(valorIpi, imposto.getIpi().getValorIpi());
+        assertEquals(valorIcms, imposto.getIcms().getValorIcmsDesonerado());
+        assertEquals(valorCofins, imposto.getCofins().getValor());
+        assertEquals(valorPis, imposto.getPis().getValor());
+
+    }
+
+    @Test
+    public void devemos_garantir_que_seja_gerado_valores_de_icms_CST30() throws TributacaoException {
+
+        produto.setQuantidadeProduto(BigDecimal.valueOf(2));
+        produto.setDesconto(BigDecimal.valueOf(1000));
+        produto.setCst(Cst.Cst30);
+
+        tributaNFe = new TributaNFe(produto);
+
+        Imposto imposto = tributaNFe.tributarNfe(Crt.RegimeNormal, TipoOperacao.OperacaoInterna, TipoPessoa.Fisica);
+
+        BigDecimal valorIpi = BigDecimal.valueOf(170).setScale(2);
+        BigDecimal valorIcms = BigDecimal.valueOf(239.64).setScale(2);
+
+        BigDecimal valorCofins = BigDecimal.valueOf(30).setScale(2);
+        BigDecimal valorPis = BigDecimal.valueOf(16.50).setScale(2);
+
+        assertEquals(valorIpi, imposto.getIpi().getValorIpi());
+        assertEquals(valorIcms, imposto.getIcms().getValorIcmsDesonerado());
+        assertEquals(valorCofins, imposto.getCofins().getValor());
+        assertEquals(valorPis, imposto.getPis().getValor());
+
+    }
+
 
 }

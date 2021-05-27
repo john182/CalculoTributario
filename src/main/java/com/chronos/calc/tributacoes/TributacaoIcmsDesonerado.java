@@ -68,7 +68,7 @@ public class TributacaoIcmsDesonerado {
         BigDecimal one = BigDecimal.ONE;
         BigDecimal valorDesonerado = baseCalculo.divide((one.subtract(tributos.getPercentualIcms())), MathContext.DECIMAL64);
         valorDesonerado = valorDesonerado.multiply(tributos.getPercentualIcms());
-        valorDesonerado.setScale(2, RoundingMode.HALF_UP);
+        valorDesonerado = valorDesonerado.setScale(2, RoundingMode.HALF_UP);
         return valorDesonerado;
     }
 
@@ -95,7 +95,7 @@ public class TributacaoIcmsDesonerado {
 
         BigDecimal valorDesonerado = expressaoDividir.subtract(baseCalculo, MathContext.DECIMAL64);
 
-        valorDesonerado.setScale(2, RoundingMode.HALF_UP);
+        valorDesonerado = valorDesonerado.setScale(2, RoundingMode.HALF_UP);
 
         return valorDesonerado;
     }

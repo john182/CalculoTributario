@@ -239,7 +239,7 @@ public class Icms {
     }
 
     public BigDecimal getPercentualBcStRetido() {
-        return percentualBcStRetido;
+        return Optional.ofNullable(percentualBcStRetido).orElse(BigDecimal.ZERO);
     }
 
     public void setPercentualBcStRetido(BigDecimal percentualBcStRetido) {
@@ -247,7 +247,7 @@ public class Icms {
     }
 
     public BigDecimal getValorBcStRetido() {
-        return valorBcStRetido;
+        return Optional.ofNullable(valorBcStRetido).orElse(BigDecimal.ZERO);
     }
 
     public void setValorBcStRetido(BigDecimal valorBcStRetido) {
@@ -255,7 +255,7 @@ public class Icms {
     }
 
     public BigDecimal getValorCreditoOutorgadoOuPresumido() {
-        return valorCreditoOutorgadoOuPresumido;
+        return Optional.ofNullable(valorCreditoOutorgadoOuPresumido).orElse(BigDecimal.ZERO);
     }
 
     public void setValorCreditoOutorgadoOuPresumido(BigDecimal valorCreditoOutorgadoOuPresumido) {
@@ -263,7 +263,7 @@ public class Icms {
     }
 
     public BigDecimal getValorIcmsStRetido() {
-        return valorIcmsStRetido;
+        return Optional.ofNullable(valorIcmsStRetido).orElse(BigDecimal.ZERO);
     }
 
     public void setValorIcmsStRetido(BigDecimal valorIcmsStRetido) {

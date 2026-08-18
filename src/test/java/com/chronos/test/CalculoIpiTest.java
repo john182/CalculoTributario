@@ -116,7 +116,7 @@ public class CalculoIpiTest {
         BigDecimal baseCalculoTest = BigDecimal.valueOf(5373.50).setScale(2);
 
         BigDecimal valor = result.getValor();
-        BigDecimal valorTest = BigDecimal.valueOf(806.02).setScale(2);
+        BigDecimal valorTest = BigDecimal.valueOf(806.03).setScale(2);
 
         assertEquals(baseCalculoTest, baseCaculo);
         assertEquals(valorTest, valor);
@@ -139,7 +139,7 @@ public class CalculoIpiTest {
         BigDecimal baseCalculoTest = BigDecimal.valueOf(5612.33).setScale(2);
 
         BigDecimal valor = result.getValor();
-        BigDecimal valorTest = BigDecimal.valueOf(673.47).setScale(2);
+        BigDecimal valorTest = BigDecimal.valueOf(673.48).setScale(2);
 
         assertEquals(baseCalculoTest, baseCaculo);
         assertEquals(valorTest, valor);

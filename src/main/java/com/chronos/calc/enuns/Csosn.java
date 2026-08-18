@@ -66,4 +66,13 @@ public enum Csosn {
         return codigo;
     }
 
+    /**
+     * CSOSN 102/103/300/400 não têm cálculo de ICMS — a nota sai com base e valor zerados por
+     * definição do CSOSN, independente da operação ser importação ou não (ver
+     * {@link com.chronos.calc.csosn.Csosn102#calcular}).
+     */
+    public boolean isSemCalculoDeIcms() {
+        return this == Csosn102 || this == Csosn103 || this == Csosn300 || this == Csosn400;
+    }
+
 }

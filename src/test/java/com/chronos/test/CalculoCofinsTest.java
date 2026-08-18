@@ -64,4 +64,24 @@ public class CalculoCofinsTest {
         Assert.assertEquals(baseCalculoTest, baseCalculo);
         Assert.assertEquals(valorTest, valor);
     }
+
+    /**
+     * COFINS-Importação incide sobre o Valor Aduaneiro (CIF), não sobre o valor do produto — que é
+     * só o valor comercial digitado pelo chamador, sem relação garantida com o CIF.
+     */
+    @Test
+    public void dadoOperacaoDeImportacao_quandoCalcularCofins_entaoBaseDeveSerOValorAduaneiro() {
+        ITributavel tributos = new ITributavel();
+        tributos.setQuantidadeProduto(BigDecimal.ONE);
+        tributos.setValorAduaneiro(new BigDecimal("1098.83"));
+        tributos.setValorImpostoImportacao(new BigDecimal("118.67"));
+        tributos.setPercentualCofins(BigDecimal.valueOf(9.65));
+
+        CalcTributacao calcular = new CalcTributacao(tributos);
+
+        IResultadoCalculoCofins resultado = calcular.calcularCofins();
+
+        Assert.assertEquals(new BigDecimal("1098.83"), resultado.getBaseCalculo());
+        Assert.assertEquals(new BigDecimal("106.04"), resultado.getValor());
+    }
 }

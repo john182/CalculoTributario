@@ -67,4 +67,24 @@ public class CalculoPisTest {
         Assert.assertEquals(baseCalculoTest, baseCalculo);
         Assert.assertEquals(valorTest, valor);
     }
+
+    /**
+     * PIS-Importação incide sobre o Valor Aduaneiro (CIF), não sobre o valor do produto — que é só
+     * o valor comercial digitado pelo chamador, sem relação garantida com o CIF.
+     */
+    @Test
+    public void dadoOperacaoDeImportacao_quandoCalcularPis_entaoBaseDeveSerOValorAduaneiro() {
+        ITributavel tributos = new ITributavel();
+        tributos.setQuantidadeProduto(BigDecimal.ONE);
+        tributos.setValorAduaneiro(new BigDecimal("1098.83"));
+        tributos.setValorImpostoImportacao(new BigDecimal("118.67"));
+        tributos.setPercentualPis(BigDecimal.valueOf(2.1));
+
+        CalcTributacao calcular = new CalcTributacao(tributos);
+
+        IResultadoCalculoPis resultado = calcular.calcularPis();
+
+        Assert.assertEquals(new BigDecimal("1098.83"), resultado.getBaseCalculo());
+        Assert.assertEquals(new BigDecimal("23.08"), resultado.getValor());
+    }
 }

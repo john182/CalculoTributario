@@ -59,6 +59,7 @@ public class TributacaoIpi {
     }
 
     private BigDecimal calcularIpi(BigDecimal baseCalculo) {
-        return baseCalculo.multiply(tributos.getPercentualIpi()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN);
+        return baseCalculo.multiply(tributos.getPercentualIpi())
+                .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
     }
 }

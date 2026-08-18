@@ -41,7 +41,7 @@ public enum CstPisCofins {
     Cst08("08", "08 - Operação sem Incidência da Contribuição"),
     Cst09("09", "09 - Operação com Suspensão da Contribuição"),
     Cst49("49", "49 - Outras Operações de Saída"),
-    Cst50("50", "50 - Operação com Direito a Crédito - Vinculada Exclusivamente a Receita Tributada no Mercado Interno"),
+    Cst50("50", "50 - Operação com Direito a Crédito - Vinculada Exclusivamente a Receita Tributada no Mercado Interno", true),
     Cst51("51", "51 - Operação com Direito a Crédito – Vinculada Exclusivamente a Receita Não Tributada no Mercado Interno"),
     Cst52("52", "52 - Operação com Direito a Crédito - Vinculada Exclusivamente a Receita de Exportação"),
     Cst53("53", "53 - Operação com Direito a Crédito - Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno"),

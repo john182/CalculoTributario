@@ -49,13 +49,51 @@ public class CalcularBaseICMS extends CalcularBaseCalculoBase {
 
     @Override
     public BigDecimal getBaseCalculo() {
-        BigDecimal baseCalculo = super.getBaseCalculo().add(valorIpi);
-        return aplicarReducaoBaseCalculo(baseCalculo);
+        BigDecimal baseCalculo = somarComponentesDaBase();
+        baseCalculo = aplicarReducaoBaseCalculo(baseCalculo);
+        return aplicarCalculoPorDentroSeImportacao(baseCalculo);
     }
 
     public BigDecimal getBaseCalculoSemReducao() {
-        BigDecimal baseCalculo = super.getBaseCalculo().add(valorIpi);
-        return baseCalculo;
+        return somarComponentesDaBase();
+    }
+
+    /**
+     * Na importação direta, a base do ICMS é inteiramente definida pelos dados da Declaração de
+     * Importação — Valor Aduaneiro (CIF) + II + IPI + PIS-Importação + COFINS-Importação +
+     * despesas aduaneiras (Siscomex, AFRMM, capatazia etc.) — Lei Kandir art. 13, §1º-I. A
+     * legislação não menciona "valor do produto"; por isso a base de importação NÃO usa
+     * {@code super.getBaseCalculo()} (valorProduto + frete + seguro + outras despesas), que é a
+     * base do mercado interno — {@code valorProduto} é só o valor comercial digitado pelo
+     * chamador, sem relação garantida com o CIF.
+     */
+    private BigDecimal somarComponentesDaBase() {
+        if (getTributos().isOperacaoImportacao()) {
+            return getTributos().getValorAduaneiro()
+                    .add(getTributos().getValorImpostoImportacao())
+                    .add(valorIpi)
+                    .add(Optional.ofNullable(getTributos().getValorPis()).orElse(BigDecimal.ZERO))
+                    .add(Optional.ofNullable(getTributos().getValorCofins()).orElse(BigDecimal.ZERO))
+                    .add(getTributos().getValorDespesasAduaneiras());
+        }
+
+        return super.getBaseCalculo().add(valorIpi);
+    }
+
+    /**
+     * "Cálculo por dentro" do ICMS na importação: o próprio imposto integra sua base
+     * (Lei Kandir art. 13, §1º, I). Algebricamente, Base = Soma / (1 - alíquota), pois
+     * Base = Soma + ICMS e ICMS = Base * alíquota.
+     */
+    private BigDecimal aplicarCalculoPorDentroSeImportacao(BigDecimal baseCalculo) {
+        if (!getTributos().isOperacaoImportacao()) {
+            return baseCalculo;
+        }
+
+        BigDecimal fatorDivisor = BigDecimal.ONE.subtract(
+                getTributos().getPercentualIcms().divide(BigDecimal.valueOf(100)));
+
+        return baseCalculo.divide(fatorDivisor, 2, RoundingMode.HALF_UP);
     }
 
     private BigDecimal aplicarReducaoBaseCalculo(BigDecimal baseCalculoInicial) {

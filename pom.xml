@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.chronos.calc</groupId>
-    <artifactId>ChronosCalcTribut</artifactId>
-    <version>2.0.1</version>
+    <artifactId>chronos-calc-tribut</artifactId>
+    <version>2.1.0</version>
     <packaging>jar</packaging>
     <organization>
         <name>Chronosinfo</name>
@@ -18,11 +18,11 @@
             <organization></organization>
         </developer>       
     </developers>
-    <!-- Repositorios SVN Chronos -->
     <distributionManagement>
         <repository>
-            <id>chronosinfo</id>
-            <url>http://207.244.230.253:8081/repository/chronos/</url>
+            <id>github</id>
+            <name>GitHub Packages - Chronos</name>
+            <url>https://maven.pkg.github.com/chronosinfo/chronos-erp-api</url>
         </repository>
     </distributionManagement>
     <properties>

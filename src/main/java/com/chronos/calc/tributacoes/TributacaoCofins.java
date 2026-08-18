@@ -52,6 +52,7 @@ public class TributacaoCofins {
 
     private IResultadoCalculoCofins calcularCofins() {
         BigDecimal baseCalculo = baseCalculoCofins.getBaseCalculo();
+        baseCalculo = aplicarReducaoBaseCalculo(baseCalculo);
 
         BigDecimal valorIcms = calcularCofins(baseCalculo);
 
@@ -59,8 +60,15 @@ public class TributacaoCofins {
     }
 
     private BigDecimal calcularCofins(BigDecimal baseCalculo) {
-        return baseCalculo.multiply(tributos.getPercentualCofins()).divide(BigDecimal.valueOf(100), RoundingMode.DOWN).setScale(2, RoundingMode.DOWN);
+        return baseCalculo.multiply(tributos.getPercentualCofins())
+                .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+    }
 
+    private BigDecimal aplicarReducaoBaseCalculo(BigDecimal baseCalculo) {
+        BigDecimal reducao = baseCalculo.multiply(tributos.getPercentualReducaoCofins()).divide(BigDecimal.valueOf(100));
+        baseCalculo = baseCalculo.subtract(reducao);
+        baseCalculo = baseCalculo.setScale(2, RoundingMode.DOWN);
+        return baseCalculo;
     }
 
 }

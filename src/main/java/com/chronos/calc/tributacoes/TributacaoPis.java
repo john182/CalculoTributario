@@ -52,6 +52,7 @@ public class TributacaoPis {
 
     private IResultadoCalculoPis calcularPis() {
         BigDecimal baseCalculo = baseCalculoPis.getBaseCalculo();
+        baseCalculo = aplicarReducaoBaseCalculo(baseCalculo);
 
         BigDecimal valorIcms = calcularPis(baseCalculo);
 
@@ -59,9 +60,15 @@ public class TributacaoPis {
     }
 
     private BigDecimal calcularPis(BigDecimal baseCalculo) {
-        BigDecimal valor = baseCalculo.multiply(tributos.getPercentualPis());
-        valor = valor.divide(BigDecimal.valueOf(100)).setScale(2, RoundingMode.DOWN);
-        return valor;
+        return baseCalculo.multiply(tributos.getPercentualPis())
+                .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+    }
+
+    private BigDecimal aplicarReducaoBaseCalculo(BigDecimal baseCalculo) {
+        BigDecimal reducao = baseCalculo.multiply(tributos.getPercentualReducaoPis()).divide(BigDecimal.valueOf(100));
+        baseCalculo = baseCalculo.subtract(reducao);
+        baseCalculo = baseCalculo.setScale(2, RoundingMode.DOWN);
+        return baseCalculo;
     }
 
 }

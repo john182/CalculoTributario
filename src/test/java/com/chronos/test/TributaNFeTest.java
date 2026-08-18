@@ -153,5 +153,26 @@ public class TributaNFeTest {
 
     }
 
+    /**
+     * CST 50 ("Operação com Direito a Crédito - Vinculada Exclusivamente a Receita Tributada no
+     * Mercado Interno") é um dos dois CSTs recomendados para PIS/COFINS na importação direta
+     * (o outro é o 98) — a nota real de importação usada neste projeto já transmite com CST 50.
+     * Precisa gerar valor de verdade, não ficar nulo como os demais CSTs de aquisição/entrada.
+     */
+    @Test
+    public void devemos_garantir_que_seja_gerado_valores_de_pis_cofins_para_cst_50() throws TributacaoException {
+
+        produto.setCstPisCofins(CstPisCofins.Cst50);
+
+        tributaNFe = new TributaNFe(produto);
+
+        Imposto imposto = tributaNFe.tributarNfe(Crt.RegimeNormal, TipoOperacao.OperacaoInterna, TipoPessoa.Fisica);
+
+        BigDecimal valorCofins = BigDecimal.valueOf(30).setScale(2);
+        BigDecimal valorPis = BigDecimal.valueOf(16.50).setScale(2);
+
+        assertEquals(valorCofins, imposto.getCofins().getValor());
+        assertEquals(valorPis, imposto.getPis().getValor());
+    }
 
 }

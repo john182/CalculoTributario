@@ -46,6 +46,15 @@ public class TributacaoIcms {
         baseICMS = new CalcularBaseICMS(tributos, desconto);
     }
 
+    /**
+     * Na importação direta, PIS-Importação e COFINS-Importação sempre compõem a base do ICMS
+     * (diferente do mercado interno, onde nunca entram) — mas o motor NÃO os recalcula aqui:
+     * assim como o II, são valores apurados pela Receita Federal na própria Declaração de
+     * Importação sobre o Valor Aduaneiro (CIF), uma base diferente da usada no cálculo
+     * doméstico de PIS/COFINS. O chamador informa {@link ITributavel#setValorPis} e
+     * {@link ITributavel#setValorCofins} já prontos, e
+     * {@link com.chronos.calc.calculos.base.CalcularBaseICMS} apenas os soma.
+     */
     public IResultadoCalculoIcms calcular() {
         return calcularIcms();
     }

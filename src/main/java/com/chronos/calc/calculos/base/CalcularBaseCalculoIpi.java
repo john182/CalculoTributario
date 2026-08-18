@@ -26,6 +26,9 @@ package com.chronos.calc.calculos.base;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  *
  * @author John Vanderson M L
@@ -35,5 +38,21 @@ public class CalcularBaseCalculoIpi extends CalcularBaseCalculoBase {
     public CalcularBaseCalculoIpi(ITributavel tributos, TipoDesconto desconto) {
         super(tributos, desconto);
 
+    }
+
+    /**
+     * Na importação direta, o IPI incide sobre o Valor Aduaneiro (CIF) somado ao Imposto de
+     * Importação — não sobre o valor do produto, que é só o valor comercial digitado pelo
+     * chamador, sem relação garantida com o CIF.
+     */
+    @Override
+    public BigDecimal getBaseCalculo() {
+        if (!getTributos().isOperacaoImportacao()) {
+            return super.getBaseCalculo();
+        }
+
+        return getTributos().getValorAduaneiro()
+                .add(getTributos().getValorImpostoImportacao())
+                .setScale(2, RoundingMode.DOWN);
     }
 }

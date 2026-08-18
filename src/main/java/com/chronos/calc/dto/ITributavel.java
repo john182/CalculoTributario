@@ -39,6 +39,11 @@ public class ITributavel extends Ibpt {
     private BigDecimal outrasDespesas;
     private BigDecimal desconto;
     private BigDecimal valorIpi;
+    private BigDecimal valorPis;
+    private BigDecimal valorCofins;
+    private BigDecimal valorImpostoImportacao;
+    private BigDecimal valorDespesasAduaneiras;
+    private BigDecimal valorAduaneiro;
     private BigDecimal percentualReducao;
     private BigDecimal quantidadeProduto;
     private BigDecimal percentualIcms;
@@ -52,6 +57,8 @@ public class ITributavel extends Ibpt {
     private BigDecimal percentualIpi;
     private BigDecimal percentualCofins;
     private BigDecimal percentualCofinsRais;
+    private BigDecimal percentualReducaoPis;
+    private BigDecimal percentualReducaoCofins;
     private BigDecimal percentualPis;
     private BigDecimal percentualPisReais;
     private BigDecimal percentualReducaoSt;
@@ -118,6 +125,67 @@ public class ITributavel extends Ibpt {
 
     public void setValorIpi(BigDecimal valorIpi) {
         this.valorIpi = valorIpi;
+    }
+
+    public BigDecimal getValorPis() {
+        return valorPis;
+    }
+
+    public void setValorPis(BigDecimal valorPis) {
+        this.valorPis = valorPis;
+    }
+
+    public BigDecimal getValorCofins() {
+        return valorCofins;
+    }
+
+    public void setValorCofins(BigDecimal valorCofins) {
+        this.valorCofins = valorCofins;
+    }
+
+    /**
+     * Valor do Imposto de Importação (II) apurado na Declaração de Importação. A presença deste
+     * valor (maior que zero) é o sinal que o motor usa para saber que a operação é uma
+     * importação direta e que, portanto, o ICMS deve ser calculado pela regra específica de
+     * importação (PIS/COFINS sempre na base + cálculo "por dentro").
+     */
+    public BigDecimal getValorImpostoImportacao() {
+        return valorImpostoImportacao;
+    }
+
+    public void setValorImpostoImportacao(BigDecimal valorImpostoImportacao) {
+        this.valorImpostoImportacao = valorImpostoImportacao;
+    }
+
+    public BigDecimal getValorDespesasAduaneiras() {
+        return Optional.ofNullable(valorDespesasAduaneiras).orElse(BigDecimal.ZERO);
+    }
+
+    public void setValorDespesasAduaneiras(BigDecimal valorDespesasAduaneiras) {
+        this.valorDespesasAduaneiras = valorDespesasAduaneiras;
+    }
+
+    /**
+     * Valor Aduaneiro (CIF) constante da Declaração de Importação — base de cálculo do próprio
+     * II. É o ponto de partida legal da base do ICMS/IPI/PIS/COFINS de importação (Lei Kandir
+     * art. 13, §1º-I), independente de {@code valorProduto} (que é só o valor comercial digitado
+     * pelo chamador, sem relação garantida com o CIF).
+     */
+    public BigDecimal getValorAduaneiro() {
+        return Optional.ofNullable(valorAduaneiro).orElse(BigDecimal.ZERO);
+    }
+
+    public void setValorAduaneiro(BigDecimal valorAduaneiro) {
+        this.valorAduaneiro = valorAduaneiro;
+    }
+
+    /**
+     * Deriva se esta operação é uma importação direta (Declaração de Importação vinculada) a
+     * partir da presença do próprio dado fiscal — sem depender de uma flag externa que o
+     * chamador precisaria lembrar de setar corretamente.
+     */
+    public boolean isOperacaoImportacao() {
+        return valorImpostoImportacao != null && valorImpostoImportacao.signum() > 0;
     }
 
     public BigDecimal getPercentualReducao() {
@@ -214,6 +282,22 @@ public class ITributavel extends Ibpt {
 
     public void setPercentualCofins(BigDecimal percentualCofins) {
         this.percentualCofins = percentualCofins;
+    }
+
+    public BigDecimal getPercentualReducaoPis() {
+        return Optional.ofNullable(percentualReducaoPis).orElse(BigDecimal.ZERO);
+    }
+
+    public void setPercentualReducaoPis(BigDecimal percentualReducaoPis) {
+        this.percentualReducaoPis = percentualReducaoPis;
+    }
+
+    public BigDecimal getPercentualReducaoCofins() {
+        return Optional.ofNullable(percentualReducaoCofins).orElse(BigDecimal.ZERO);
+    }
+
+    public void setPercentualReducaoCofins(BigDecimal percentualReducaoCofins) {
+        this.percentualReducaoCofins = percentualReducaoCofins;
     }
 
     public BigDecimal getPercentualPis() {

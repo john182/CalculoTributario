@@ -26,6 +26,9 @@ package com.chronos.calc.calculos.base;
 import com.chronos.calc.dto.ITributavel;
 import com.chronos.calc.enuns.TipoDesconto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  *
  * @author John Vanderson M L
@@ -34,5 +37,19 @@ public class CalcularBaseCalculoCofins extends CalcularBaseCalculoBase {
 
     public CalcularBaseCalculoCofins(ITributavel tributos, TipoDesconto desconto) {
         super(tributos, desconto);
+    }
+
+    /**
+     * COFINS-Importação incide sobre o Valor Aduaneiro (CIF) — Lei 10.865/2004, art. 7º — não sobre
+     * a base doméstica (valor do produto + frete + seguro + outras despesas) nem sobre o valor do
+     * produto, que é só o valor comercial digitado pelo chamador, sem relação garantida com o CIF.
+     */
+    @Override
+    public BigDecimal getBaseCalculo() {
+        if (!getTributos().isOperacaoImportacao()) {
+            return super.getBaseCalculo();
+        }
+
+        return getTributos().getValorAduaneiro().setScale(2, RoundingMode.DOWN);
     }
 }

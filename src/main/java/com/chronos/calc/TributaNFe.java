@@ -89,7 +89,8 @@ public class TributaNFe {
 
         //pessoa fisica inclui ipi na base de calculo do icms
         //pessoa fisica sempre usa a aliquota normal da UF emissao
-        if (tipoPessoa == TipoPessoa.Fisica) {
+        //na importação direta o IPI sempre entra na base do ICMS, independente do tipo de pessoa
+        if (tipoPessoa == TipoPessoa.Fisica || produto.isOperacaoImportacao()) {
             BigDecimal valorIpi = calcular.calcularIpi().getValor();
             produto.setValorIpi(valorIpi);
         }
@@ -111,7 +112,7 @@ public class TributaNFe {
         Icms calculo;
 
         CsosnBase csosnBase = CsosnFactory.createCsosn(csosn);
-        if (csosn == Csosn.Csosn102 || csosn == Csosn.Csosn103 || csosn == Csosn.Csosn300 || csosn == Csosn.Csosn400) {
+        if (csosn.isSemCalculoDeIcms()) {
             calculo = new Icms();
         } else {
             csosnBase.calcular(produto);
